@@ -15,7 +15,7 @@ class Header extends React.Component{
                             <div key={i} className='menu-option' id={i+1 === this.props.menudata.length? 'is-last-option': null}>
                                 <p className='option'>{content}</p>
                                 {!row.is_selected?null:
-                                    <p>_____</p>
+                                    <div className='svg-animation'></div>
                                 }
                             </div>                        
                         )

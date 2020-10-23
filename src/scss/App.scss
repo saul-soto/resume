@@ -22,7 +22,16 @@ body {
             display: flex;
 
             .menu-option{
-                padding-right: 20px
+                padding-right: 20px;
+
+                $svg_width: 112.5%;
+                .svg-animation{
+                    width: $svg_width;
+                    height: 6%;
+                    position: relative; top: -12.5px; right: 6.25%;
+                    background-color: rgba(26, 27, 31, 0.24);
+                    border-radius: 7px;
+                }   
             }
 
             #is-last-option{
@@ -33,7 +42,8 @@ body {
                     cursor: pointer;
 
                     span{
-                        color: rgba(26, 27, 31, 0.24);
+                        color: rgba(26, 27, 31, 0.25);
+                        font-weight: 600;
                     }
                 }
         }
