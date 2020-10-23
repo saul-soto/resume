@@ -1,5 +1,6 @@
 import React from 'react';
-import Header from './screens/main/header';
+import Header from './screens/header';
+import './scss/App.scss';
 
 class App extends React.Component{
 

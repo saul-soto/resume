@@ -1,0 +1,25 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500);
+
+$my_font: 'Montserrat';
+$nav_height: 16.66vh;
+
+body {
+    font-family: $my_font;
+    font-weight: 400;
+    font-size: 16px;
+    color: #1a1b1f;
+
+    .navigation{
+        display: flex;
+        align-content: center;
+        justify-content: space-between;
+        padding: 0 50px 0 50px;
+        height: $my_font;
+        position: fixed; top: 0; left: 0; right: 0; bottom: auto;
+        
+
+        .buttons-selection{
+            display: flex;
+        }
+    }
+}
