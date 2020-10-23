@@ -20,6 +20,22 @@ body {
 
         .buttons-selection{
             display: flex;
+
+            .menu-option{
+                padding-right: 20px
+            }
+
+            #is-last-option{
+                padding-right: 0
+            }
+
+                .option{
+                    cursor: pointer;
+
+                    span{
+                        color: rgba(26, 27, 31, 0.24);
+                    }
+                }
         }
     }
 }

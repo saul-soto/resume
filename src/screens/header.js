@@ -9,16 +9,14 @@ class Header extends React.Component{
                 <div className='buttons-selection'>
                     {this.props.menudata.map( (row,i) => {
                         const ls_words = row.text.split('+');
-                        const contains_plus = ls_words.length > 1;
+                        const content = !(ls_words.length > 1)?<>{row.text}</>:<>{ls_words[0]}<span>+</span>{ls_words[1]}</>
+                        
                         return(
-                            <div>
-                                {contains_plus? 
-                                    <p>
-                                        {ls_words[0]}<span>+-+-+</span>{ls_words[1]}
-                                    </p>
-                                :   <p>{row.text}</p>
+                            <div key={i} className='menu-option' id={i+1 === this.props.menudata.length? 'is-last-option': null}>
+                                <p className='option'>{content}</p>
+                                {!row.is_selected?null:
+                                    <p>_____</p>
                                 }
-                                {row.is_selected?<p>___</p>:null}
                             </div>                        
                         )
                     })}
