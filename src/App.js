@@ -1,6 +1,8 @@
 import React from 'react';
+import './App.scss';
 import Header from './screens/header';
-import './scss/App.scss';
+import ContentContainer from './screens/content_container/main';
+
 
 class App extends React.Component{
 
@@ -8,6 +10,7 @@ class App extends React.Component{
 		return(
 			<>
 				<Header />
+				<ContentContainer />
 			</>
 			
 		)
