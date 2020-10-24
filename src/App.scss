@@ -67,6 +67,12 @@ body {
             flex-direction: column;
             min-height: 100vh-$nav_height;
 
+            .title{
+                padding: 20px 0 20px 0;
+                font-size: 50px;
+                text-align: center;
+                font-weight: 400;
+            }
 
             // INTRODUCTION ///////////////////////////
             .content-introduction{
