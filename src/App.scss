@@ -35,8 +35,8 @@ body {
                 $svg_width: 112.5%;
                 .svg-animation{
                     width: $svg_width;
-                    height: 4%;
-                    position: relative; top: -12.5px; right: 6.25%;
+                    height: 7.5%;
+                    position: relative; right: 6.25%;
                     background-color: rgba(26, 27, 31, 0.24);
                     border-radius: 7px;
                 }   
@@ -74,6 +74,7 @@ body {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                margin-top: -10vh; padding-bottom: 10vh;
 
                 .intro-row{
                     display: flex;
@@ -83,12 +84,11 @@ body {
                     height: 20vh;
 
                     .intro-title{
-                        // align vertical using flex child
+                        align-self: center;
                         padding-right: 10px;
                         width: 35%;
                         font-size: 50px;
                         text-align: right;
-                        
                     }
 
                     .svg-line{
@@ -98,7 +98,7 @@ body {
                     }
 
                     .intro-description{
-                        // align vertical using flex child
+                        align-self: center;
                         width: 35%;
                     }
                 }
