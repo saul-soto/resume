@@ -8,8 +8,8 @@ class ContentContainer extends React.Component{
     render(){
         return(
             <div className='content-container'>
-                {[<Introduction />, <Experience />,<Skills />,<Gallery />].map((comp,i) => {return(
-                    <div key={i} className='content-box'>{comp}</div>
+                {[<Introduction />, <Experience />,<Skills />,<Gallery />].map((component,i) => {return(
+                    <div key={i} className='content-box'>{component}</div>
                 )})}
             </div>
             
