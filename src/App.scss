@@ -3,6 +3,11 @@
 $my_font: 'Montserrat';
 $nav_height: 10vh;
 
+
+h3, p{
+    margin: 0;
+}
+
 body {
     font-family: $my_font;
     font-weight: 400;
@@ -74,11 +79,11 @@ body {
                     display: flex;
                     align-content: stretch;
                     justify-content: center;
-                    padding: 0 15px 0 15px;
+                    padding: 15px 0 15px 0;
                     height: 20vh;
 
                     .intro-title{
-                        align-content: center;
+                        // align vertical using flex child
                         padding-right: 10px;
                         width: 35%;
                         font-size: 50px;
@@ -88,12 +93,12 @@ body {
 
                     .svg-line{
                         width: 5%;
-                        border-left: 3px;
+                        border-left: 2px solid;
                         border-color: rgba(26, 27, 31, 0.24);
                     }
 
                     .intro-description{
-                        margin: 0;
+                        // align vertical using flex child
                         width: 35%;
                     }
                 }

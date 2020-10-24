@@ -20,7 +20,7 @@ class Introduction extends React.Component{
 
 Introduction.defaultProps = {
     intro_data: [
-        {title:'Profiles', desc:'Data driven and curious about all things mathematics and programming'},
+        {title:'Profile', desc:'Data driven and curious about all things mathematics and programming'},
         {title:'About me', desc:'I\'m a data analyst from Mexico City, 28 years old and currently living in Puerto Vallarta, Mexico'},
     ]
 }
