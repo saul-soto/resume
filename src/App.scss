@@ -74,14 +74,14 @@ body {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                margin-top: -10vh; padding-bottom: 10vh;
+                margin-top: -5vh; padding-bottom: 5vh;
 
                 .intro-row{
                     display: flex;
                     align-content: stretch;
                     justify-content: center;
                     padding: 15px 0 15px 0;
-                    height: 20vh;
+                    height: 15vh;
 
                     .intro-title{
                         align-self: center;
@@ -89,6 +89,7 @@ body {
                         width: 35%;
                         font-size: 50px;
                         text-align: right;
+                        font-weight: 400;
                     }
 
                     .svg-line{
