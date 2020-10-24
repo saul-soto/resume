@@ -30,8 +30,8 @@ class Experience extends React.Component{
                             <div key={i} className='exp-cat-detail'>
                                 <p className='exp-cat-detail-title'>{row.PositionName}</p>
                                 <p className='exp-cat-detail-subtitle'>{row.Company}/{row.DateBegin}-{row.DateEnd}</p>
-                                {row.Responsibilities.map( resp => {return(
-                                    <p className='exp-cat-detail-desc'>{resp}</p>
+                                {row.Responsibilities.map( (resp,i) => {return(
+                                    <p key={i} className='exp-cat-detail-desc'>{resp}</p>
                                 )})}
                                 
                                 
