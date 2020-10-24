@@ -1,6 +1,6 @@
 import React from 'react';
 import Introduction from './content/introduction';
-import Experience from './content/experience';
+import Experience from './content/experience/experience';
 import Skills from './content/skills';
 import Gallery from './content/gallery';
 
