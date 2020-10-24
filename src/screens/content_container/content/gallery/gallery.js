@@ -2,6 +2,13 @@ import React from 'react';
 import gallery_data from './data/data.jsx';
 
 class Gallery extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            selected_option: 'Python'
+        }
+    }
+
     render(){
         return(
             <div className='content-gallery'>
@@ -13,7 +20,8 @@ class Gallery extends React.Component{
                         <p 
                             key={i} 
                             className='gallery-menu-option' 
-                            id={tool!=='Python'?null:'is-selected'}
+                            id={tool!==this.state.selected_option ? null: 'is-selected'}
+                            onClick={()=>{this.setState({selected_option:tool})}}
                         >
                             {tool}
                         </p>
