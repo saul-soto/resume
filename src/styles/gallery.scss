@@ -1,0 +1,25 @@
+.content-gallery{
+                
+    .gallery-menu{
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+
+        .gallery-menu-option{
+            min-width: 25vw;
+            font-size: 25px;
+            color: rgba(26, 27, 31, 0.24);
+            text-align: center;
+            cursor: pointer;
+
+            &:hover{
+                color: rgba(26, 27, 31, 0.6);
+                transition: 1s;
+            }
+        }
+
+        #is-selected{
+            color: rgba(26, 27, 31, .84);
+        }
+    }
+}

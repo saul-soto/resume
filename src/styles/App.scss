@@ -1,0 +1,50 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500);
+
+$my_font: 'Montserrat';
+$nav_height: 10vh;
+
+
+h3, p{
+    margin: 0;
+}
+
+body {
+    font-family: $my_font;
+    font-weight: 400;
+    font-size: 16px;
+    color: #1a1b1f;
+    padding: 0;
+    margin: 0;
+
+    @import 'navigation';
+
+    .content-container{
+        margin-top: $nav_height;
+
+
+        .content-box{
+            display: 'flex';
+            flex-direction: column;
+            min-height: 100vh-$nav_height;
+
+            .title{
+                padding: 20px 0 20px 0;
+                font-size: 50px;
+                text-align: center;
+                font-weight: 400;
+
+                span{
+                    color: rgba(26, 27, 31, 0.20);
+                }
+            }
+
+            @import 'introduction';
+            @import 'experience';
+            @import 'skills';
+            @import 'gallery';
+        }
+    }
+
+    @import 'footer';
+
+}

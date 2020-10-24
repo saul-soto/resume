@@ -1,0 +1,40 @@
+.navigation{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 50px 0px 50px;
+    height: $nav_height;
+    position: fixed; top: 0%; left: 0%; right: 0%; bottom: 0%;
+    background-color: rgba(255, 255, 255, 1);
+    
+
+    .buttons-selection{
+        display: flex;
+
+        .menu-option{
+            padding-right: 20px;
+
+            $svg_width: 112.5%;
+            .svg-animation{
+                width: $svg_width;
+                height: 7.5%;
+                position: relative; right: 6.25%;
+                background-color: rgba(26, 27, 31, 0.24);
+                border-radius: 7px;
+            }   
+        }
+
+        #is-last-option{
+            padding-right: 0
+        }
+
+            .option{
+                cursor: pointer;
+
+                span{
+                    color: rgba(26, 27, 31, 0.25);
+                    font-weight: 600;
+                }
+            }
+    }
+}

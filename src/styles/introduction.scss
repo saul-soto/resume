@@ -1,0 +1,35 @@
+.content-introduction{
+    min-height: 100vh-$nav_height;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: -5vh; padding-bottom: 5vh;
+
+    .intro-row{
+        display: flex;
+        align-content: stretch;
+        justify-content: center;
+        padding: 15px 0 15px 0;
+        height: 15vh;
+
+        .intro-title{
+            align-self: center;
+            padding-right: 10px;
+            width: 35%;
+            font-size: 50px;
+            text-align: right;
+            font-weight: 400;
+        }
+
+        .svg-line{
+            width: 5%;
+            border-left: 2px solid;
+            border-color: rgba(26, 27, 31, 0.24);
+        }
+
+        .intro-description{
+            align-self: center;
+            width: 35%;
+        }
+    }
+}
