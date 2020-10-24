@@ -13,9 +13,9 @@ class Experience extends React.Component{
                     <div className='exp-cat-detail-container'>
                         {this.props.experience_data.education.map( (row,i) => {return(
                             <div key={i} className='exp-cat-detail'>
-                                <p>{row.University}</p>
-                                <p>{row.Degree}</p>
-                                <p>{row.Description}</p>
+                                <p className='exp-cat-detail-title'>{row.University}</p>
+                                <p className='exp-cat-detail-subtitle'>{row.Degree}</p>
+                                <p className='exp-cat-detail-desc'>{row.Description}</p>
                             </div>
                         )})}
                     </div>
@@ -28,10 +28,10 @@ class Experience extends React.Component{
                     <div className='exp-cat-detail-container'>
                         {this.props.experience_data.jobs.map( (row,i) => {return(
                             <div key={i} className='exp-cat-detail'>
-                                <p>{row.PositionName}</p>
-                                <p>{row.Company}/{row.DateBegin}-{row.DateEnd}</p>
+                                <p className='exp-cat-detail-title'>{row.PositionName}</p>
+                                <p className='exp-cat-detail-subtitle'>{row.Company}/{row.DateBegin}-{row.DateEnd}</p>
                                 {row.Responsibilities.map( resp => {return(
-                                    <p>{resp}</p>
+                                    <p className='exp-cat-detail-desc'>{resp}</p>
                                 )})}
                                 
                                 

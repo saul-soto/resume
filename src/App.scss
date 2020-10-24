@@ -111,8 +111,55 @@ body {
                 }
             }
 
+            // EXPERIENCE ///////////////////////////
             .content-experience{
+                padding-bottom: 40px;
+
+
+                .category{
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 18px 50px 0 50px;
+                    
+                    
+                    .exp-subtitle{
+                        width: 40%;
+                        font-weight: 600;
+                        text-align: right;
+                    }
+
+                    .exp-cat-detail-container{
+                        width: 55%;
+
+                        
+                        .exp-cat-detail{
+                            padding-bottom: 14px;
+
+
+                            .exp-cat-detail-title{
+                                font-weight: 600;
+                                padding-bottom: 5px;
+                            }
+
+                            .exp-cat-detail-subtitle{
+                                font-size: 14px;
+                                color: rgba(26, 27, 31, 0.5);
+                                font-style: italic;
+                                padding-bottom: 5px;
+                            }
+
+                            .exp-cat-detail-desc{
+                                font-size: 14px;
+                                color: rgba(26, 27, 31, 0.5);
+                                padding-bottom: 5px;
+                            }
+
+                        }
+                    }
+
+                }
                 
+
             }
         }
     }
