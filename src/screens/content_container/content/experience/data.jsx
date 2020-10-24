@@ -1,4 +1,13 @@
-const experience_data = [
+const education = [
+  {
+    "University": "Universidad Nacional Autónoma de México",
+    "Degree": "Actuarial Sciences",
+    "Description": "Education focused on statistics, probability and maths"
+  }
+]
+
+
+const jobs = [
     {
       "PositionName": "Client Service Representative",
       "Company": "Telvista",
@@ -87,4 +96,6 @@ const experience_data = [
     }
 ];
 
+
+const experience_data = {education, jobs}
 export default experience_data;
