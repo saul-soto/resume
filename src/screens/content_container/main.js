@@ -2,7 +2,7 @@ import React from 'react';
 import Introduction from './content/introduction';
 import Experience from './content/experience/experience';
 import Skills from './content/skills/skills';
-import Gallery from './content/gallery';
+import Gallery from './content/gallery/gallery';
 
 class ContentContainer extends React.Component{
     render(){
