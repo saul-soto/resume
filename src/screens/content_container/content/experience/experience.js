@@ -3,6 +3,12 @@ import experience_data from './data.jsx';
 
 class Experience extends React.Component{
     render(){
+        const parse_date = (integer_date) => {
+            let date = new Date(integer_date);
+            date.setDate(date.getDate() + 1)
+            return( date.getMonth()+'/'+date.getFullYear() )
+        };
+
         return(
             <div className='content-experience'>
                 <h3 className='title'>Experience</h3>
@@ -29,7 +35,7 @@ class Experience extends React.Component{
                         {this.props.experience_data.jobs.map( (row,i) => {return(
                             <div key={i} className='exp-cat-detail'>
                                 <p className='exp-cat-detail-title'>{row.PositionName}</p>
-                                <p className='exp-cat-detail-subtitle'>{row.Company}/{row.DateBegin}-{row.DateEnd}</p>
+                                <p className='exp-cat-detail-subtitle'>{row.Company} | {parse_date(row.DateBegin)}-{row.DateEnd===null?null:parse_date(row.DateEnd)}</p>
                                 {row.Responsibilities.map( (resp,i) => {return(
                                     <p key={i} className='exp-cat-detail-desc'>{resp}</p>
                                 )})}

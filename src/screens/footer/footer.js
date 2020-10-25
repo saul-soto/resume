@@ -27,7 +27,7 @@ class Footer extends React.Component{
                     href={pdf}
                     download='cv.pdf'
                 >
-                    download cvss
+                    download cv
                 </a>
 
                 {!this.state.modal_is_visible ? null: 
