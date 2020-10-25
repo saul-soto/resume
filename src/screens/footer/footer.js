@@ -1,5 +1,6 @@
 import React from 'react';
-import pdf from '../assets/cv.pdf';
+import pdf from '../../assets/cv.pdf';
+import Modal from './modal';
 
 class Footer extends React.Component{
     render(){
@@ -12,8 +13,10 @@ class Footer extends React.Component{
                     href={pdf}
                     download='cv.pdf'
                 >
-                    download cv
+                    download cvss
                 </a>
+
+                <Modal />
             </div>
         )
     }

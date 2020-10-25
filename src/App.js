@@ -2,7 +2,7 @@ import React from 'react';
 import './styles/App.scss';
 import Header from './screens/header';
 import ContentContainer from './screens/content_container/main';
-import Footer from './screens/footer';
+import Footer from './screens/footer/footer';
 
 
 class App extends React.Component{
