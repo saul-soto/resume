@@ -16,23 +16,6 @@
 
             $svg_width: 112.5%;
 
-            
-            .is-selected{
-                width: 0px;
-                transition: 1s;
-
-                width: $svg_width;
-                height: 7.5%;
-                position: relative; right: 6.25%;
-                background-color: rgba(26, 27, 31, 0.24);
-                border-radius: 7px;
-            }
-
-        }
-
-        #is-last-option{
-            padding-right: 0
-        }
 
             .option{
                 cursor: pointer;
@@ -42,5 +25,31 @@
                     font-weight: 600;
                 }
             }
+
+            .svg-animation{
+                width: 0px;
+                transition: 1s;
+
+                width: $svg_width;
+                height: 7.5%;
+                position: relative; right: 6.25%;
+                border-radius: 7px;
+            }
+
+            #is-selected{
+                background-color: rgba(26, 27, 31, 0.24);
+            }
+
+
+            .option:hover ~ .svg-animation{
+                background-color: rgba(255, 255, 255, 0);
+                transition: .5s;
+                background-color: rgba(26, 27, 31, 0.1);
+            }
+        }
+
+        #is-last-option{
+            padding-right: 0
+        }
     }
 }

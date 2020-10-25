@@ -34,7 +34,7 @@ class Header extends React.Component{
                                 >
                                     {content}
                                 </p>
-                                <div className={row.text !== this.state.selected_option?null:'is-selected'}></div>
+                                <div className='svg-animation' id={row.text !== this.state.selected_option?null:'is-selected'}></div>
                                 
                             </div>                        
                         )
