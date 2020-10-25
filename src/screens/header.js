@@ -27,16 +27,15 @@ class Header extends React.Component{
                                     id={row.text}
                                     onClick={() => {
                                         const tag = '#nav-'+row.text.replace('+','_').toLowerCase();
-                                        const top = d3.select(tag)._groups[0][0].offsetTop;
-                                        window.scrollTo(0,top-60);
+                                        const DOM_top = d3.select(tag)._groups[0][0].offsetTop;
+                                        window.scrollTo(0,DOM_top-60);
                                         this.setState({selected_option:row.text})
                                     }}
                                 >
                                     {content}
                                 </p>
-                                {row.text !== this.state.selected_option?null:
-                                    <div className='svg-animation'></div>
-                                }
+                                <div className={row.text !== this.state.selected_option?null:'is-selected'}></div>
+                                
                             </div>                        
                         )
                     })}
