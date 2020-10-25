@@ -19,7 +19,12 @@ class Modal extends React.Component{
                                     rel="noopener noreferrer"
                                 >{row.contact}</a>
                                 :
-                                <p className='modal-info'>{row.contact}</p>
+                                <a
+                                    className='modal-info'
+                                    href={'mailto:'+row.contact}
+                                >
+                                    {row.contact}
+                                </a>
                             }
                             
 
