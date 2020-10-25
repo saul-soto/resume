@@ -10,7 +10,7 @@ class Experience extends React.Component{
         };
 
         return(
-            <div className='content-experience'>
+            <div className='content-experience' id='nav-experience'>
                 <h3 className='title'>Experience</h3>
 
                 <div className='category'>

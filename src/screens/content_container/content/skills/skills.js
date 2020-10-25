@@ -4,7 +4,7 @@ import skills_data from './data.jsx';
 class Skills extends React.Component{
     render(){
         return(
-            <div className='content-skills'>
+            <div className='content-skills' id='nav-skills_tools'>
                 <h3 className='title'>Skills<span>+</span>Tools</h3>
 
                 <div className='piles-container'>

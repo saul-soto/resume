@@ -1,6 +1,15 @@
 import React from 'react';
+import * as d3 from 'd3';
 
 class Header extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            selected_option: 'About'
+        }
+    }
+
+
     render(){
         return(
             <div className='navigation'>
@@ -13,8 +22,19 @@ class Header extends React.Component{
                         
                         return(
                             <div key={i} className='menu-option' id={i+1 === this.props.menudata.length? 'is-last-option': null}>
-                                <p className='option'>{content}</p>
-                                {!row.is_selected?null:
+                                <p 
+                                    className='option'
+                                    id={row.text}
+                                    onClick={() => {
+                                        const tag = '#nav-'+row.text.replace('+','_').toLowerCase();
+                                        const top = d3.select(tag)._groups[0][0].offsetTop;
+                                        window.scrollTo(0,top-60);
+                                        this.setState({selected_option:row.text})
+                                    }}
+                                >
+                                    {content}
+                                </p>
+                                {row.text !== this.state.selected_option?null:
                                     <div className='svg-animation'></div>
                                 }
                             </div>                        

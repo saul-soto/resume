@@ -3,7 +3,7 @@ import React from 'react';
 class Introduction extends React.Component{
     render(){
         return(
-            <div className='content-introduction'>
+            <div className='content-introduction' id='nav-about'>
                 {this.props.intro_data.map( (row,i)  => {return(
                     <div key={i} className='intro-row'>
                         <h3 className='intro-title'>{row.title}</h3>

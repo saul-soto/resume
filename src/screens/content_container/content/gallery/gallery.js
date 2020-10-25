@@ -11,7 +11,7 @@ class Gallery extends React.Component{
 
     render(){
         return(
-            <div className='content-gallery'>
+            <div className='content-gallery' id='nav-gallery_projects'>
 
                 <h3 className='title'>Gallery<span>+</span>Projects</h3>
 
