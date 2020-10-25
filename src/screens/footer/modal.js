@@ -3,7 +3,10 @@ import React from 'react';
 class Modal extends React.Component{
     render(){
         return(
-            <div className='contact-modal'>
+            <div 
+                className='contact-modal' 
+                onClick={() => {this.props.change_modal_visibility()}}
+            >
 
                 <div className='modal'>
                     {this.props.contact_data.map((row,i)=>{return(
