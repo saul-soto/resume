@@ -18,16 +18,19 @@ class Header extends React.Component{
                 <div className='buttons-selection'>
                     {this.props.menudata.map( (row,i) => {
                         const ls_words = row.text.split('+');
-                        const content = !(ls_words.length > 1)?<>{row.text}</>:<>{ls_words[0]}<span>+</span>{ls_words[1]}</>
-                        
+                        const content = !(ls_words.length > 1)?<>{row.text}</>:<>{ls_words[0]}<span>+</span>{ls_words[1]}</>;
+                        const menu_data = this.props.menudata;
+
                         return(
-                            <div key={i} className='menu-option' id={i+1 === this.props.menudata.length? 'is-last-option': null}>
+                            <div key={i} className='menu-option' id={i+1 === menu_data.length? 'is-last-option': null}>
                                 <p 
                                     className='option'
                                     id={row.text}
                                     onClick={() => {
                                         const tag = '#nav-'+row.text.replace('+','_').toLowerCase();
-                                        const DOM_top = d3.select(tag)._groups[0][0].offsetTop;
+                                        const selection = d3.select(tag)._groups[0][0];
+                                        const DOM_top = i+1 === menu_data.length ? selection.offsetParent.offsetTop:selection.offsetTop;
+                                        console.log(DOM_top);
                                         window.scrollTo(0,DOM_top-60);
                                         this.setState({selected_option:row.text})
                                     }}
