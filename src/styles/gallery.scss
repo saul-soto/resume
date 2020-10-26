@@ -22,4 +22,23 @@
             color: rgba(26, 27, 31, .84);
         }
     }
+
+    .slider{
+        min-height: 100%;
+        
+        .arrows-container{
+            display: flex;
+            justify-content: space-around;
+
+            // ARROW IS STYLED IN CODE
+        }
+
+        .circle-nav{
+            position: relative; bottom: 0%;
+            background-color: blue;
+
+            height: 5vh;
+        }
+    }
+
 }
