@@ -30,7 +30,6 @@ class Header extends React.Component{
                                         const tag = '#nav-'+button.replace('+','_').toLowerCase();
                                         const selection = d3.select(tag)._groups[0][0];
                                         const DOM_top = i+1 === menu_data.length ? selection.offsetParent.offsetTop:selection.offsetTop;
-                                        console.log(DOM_top);
                                         window.scrollTo(0,DOM_top-60);
                                         this.setState({selected_option:button})
                                     }}

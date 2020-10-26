@@ -1,3 +1,14 @@
+@keyframes show-animation{
+    0% {
+        opacity: 0%;
+        padding-bottom: 0px
+    }
+    100% {
+        opacity: 100%;
+        padding-bottom: 43px;
+    }
+}
+
 .contact-modal{
     display: flex;
     flex-direction: column;
@@ -6,6 +17,8 @@
     padding-bottom: 43px;
     position: fixed; top: 0%; right: 0%; bottom: 0%; left: 0%;
     z-index: 998;
+    animation-name: show-animation;
+    animation-duration: 1s;
 
 
     .modal{
@@ -17,7 +30,7 @@
         height: 16%;
         background-color: white;
         border-radius: 7px;
-        border: 1px;
+        border: 2px;
         border-color: rgba(0, 0, 0, .1);
         border-style: solid;
         padding-top: 12px;
