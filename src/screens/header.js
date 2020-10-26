@@ -16,28 +16,28 @@ class Header extends React.Component{
                 <p><b>Saúl</b> Soto</p>
 
                 <div className='buttons-selection'>
-                    {this.props.menudata.map( (row,i) => {
-                        const ls_words = row.text.split('+');
-                        const content = !(ls_words.length > 1)?<>{row.text}</>:<>{ls_words[0]}<span>+</span>{ls_words[1]}</>;
+                    {this.props.menudata.map( (button,i) => {
+                        const ls_words = button.split('+');
+                        const content = !(ls_words.length > 1)?<>{button}</>:<>{ls_words[0]}<span>+</span>{ls_words[1]}</>;
                         const menu_data = this.props.menudata;
 
                         return(
                             <div key={i} className='menu-option' id={i+1 === menu_data.length? 'is-last-option': null}>
                                 <p 
                                     className='option'
-                                    id={row.text}
+                                    id={button}
                                     onClick={() => {
-                                        const tag = '#nav-'+row.text.replace('+','_').toLowerCase();
+                                        const tag = '#nav-'+button.replace('+','_').toLowerCase();
                                         const selection = d3.select(tag)._groups[0][0];
                                         const DOM_top = i+1 === menu_data.length ? selection.offsetParent.offsetTop:selection.offsetTop;
                                         console.log(DOM_top);
                                         window.scrollTo(0,DOM_top-60);
-                                        this.setState({selected_option:row.text})
+                                        this.setState({selected_option:button})
                                     }}
                                 >
                                     {content}
                                 </p>
-                                <div className='svg-animation' id={row.text !== this.state.selected_option?null:'is-selected'}></div>
+                                <div className='svg-animation' id={button !== this.state.selected_option?null:'is-selected'}></div>
                                 
                             </div>                        
                         )
@@ -51,12 +51,7 @@ class Header extends React.Component{
 
 
 Header.defaultProps = {
-    menudata: [
-        {text: 'About', is_selected:true},
-        {text: 'Experience', is_selected:false},
-        {text: 'Skills+Tools', is_selected:false},
-        {text: 'Gallery+Projects', is_selected:false},
-    ]
+    menudata: ['About','Experience','Skills+Tools','Gallery+Projects']
 }
 
 export default Header;
