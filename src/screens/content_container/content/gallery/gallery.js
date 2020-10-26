@@ -30,7 +30,7 @@ class Gallery extends React.Component{
                     )})}
                 </div>
 
-                <Slider />
+                <Slider data={this.props.gallery_data.filter(row => {return row.tool === this.state.selected_option})}/>
 
             </div>
         )

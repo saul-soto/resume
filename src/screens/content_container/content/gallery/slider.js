@@ -5,6 +5,7 @@ import {ReactComponent as SVGCircle} from '../../../../assets/circle.svg';
 
 class Slider extends React.Component{
     render(){
+        console.log(this.props.data)
         const {initial_value, final_value} = {initial_value:.2, final_value: .5}
         const initial_arrow_style = {
             fill:"rgba(26, 27, 31, "+initial_value+")",

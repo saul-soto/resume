@@ -6,23 +6,9 @@
 
 const gallery_data = [
     {
-        tool:'Excel',
-        source:null,
-        description:''
-    },
-    {
         tool:'Python',
         source:null,
-        description:''
-    },
-    {
-        tool:'Power BI',
-        source:null,
-        description:''
-    },
-    {
-        tool:'D3.js',
-        source:null,
+        type:'svg',
         description:''
     },
 ]
