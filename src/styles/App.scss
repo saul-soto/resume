@@ -43,6 +43,10 @@ body {
             @import 'skills';
             @import 'gallery';
         }
+
+        #relative-box{
+            position: relative;
+        }
     }
 
     @import 'footer';
