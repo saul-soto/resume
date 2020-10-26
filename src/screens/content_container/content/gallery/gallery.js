@@ -8,8 +8,6 @@ class Gallery extends React.Component{
         super(props);
         this.state = {
             selected_option: 'Python',
-            opacity: .2
-
         }
     }
 
@@ -20,7 +18,7 @@ class Gallery extends React.Component{
                 <h3 className='title'>Gallery<span>+</span>Projects</h3>
 
                 <div className='gallery-menu'>
-                    {[...new Set(this.props.gallery_data.map(r => r.tool))].map((tool,i)=>{return(
+                    {['Excel','Python','Power BI','D3.js'].map((tool,i)=>{return(
                         <p 
                             key={i} 
                             className='gallery-menu-option' 

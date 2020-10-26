@@ -21,14 +21,14 @@ class Slider extends React.Component{
                         id='left-arrow'
                         transform='rotate(-180 0 0)'
                         style={initial_arrow_style}
-                        onPointerOver={()=>{this._transform_base_arrow('#left-arrow',initial_value,final_value)}}
-                        onPointerLeave={()=>{this._transform_base_arrow('#left-arrow',final_value,initial_value)}}
+                        onPointerOver={()=>{this._restyle_arrow('#left-arrow',initial_value,final_value)}}
+                        onPointerLeave={()=>{this._restyle_arrow('#left-arrow',final_value,initial_value)}}
                     />
                     <SVGArrow
                         id='right-arrow'
                         style={initial_arrow_style}
-                        onPointerOver={()=>{this._transform_base_arrow('#right-arrow',initial_value,final_value)}}
-                        onPointerLeave={()=>{this._transform_base_arrow('#right-arrow',final_value,initial_value)}}
+                        onPointerOver={()=>{this._restyle_arrow('#right-arrow',initial_value,final_value)}}
+                        onPointerLeave={()=>{this._restyle_arrow('#right-arrow',final_value,initial_value)}}
                     />
                 </div>
 
@@ -42,7 +42,7 @@ class Slider extends React.Component{
         )
     }
 
-    _transform_base_arrow(id_name, initial_value, final_value){
+    _restyle_arrow(id_name, initial_value, final_value){
         const basic_style = 'height:35px;width:50px;cursor:pointer;z-index:999';
         
         d3.select(id_name)
