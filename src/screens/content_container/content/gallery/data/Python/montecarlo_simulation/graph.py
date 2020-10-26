@@ -12,12 +12,14 @@ for sim in range(number_simulations):
     now1 = dt.now()
     plt.plot(space[:,sim])
 
+
+
+
+
     ls_times.append( (dt.now()-now1).microseconds )
-    print('\tgraph time: {}'.format(
+    print('\tDrawing simulations:\t{}'.format(
             str(td(microseconds=sum(ls_times)/len(ls_times)) * (number_simulations-sim))
     ), end='\r' if number_simulations != sim else '\n')
 
-
-print('\nsaving picture')
 plt.savefig('graph.png')
-print(dt.now()-now)
+print('\n\tFinished in:\t\t{}'.format(dt.now()-now))
