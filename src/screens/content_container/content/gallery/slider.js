@@ -48,7 +48,7 @@ class Slider extends React.Component{
         d3.select(id_name)
             .attr('style', basic_style)
             .attr('fill',"rgba(26, 27, 31, "+initial_value+")")
-            .transition().duration(300)
+            .transition().duration(350)
             .attr('style',basic_style)
             .attr('fill',"rgba(26, 27, 31, "+final_value+")")
     }
