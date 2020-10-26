@@ -16,7 +16,7 @@ body {
     padding: 0;
     margin: 0;
 
-    @import 'navigation';
+    @import 'header';
 
     .content-container{
         margin-top: $nav_height;
@@ -38,10 +38,10 @@ body {
                 }
             }
 
-            @import 'introduction';
-            @import 'experience';
-            @import 'skills';
-            @import 'gallery';
+            @import 'content_container/introduction';
+            @import 'content_container/experience';
+            @import 'content_container/skills';
+            @import 'content_container/gallery';
         }
 
         #relative-box{
