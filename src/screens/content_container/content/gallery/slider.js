@@ -12,7 +12,6 @@ class Slider extends React.Component{
     }
 
     render(){
-        console.log(this.props.data)
         const {initial_value, final_value} = {initial_value:.2, final_value: .5}
         const initial_arrow_style = {
             fill:"rgba(26, 27, 31, "+initial_value+")",
@@ -31,12 +30,14 @@ class Slider extends React.Component{
                         style={initial_arrow_style}
                         onPointerOver={()=>{this._restyle_arrow('#left-arrow',initial_value,final_value)}}
                         onPointerLeave={()=>{this._restyle_arrow('#left-arrow',final_value,initial_value)}}
+                        onClick={()=>{this._navigate_through_graphs('left')}}
                     />
                     <SVGArrow
                         id='right-arrow'
                         style={initial_arrow_style}
                         onPointerOver={()=>{this._restyle_arrow('#right-arrow',initial_value,final_value)}}
                         onPointerLeave={()=>{this._restyle_arrow('#right-arrow',final_value,initial_value)}}
+                        onClick={()=>{this._navigate_through_graphs('right')}}
                     />
                 </div>
 
@@ -77,6 +78,20 @@ class Slider extends React.Component{
             .transition().duration(350)
             .attr('style',basic_style)
             .attr('fill',"rgba(26, 27, 31, "+final_value+")")
+    }
+
+    _navigate_through_graphs(direction){
+        if(this.props.data.length > 0){
+            const go_around = true;
+            const to_add = direction === 'left' ? -1 :1;
+            let new_idx  = this.state.graph_idx_selection + to_add;
+            //UPPER LIMIT
+            new_idx = new_idx < this.props.data.length ? new_idx   :go_around ? 0 :this.props.data.length-1;
+            //LOWER LIMIT
+            new_idx = new_idx < 0                      ? go_around ? this.props.data.length-1: 0 :new_idx;
+
+            this.setState({graph_idx_selection: new_idx});
+        }
     }
 }
 
