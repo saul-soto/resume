@@ -1,7 +1,6 @@
 import React from 'react';
 import * as d3 from 'd3';
 import {ReactComponent as SVGArrow} from '../../../../assets/arrow_right.svg';
-import {ReactComponent as SVGCircle} from '../../../../assets/circle.svg';
 
 class Slider extends React.Component{
     constructor(props){
@@ -40,12 +39,6 @@ class Slider extends React.Component{
                         onClick={()=>{this._navigate_through_graphs('right')}}
                     />
                 </div>
-
-                <div className='circle-container'>
-                    <SVGCircle width='20px' fill='lightgrey' style={{cursor:'pointer'}}/>
-                    <SVGCircle width='20px' fill='lightgrey' style={{cursor:'pointer'}}/>
-                </div>
-
 
                 <div className='gallery-container'>
                     {this.props.data.length === 0 ? null:

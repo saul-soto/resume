@@ -12,13 +12,13 @@ const gallery_data = [
         tool:'Python',
         source:MonteCarloSim,
         type:'svg',
-        description:'This is a montecarlo simulation using *Matplotlib*'
+        description:'This is a montecarlo simulation using *Matplotlib* and *pyplot*'
     },
     {
         tool:'Python',
         source:NBABestPlayers,
         type:'svg',
-        description:'This is a simple graph of a function'
+        description:'This is a simple graph of a function using *Matplotlib*'
     },
 ]
 
