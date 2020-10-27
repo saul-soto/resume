@@ -45,7 +45,7 @@ class Slider extends React.Component{
                         this.props.data.map((row,i) => {return(
                             <>{this.state.graph_idx_selection === i ? 
                                 <>
-                                    {row.type ==='svg' ? <row.source/>:null}
+                                    {row.type ==='svg' || row.type ==='react component'? <row.source />:null}
                                     <div className='graph-description-container'>
                                         <h3 className='graph-description-header'>Title</h3>
                                         <p className='graph-description'>{row.title}</p>

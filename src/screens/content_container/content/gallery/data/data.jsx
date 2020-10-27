@@ -7,6 +7,7 @@ import React from 'react';
 import MathJax from 'react-mathjax';
 import {ReactComponent as MonteCarloSim} from './Python/montecarlo_simulation/graph.svg';
 import {ReactComponent as NBABestPlayers} from './Python/top_best_nba_players/graph.svg';
+import GoodnessOfFit from './D3.js/goodness_of_fit/graph';
 
 
 const gallery_data = [
@@ -27,6 +28,14 @@ const gallery_data = [
                 <MathJax.Node formula={`f(x)=\\sin²(x)`} /> 
             </MathJax.Provider>,
         description:'This is a simple graph of a function using Matplotlib'
+    },
+
+    {
+        tool:'D3.js',
+        source: GoodnessOfFit,
+        type:'react component',
+        title:'Goodness of Fit',
+        description:'Random simulation of goodness of fit'
     },
 ]
 
