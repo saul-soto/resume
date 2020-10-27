@@ -4,6 +4,13 @@ import {ReactComponent as SVGArrow} from '../../../../assets/arrow_right.svg';
 import {ReactComponent as SVGCircle} from '../../../../assets/circle.svg';
 
 class Slider extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            graph_idx_selection: 0
+        }
+    }
+
     render(){
         console.log(this.props.data)
         const {initial_value, final_value} = {initial_value:.2, final_value: .5}
@@ -33,22 +40,30 @@ class Slider extends React.Component{
                     />
                 </div>
 
-                <div className='gallery-container'>
-                    {this.props.data.lenght === 0 ? null:
-                        this.props.data.map((row,i) => {return(
-                            <div>
-                                {row.type ==='svg' ? <row.source/>: null}
-                            </div>
-                            
-                        )})
-                    }
-
-                </div>
-
                 <div className='circle-container'>
                     <SVGCircle width='20px' fill='lightgrey' style={{cursor:'pointer'}}/>
                     <SVGCircle width='20px' fill='lightgrey' style={{cursor:'pointer'}}/>
                 </div>
+
+
+                <div className='gallery-container'>
+                    {this.props.data.length === 0 ? null:
+                        this.props.data.map((row,i) => {return(
+                            <>
+                                {this.state.graph_idx_selection === i ? 
+                                    row.type ==='svg' ?
+                                        <row.source/>
+                                    :row.type ==='png' ?
+                                        null
+                                    :null
+
+                                :null}
+                            </>
+                            
+                        )})
+                    }
+                </div>
+
         </div>
         )
     }
