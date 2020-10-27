@@ -12,7 +12,7 @@ const gallery_data = [
         tool:'Python',
         source:MonteCarloSim,
         type:'svg',
-        description:'This is a montecarlo simulation using Python'
+        description:'This is a montecarlo simulation using *Matplotlib*'
     },
     {
         tool:'Python',

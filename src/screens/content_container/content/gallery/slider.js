@@ -50,17 +50,15 @@ class Slider extends React.Component{
                 <div className='gallery-container'>
                     {this.props.data.length === 0 ? null:
                         this.props.data.map((row,i) => {return(
-                            <>
-                                {this.state.graph_idx_selection === i ? 
-                                    row.type ==='svg' ?
-                                        <row.source/>
-                                    :row.type ==='png' ?
-                                        null
-                                    :null
-
-                                :null}
-                            </>
-                            
+                            <>{this.state.graph_idx_selection === i ? 
+                                <>
+                                    {row.type ==='svg' ? <row.source/>:null}
+                                    <div className='graph-description-container'>
+                                        <h3 className='graph-description-header'>Description</h3>
+                                        <p className='graph-description'>{row.description}</p>
+                                    </div>
+                                </>
+                            :null}</>
                         )})
                     }
                 </div>

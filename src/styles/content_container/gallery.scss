@@ -43,11 +43,33 @@
         }
 
         .gallery-container{
-            position: absolute; top: 20%; right: 0%; left: 0%; bottom: 0%;
             // background-color: rgba(26, 27, 31, 0.5);
+            position: absolute; top: 20%; right: 0%; left: 0%; bottom: 0%;
             z-index: 0;
             display: flex;
             justify-content: center;
+
+            // IMAGE WOULD BE HERE
+
+            .graph-description-container{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                max-width: 10%;
+                padding-bottom: 100px;
+
+                .graph-description-header{
+                    font-weight: 700;
+                    font-size: 15px;
+                    text-align: left;
+                    padding-bottom: 5px;
+                    color: rgba(26, 27, 31, 0.4);
+                }
+
+                .graph-description{
+                    font-size: 14px;
+                }
+            }
             
         }
 
