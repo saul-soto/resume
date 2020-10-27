@@ -4,6 +4,7 @@
 //d3.js:    react components
 import React from 'react';
 import {ReactComponent as MonteCarloSim} from './Python/montecarlo_simulation/graph.svg';
+import {ReactComponent as NBABestPlayers} from './Python/top_best_nba_players/graph.svg';
 
 
 const gallery_data = [
@@ -12,6 +13,12 @@ const gallery_data = [
         source:<MonteCarloSim />,
         type:'svg',
         description:'This is a montecarlo simulation using Python'
+    },
+    {
+        tool:'Python',
+        source:<NBABestPlayers />,
+        type:'svg',
+        description:'This is a simple graph of a function'
     },
 ]
 

@@ -34,7 +34,14 @@ class Slider extends React.Component{
                 </div>
 
                 <div className='gallery-container'>
-                    
+                    {this.props.data.lenght === 0 ? null:
+                        this.props.data.map((row,i) => {return(
+                            <div>
+                                {row.type ==='svg' ? row.source: null}
+                            </div>
+                            
+                        )})
+                    }
 
                 </div>
 
