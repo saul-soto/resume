@@ -37,7 +37,7 @@ class Slider extends React.Component{
                     {this.props.data.lenght === 0 ? null:
                         this.props.data.map((row,i) => {return(
                             <div>
-                                {row.type ==='svg' ? row.source: null}
+                                {row.type ==='svg' ? <row.source/>: null}
                             </div>
                             
                         )})
