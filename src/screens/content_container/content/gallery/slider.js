@@ -33,7 +33,10 @@ class Slider extends React.Component{
                     />
                 </div>
 
-                <div className='gallery-container'></div>
+                <div className='gallery-container'>
+                    
+
+                </div>
 
                 <div className='circle-container'>
                     <SVGCircle width='20px' fill='lightgrey' style={{cursor:'pointer'}}/>
