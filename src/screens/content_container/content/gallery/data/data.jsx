@@ -12,12 +12,14 @@ const gallery_data = [
         tool:'Python',
         source:MonteCarloSim,
         type:'svg',
+        title:'Monte Carlo Simulation',
         description:'This is a montecarlo simulation using Matplotlib and pyplot'
     },
     {
         tool:'Python',
         source:NBABestPlayers,
         type:'svg',
+        title: 'Graph of function\n+'+ String.raw`$$f(x)=\sin²x $$`,
         description:'This is a simple graph of a function using Matplotlib'
     },
 ]

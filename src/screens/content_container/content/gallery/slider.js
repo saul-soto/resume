@@ -47,6 +47,8 @@ class Slider extends React.Component{
                                 <>
                                     {row.type ==='svg' ? <row.source/>:null}
                                     <div className='graph-description-container'>
+                                        <h3 className='graph-description-header'>Title</h3>
+                                        <p className='graph-description'>{row.title}</p>
                                         <h3 className='graph-description-header'>Description</h3>
                                         <p className='graph-description'>{row.description}</p>
                                     </div>

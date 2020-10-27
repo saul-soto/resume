@@ -22,9 +22,7 @@ for sim in range(number_simulations):
             str(td(microseconds=sum(ls_times)/len(ls_times)) * (number_simulations-sim))
     ), end='\n' if number_simulations == sim+1 else '\r')
 
-
-plt.title('Monte Carlo Simulation\n#Simulations: {}'.format(number_simulations))
-plt.savefig('graph.svg', format='svg', dpi=300)
+plt.savefig('graph.svg', format='svg', dpi=1200)
 plt.savefig('graph.png')
 
 # REMOVE THE <metadata> TAG TO AVOID ISSUES WITH IMPORTING

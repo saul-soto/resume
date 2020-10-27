@@ -4,7 +4,6 @@ import numpy as np
 domain = np.linspace(0,2*np.pi,500)
 image = np.vectorize(lambda x: np.sin(x**2)**2)(domain)
 
-plt.title('Quick graph of a function\n'+r'$f(x)=\sin²{x}$')
 plt.plot(domain, image)
 plt.savefig('graph.png')
 plt.savefig('graph.svg', format='svg')
