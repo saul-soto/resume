@@ -5,7 +5,7 @@ class Modal extends React.Component{
         return(
             <div 
                 className='contact-modal' 
-                onClick={() => {this.props.change_modal_visibility()}}
+                onClick={(e) => {if(e.target.className === 'contact-modal'){this.props.change_modal_visibility()} }}
             >
 
                 <div className='modal'>
