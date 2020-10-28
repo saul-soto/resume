@@ -65,6 +65,18 @@ class GoodnessOfFit extends React.Component{
             .attr('x2', x_scaler(datamin)).attr('y2', axis_height)
             .attr('stroke', 'black')
 
+        // x_ticks
+        d3.selectAll('#x-ticks')
+            .text(d => '['+d['x0']+' , '+d['x1'] +']')
+            .attr('font-size', 13)
+            .attr('y', axis_height+20)
+            .attr('x', d =>  {
+                const min = d3.min(d.slice(0, d.length));
+                return x_scaler(min);
+
+            })
+            
+
     }
 }
 
