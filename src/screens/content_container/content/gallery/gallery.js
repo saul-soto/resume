@@ -24,7 +24,10 @@ class Gallery extends React.Component{
                             key={i} 
                             className='gallery-menu-option' 
                             id={tool!==this.state.selected_option ? null: 'is-selected'}
-                            onClick={()=>{this.setState({selected_option:tool})}}
+                            onClick={()=>{this.setState({
+                                selected_option:tool,
+                                graph_idx_selection:tool===this.state.selected_option?this.state.graph_idx_selection:0
+                            })}}
                         >
                             {tool}
                         </p>
