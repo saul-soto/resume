@@ -3,13 +3,6 @@ import * as d3 from 'd3';
 import {ReactComponent as SVGArrow} from '../../../../assets/arrow_right.svg';
 
 class Slider extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            graph_idx_selection: 0
-        }
-    }
-
     render(){
         const {initial_value, final_value} = {initial_value:.2, final_value: .5}
         const initial_arrow_style = {
@@ -20,6 +13,8 @@ class Slider extends React.Component{
             zIndex:999
         }
 
+        const data_length = this.props.data.length;
+
         return(
             <div className='slider'>                
                 <div className='arrows-container'>
@@ -29,24 +24,24 @@ class Slider extends React.Component{
                         style={initial_arrow_style}
                         onPointerOver={()=>{this._restyle_arrow('#left-arrow',initial_value,final_value)}}
                         onPointerLeave={()=>{this._restyle_arrow('#left-arrow',final_value,initial_value)}}
-                        onClick={()=>{this._navigate_through_graphs('left')}}
+                        onClick={()=>{this.props.navigate_through_graphs('left',data_length)}}
                     />
                     <SVGArrow
                         id='right-arrow'
                         style={initial_arrow_style}
                         onPointerOver={()=>{this._restyle_arrow('#right-arrow',initial_value,final_value)}}
                         onPointerLeave={()=>{this._restyle_arrow('#right-arrow',final_value,initial_value)}}
-                        onClick={()=>{this._navigate_through_graphs('right')}}
+                        onClick={()=>{this.props.navigate_through_graphs('left',data_length)}}
                     />
                 </div>
 
                 <div className='gallery-container'>
                     {this.props.data.length === 0 ? null:
                         this.props.data.map((row,i) => {return(
-                            <>{this.state.graph_idx_selection === i ? 
+                            <>{this.props.graph_idx_selection === i ? 
                                 <>
                                     {row.type ==='svg' || row.type ==='react component'? <row.source />:null}
-                                    <div className='graph-description-container'>
+                                    <div key={i} className='graph-description-container'>
                                         <h3 className='graph-description-header'>Title</h3>
                                         <p className='graph-description'>{row.title}</p>
                                         <h3 className='graph-description-header'>Description</h3>
@@ -71,20 +66,6 @@ class Slider extends React.Component{
             .transition().duration(350)
             .attr('style',basic_style)
             .attr('fill',"rgba(26, 27, 31, "+final_value+")")
-    }
-
-    _navigate_through_graphs(direction){
-        if(this.props.data.length > 0){
-            const go_around = true;
-            const to_add = direction === 'left' ? -1 :1;
-            let new_idx  = this.state.graph_idx_selection + to_add;
-            //UPPER LIMIT
-            new_idx = new_idx < this.props.data.length ? new_idx   :go_around ? 0 :this.props.data.length-1;
-            //LOWER LIMIT
-            new_idx = new_idx < 0                      ? go_around ? this.props.data.length-1: 0 :new_idx;
-
-            this.setState({graph_idx_selection: new_idx});
-        }
     }
 }
 

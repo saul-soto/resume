@@ -4,7 +4,7 @@ from datetime import datetime as dt
 from datetime import timedelta as td
 now = dt.now()
 
-space = create_random_space_walks(probability=.65, steps_to_walk=300, number_simulations=20)
+space = create_random_space_walks(probability=.70, steps_to_walk=300, number_simulations=100)
 
 ls_times = []
 number_simulations = space.shape[1]

@@ -7,7 +7,8 @@ class Gallery extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            selected_option: 'D3.js',
+            selected_option: 'Python',
+            graph_idx_selection: 0
         }
     }
 
@@ -30,11 +31,29 @@ class Gallery extends React.Component{
                     )})}
                 </div>
 
-                <Slider data={this.props.gallery_data.filter(row => {return row.tool === this.state.selected_option})}/>
+                <Slider 
+                    data={this.props.gallery_data.filter(row => {return row.tool === this.state.selected_option})}
+                    navigate_through_graphs={this._navigate_through_graphs.bind(this)}
+                    graph_idx_selection={this.state.graph_idx_selection}
+                />
 
             </div>
         )
     }
+
+    _navigate_through_graphs(direction, data_length){
+        if(data_length > 0){
+            const go_around = true;
+            const to_add = direction === 'left' ? -1 :1;
+            let new_idx  = this.state.graph_idx_selection + to_add;
+            //UPPER LIMIT
+            new_idx = new_idx < data_length ? new_idx   :go_around ? 0 :data_length-1;
+            //LOWER LIMIT
+            new_idx = new_idx < 0                      ? go_around ? data_length-1: 0 :new_idx;
+
+            this.setState({graph_idx_selection: new_idx});
+        }
+    }    
 }
 
 Gallery.defaultProps = {gallery_data}

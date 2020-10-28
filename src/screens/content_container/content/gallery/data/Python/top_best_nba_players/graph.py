@@ -2,9 +2,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 domain = np.linspace(0,2*np.pi,500)
-image = np.vectorize(lambda x: np.sin(x**2)**2)(domain)
 
-plt.plot(domain, image)
+ls_fun = [
+    lambda x: np.sin(x/2),
+    lambda x: np.cos(x/2+((3-2)/2)*np.pi),
+]
+
+for f in ls_fun:
+    image = np.vectorize(f)(domain)
+    plt.plot(domain, image)
+
+plt.scatter(domain.max()/2, 0, color='blue', marker='o', s=4000)
+
 plt.savefig('graph.png')
 plt.savefig('graph.svg', format='svg')
 
