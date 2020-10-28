@@ -23,6 +23,7 @@ class GoodnessOfFit extends React.Component{
         canvas.append('line').attr('id','density');
         canvas.selectAll('circle').data(this.data.vector).enter().append('circle').attr('id','observations');
         canvas.selectAll('text').data(this.data.bins).enter().append('text').attr('id','x-ticks')
+        canvas.selectAll('rect').data(this.data.bins).enter().append('rect').attr('id','x-ticks-guide-lines')
 
     }
 
@@ -45,8 +46,10 @@ class GoodnessOfFit extends React.Component{
         ;
 
         const margin_horizontal = 20;
-        const datamin = d3.min(this.data.vector);
-        const datamax = d3.max(this.data.vector);
+
+        const bins = this.data.bins;
+        const datamin = bins[0]['x0'];
+        const datamax = bins[bins.length-1]['x0'];
 
         const x_scaler = d3.scaleLinear()
             .domain([datamin, datamax])
@@ -57,25 +60,36 @@ class GoodnessOfFit extends React.Component{
         d3.select('#x-axis')
             .attr('x1', x_scaler(datamin)).attr('y1', axis_height)
             .attr('x2', x_scaler(datamax)).attr('y2', axis_height)
-            .attr('stroke', 'black')
+            .attr('stroke', 'grey')
 
         //y_axis
         d3.select('#y-axis')
             .attr('x1', x_scaler(datamin)).attr('y1', 40)
             .attr('x2', x_scaler(datamin)).attr('y2', axis_height)
-            .attr('stroke', 'black')
+            .attr('stroke', 'grey')
 
         // x_ticks
         d3.selectAll('#x-ticks')
-            .text(d => '['+d['x0']+' , '+d['x1'] +']')
+            // .text(d => '['+d['x0']+' , '+d['x1'] +']')
+            .text(d => d['x1'] )
             .attr('font-size', 13)
-            .attr('y', axis_height+20)
+            .attr('fill', 'grey')
+            .attr('y', axis_height+25)
             .attr('x', d =>  {
-                const min = d3.min(d.slice(0, d.length));
-                return x_scaler(min);
-
+                const min = d3.max(d.slice(0, d.length));
+                return x_scaler(min)-1.5;
             })
-            
+
+        // x_ticks-guide-lines
+        d3.selectAll('#x-ticks-guide-lines')
+            .attr('x', d =>  {
+                const min = d3.max(d.slice(0, d.length));
+                return x_scaler(min)-1;
+            })
+            .attr('y', axis_height-10)
+            .attr('width', 2)
+            .attr('height', 20)
+            .attr('fill','lightgrey')
 
     }
 }
