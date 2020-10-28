@@ -20,7 +20,6 @@ class GoodnessOfFit extends React.Component{
         const canvas = d3.select('#canvas');
 
         canvas.append('line').attr('id','x-axis');
-        canvas.append('line').attr('id','y-axis');
         canvas.append('line').attr('id','density');
 
         const bins = this.data.bins;
@@ -80,14 +79,12 @@ class GoodnessOfFit extends React.Component{
             .attr('x1', x_scaler(datamin)).attr('y1', axis_height)
             .attr('x2', x_scaler(datamax)).attr('y2', axis_height)
             .attr('stroke', 'grey')
-
-        // y_axis
-        // d3.select('#y-axis')
-        //     .attr('x1', x_scaler(datamin)).attr('y1', 40)
-        //     .attr('x2', x_scaler(datamin)).attr('y2', axis_height)
-        //     .attr('stroke', 'grey')
-
         // x-ticks
+        d3.selectAll('#x-tick-text')
+            .text(d => '['+d+']')
+            .attr('font-size', 13)
+            .attr('y', axis_height + 20)
+            .attr('x', d => x_scaler(d[0])-17)
     }
 
     _draw_data(axis_height,x_scaler){
@@ -120,8 +117,6 @@ class GoodnessOfFit extends React.Component{
 
         this._draw_axis(axis_height, datamin, datamax, x_scaler);
         this._draw_data(axis_height,x_scaler);
-
-        
     }
 }
 
