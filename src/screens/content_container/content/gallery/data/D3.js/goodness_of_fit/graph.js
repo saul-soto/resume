@@ -25,22 +25,37 @@ class GoodnessOfFit extends React.Component{
 
         const bins = this.data.bins;
         canvas.selectAll('g')
-            .data(bins.map(int => {return [ int['x0'],int['x1'] ]  }))
+            .data(d3.range(bins.length))
             .enter().append('g')
                 .attr('class', 'bin-group')
                 .attr('id', (_,i) => {return 'bin-'+i})
         ;
 
         bins.map(( int,i) => {
-            canvas.select('#bin-'+i).selectAll('circle')
+            const bin_group = canvas.select('#bin-'+i);
+            const interval = [ int['x0'],int['x1'] ];
+
+            bin_group.selectAll('circle')
                 .data( 
                     int.slice(0,int.length).map( (e,i) => {return {
                         order:i, 
                         data_point:e,
-                        interval: {inf:int['x0'], sup:int['x1']}
+                        interval: {inf:interval[0], sup:interval[1]}
                     }}) 
                 )
                 .enter().append('circle').attr('id', 'data-points')
+            ;
+
+            bin_group.append('g').attr('id','x-tick-contianer-'+i);
+            
+            ['text','rect'].map(tag => {
+                bin_group.select('#x-tick-contianer-'+i)
+                    .selectAll(tag)
+                        .data([ interval ])
+                        .enter().append(tag).attr('id','x-tick-'+tag)
+                ;return null
+            });
+
             return null
         })
 
@@ -75,6 +90,14 @@ class GoodnessOfFit extends React.Component{
         // x-ticks
     }
 
+    _draw_data(axis_height,x_scaler){
+        const radius = 5;
+        d3.selectAll('#data-points')
+            .attr('fill', 'lightgrey')
+            .attr('r', radius)
+            .attr('cy', d => (axis_height-radius)-(radius*2)*d.order)
+            .attr('cx', d => x_scaler(d.interval.inf)  )
+    }
 
     _update_binded_elements(height, width){
         const canvas = d3.select('#canvas');
@@ -96,12 +119,8 @@ class GoodnessOfFit extends React.Component{
             .range([0+margin_horizontal, width-margin_horizontal])
 
         this._draw_axis(axis_height, datamin, datamax, x_scaler);
+        this._draw_data(axis_height,x_scaler);
 
-        const radius = 5;
-        canvas.selectAll('#data-points')
-            .attr('r', radius)
-            .attr('cy', d => (axis_height-radius)-(radius*2)*d.order)
-            .attr('cx', d => x_scaler(d.interval.inf)  )
         
     }
 }
