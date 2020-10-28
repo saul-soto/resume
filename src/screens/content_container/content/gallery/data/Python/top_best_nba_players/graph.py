@@ -4,8 +4,8 @@ import numpy as np
 domain = np.linspace(0,2*np.pi,500)
 
 ls_fun = [
-    lambda x: np.sin(x/2),
-    lambda x: np.cos(x/2+((3-2)/2)*np.pi),
+    lambda x: np.sin(  x/2        ),
+    lambda x: np.cos( (x+np.pi)/2 ),
 ]
 
 for f in ls_fun:

@@ -7,7 +7,7 @@ class Gallery extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            selected_option: 'D3.js',
+            selected_option: 'Python',
             graph_idx_selection: 0
         }
     }

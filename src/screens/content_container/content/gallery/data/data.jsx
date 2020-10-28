@@ -17,7 +17,7 @@ const gallery_data = [
         source:MonteCarloSim,
         type:'svg',
         title:'Monte Carlo Simulation',
-        description:'This is a montecarlo simulation using Matplotlib and pyplot'
+        description:'This is a montecarlo simulation using Matplotlib and Pyplot'
     },
     {
         tool:'Python',
@@ -25,10 +25,11 @@ const gallery_data = [
         type:'svg',
         title: 
             <MathJax.Provider>
-                Graph of function 
-                <MathJax.Node formula={`f(x)=\\sin²(x)`} /> 
+                Graph of function of:
+                <MathJax.Node formula={`\\sin\\left(\\frac{x}{2}\\right)`} /> 
+                <MathJax.Node formula={`\\cos\\left(\\frac{x+\\pi}{2}  \\right)`} /> 
             </MathJax.Provider>,
-        description:'This is a simple graph of a function using Matplotlib'
+        description:'This is a simple graph of a function using Matplotlib and Pyplot'
     },
 
     {

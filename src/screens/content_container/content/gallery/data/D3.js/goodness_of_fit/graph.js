@@ -90,10 +90,16 @@ class GoodnessOfFit extends React.Component{
     _draw_data(axis_height,x_scaler){
         const radius = 5;
         d3.selectAll('#data-points')
-            .attr('fill', 'lightgrey')
-            .attr('r', radius)
-            .attr('cy', d => (axis_height-radius)-(radius*2)*d.order)
             .attr('cx', d => x_scaler(d.interval.inf)  )
+            .attr('cy', -20)
+            .attr('fill', '#FC7753')
+            .attr('r', radius)
+            .transition().duration(1000)
+            .attr('cy', d => {
+                const y_position = (axis_height-radius)-(radius*2)*d.order;
+                return y_position
+            })
+
     }
 
     _update_binded_elements(height, width){
