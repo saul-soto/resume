@@ -38,23 +38,7 @@ class GoodnessOfFit extends React.Component{
         this._update_sizes();
     }
 
-    _update_binded_elements(height, width){
-        // PRELIMINARIES
-        d3.select('#canvas')
-            .attr('height', height)
-            .attr('width', width)
-        ;
-
-        const margin_horizontal = 20;
-
-        const bins = this.data.bins;
-        const datamin = bins[0]['x0'];
-        const datamax = bins[bins.length-1]['x0'];
-
-        const x_scaler = d3.scaleLinear()
-            .domain([datamin, datamax])
-            .range([0+margin_horizontal, width-margin_horizontal])
-
+    _draw_axis(height, datamin, datamax, x_scaler){
         // x_axis
         const axis_height = height -30;
         d3.select('#x-axis')
@@ -91,6 +75,25 @@ class GoodnessOfFit extends React.Component{
             .attr('height', 20)
             .attr('fill','lightgrey')
 
+    }
+
+    _update_binded_elements(height, width){
+        d3.select('#canvas')
+            .attr('height', height)
+            .attr('width', width)
+        ;
+
+        const margin_horizontal = 20;
+
+        const bins = this.data.bins;
+        const datamin = bins[0]['x0'];
+        const datamax = bins[bins.length-1]['x0'];
+
+        const x_scaler = d3.scaleLinear()
+            .domain([datamin, datamax])
+            .range([0+margin_horizontal, width-margin_horizontal])
+
+        this._draw_axis(height, datamin, datamax, x_scaler);
     }
 }
 
