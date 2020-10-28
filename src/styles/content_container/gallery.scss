@@ -49,7 +49,16 @@
             display: flex;
             justify-content: center;
 
-            // IMAGE WOULD BE HERE
+            // IMAGES WOULD BE HERE
+            // Python SVG's don't need to be here
+            // D3 Components are labeled react-component
+
+            .react-component{
+                background-color:rgba(213, 89, 89, 0.2);
+                flex-grow: .6;
+                margin-bottom: 50px;
+            }
+
 
             .graph-description-container{
                 display: flex;

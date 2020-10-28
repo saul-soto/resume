@@ -2,31 +2,32 @@ import React from 'react';
 import create_data from './data'
 import * as d3 from 'd3';
 
+
 class GoodnessOfFit extends React.Component{
     render(){
         return(
-            <svg id='canvas-container'>
-            </svg>
+            <div className='react-component'></div>
         )
     }
 
-    _create_graph(){
-        const data = create_data(100, 1, .5);
+    _bind_invisibe_elements(){
+        const data = create_data(30, 1,.5,3);
         console.log(data);
-        d3.select('#canvas').selectAll('circle').data(data.vector).enter()
-            .append('circle')
-            
-                .transition().duration(1000)
+    }
 
-                .attr('cx', (e) => {return e*100})
-                .attr('cy', (e) => {return e*50})
-                .attr('r', 4)
-
-
+    _update_sizes(){
+        const node = d3.select('.react-component').node();
+        this._update_binded_elements(node.offsetHeight, node.offsetWidth)
     }
 
     componentDidMount(){
-        this._create_graph();
+        this._bind_invisibe_elements();
+        window.addEventListener('resize', this._update_sizes.bind(this));
+        this._update_sizes();
+    }
+
+    _update_binded_elements(height, width){
+        console.log('new sizes',height,width);
     }
 }
 

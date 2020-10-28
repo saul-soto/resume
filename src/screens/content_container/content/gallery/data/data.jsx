@@ -10,6 +10,7 @@ import {ReactComponent as NBABestPlayers} from './Python/top_best_nba_players/gr
 import GoodnessOfFit from './D3.js/goodness_of_fit/graph';
 
 
+//ALL D3.JS MUST HAVE A <div className='react-component'>
 const gallery_data = [
     {
         tool:'Python',
