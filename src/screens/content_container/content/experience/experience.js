@@ -1,12 +1,13 @@
 import React from 'react';
 import experience_data from './data.jsx';
+import * as d3 from 'd3';
 
 class Experience extends React.Component{
     render(){
         const parse_date = (integer_date) => {
             let date = new Date(integer_date);
-            date.setDate(date.getDate() + 1)
-            return( date.getMonth()+'/'+date.getFullYear() )
+            date.setDate(date.getDate() + 1);
+            return d3.timeFormat('%b%Y')(date)
         };
 
         return(
