@@ -12,13 +12,15 @@ class Footer extends React.Component{
     }
 
     render(){
+        const animation_duration = 500;
+
         return(
             <div className='footer-contact'>
                 <p className='footer-info'>made by me</p>
                 
                 <p 
                     className='footer-info'
-                    onClick={this._handleModal.bind(this)}
+                    onClick={() =>  {this._handleModal(animation_duration)}}
                 >
                     <span>contact</span>
                 </p>
@@ -32,30 +34,30 @@ class Footer extends React.Component{
                 </a>
 
                 <Modal 
-                    change_modal_visibility={this._handleModal.bind(this)}
+                    change_modal_visibility={() =>  {this._handleModal(animation_duration)}}
                 />                
                 
             </div>
         )
     }
 
-    async _handleModal(){
+    _handleModal(duration){
         const $modal = d3.select('.contact-modal');
         const up_or_down = !this.state.modal_is_visible ? 1: -3;
-
-        const do_animation = () => {
-            $modal
-                .transition().duration(500)
-                .style('margin-bottom', (5*up_or_down)+'%')
-            this.setState({modal_is_visible:!this.state.modal_is_visible})
-        }
-
-        await do_animation();
-        $modal.style('display', up_or_down === 1 ? 'flex':'none')
+        
+        $modal
+            .style('display', 'flex')
+            .transition().duration(duration)
+            .style('margin-bottom', (5*up_or_down)+'%')
+            .transition().duration(duration)
+            .style('display', up_or_down<0 ? 'none': 'flex')
+        
+        
+        this.setState({modal_is_visible:!this.state.modal_is_visible})
     }
 
     componentDidMount(){
-        this._handleModal();
+        this._handleModal(0);
     }
 };
 
