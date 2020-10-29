@@ -54,6 +54,7 @@ class Header extends React.Component{
             // motivation: extract scroll position and screen top positions, then identify which 
             // screen you are on, and then calculate if you are before/after half of the next screen
             // if so, select next screen else stay where you are
+            // a + (b-a)/2 == (a+b)/2
             const scroll_pos = window.scrollY;
             const $ls_nodes = d3.selectAll('.content-container').nodes()[0].childNodes;
             const ls_screens = d3.range($ls_nodes.length).map(i => $ls_nodes[i].offsetTop);
@@ -63,9 +64,9 @@ class Header extends React.Component{
             )) - 1
             ;
 
-            const select_next_screen = scroll_pos >
-                ls_screens[after_which_screen]+
-                (ls_screens[after_which_screen + 1]-ls_screens[after_which_screen])/2
+            const select_next_screen = 
+                scroll_pos >
+                (ls_screens[after_which_screen]+ls_screens[after_which_screen + 1])/2
             ;
 
             return this.props.menudata[select_next_screen ? after_which_screen + 1: after_which_screen];
