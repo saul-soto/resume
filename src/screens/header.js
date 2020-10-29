@@ -1,5 +1,6 @@
 import React from 'react';
 import * as d3 from 'd3';
+import debounce from 'debounce';
 
 class Header extends React.Component{
     constructor(props){
@@ -46,6 +47,33 @@ class Header extends React.Component{
             </div>
         )
     }
+
+    async _make_most_visible_screen_selected_option(){
+
+        const get_screen = () => {
+            const $ls_nodes = d3.selectAll('.content-container').nodes()[0].childNodes;
+            const ls_screens = d3.range($ls_nodes.length).map(i => $ls_nodes[i].offsetTop);
+
+            const after_which_screen = d3.sum(ls_screens.map(screen_pos => 
+                screen_pos <= window.scrollY + d3.min(ls_screens) ? 1: 0
+            )) - 1
+            ;
+
+            return this.props.menudata[after_which_screen];
+        }
+
+        const screen = await get_screen();
+        this.setState({selected_option: screen});
+        // console.log(Math.random())
+    }
+
+
+    componentDidMount(){
+		window.addEventListener(
+            'scroll', 
+            debounce(this._make_most_visible_screen_selected_option.bind(this) ,200)
+        )
+	}
 }
 
 
