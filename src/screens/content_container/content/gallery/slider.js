@@ -3,6 +3,13 @@ import * as d3 from 'd3';
 import {ReactComponent as SVGArrow} from '../../../../assets/arrow_right.svg';
 
 class Slider extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            flex_direction: ''
+        }
+    }
+
     render(){
         const {initial_value, final_value} = {initial_value:.2, final_value: .5}
         const initial_arrow_style = {
@@ -35,17 +42,26 @@ class Slider extends React.Component{
                     />
                 </div>
 
-                <div className='gallery-container'>
+                <div className={'gallery-container'}>
                     {this.props.data.length === 0 ? null:
                         this.props.data.map((row,i) => {return(
                             <>{this.props.graph_idx_selection === i ? 
                                 <>
-                                    {row.type ==='svg' || row.type ==='react component'? <row.source />:null}
+                                    {row.type ==='svg' || row.type ==='react component'? 
+                                        <row.source /> 
+                                    :row.type === 'png' ? 
+                                        <img onCompositionEnd id='image-source' src={row.source} alt="_" />
+                                    :null
+                                    }
                                     <div key={i} className='graph-description-container'>
-                                        <h3 className='graph-description-header'>Title</h3>
-                                        <p className='graph-description'>{row.title}</p>
-                                        <h3 className='graph-description-header'>Description</h3>
-                                        <p className='graph-description'>{row.description}</p>
+                                        {row.hide_info ? null:
+                                            <>
+                                                <h3 className='graph-description-header'>Title</h3>
+                                                <p className='graph-description'>{row.title}</p>
+                                                <h3 className='graph-description-header'>Description</h3>
+                                                <p className='graph-description'>{row.description}</p>
+                                            </>
+                                        }
                                     </div>
                                 </>
                             :null}</>
