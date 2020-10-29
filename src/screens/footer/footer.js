@@ -1,5 +1,5 @@
 import React from 'react';
-import pdf from '../../assets/cv.pdf';
+import pdf from '../../assets/SaulSotoCV_eng.pdf';
 import Modal from './modal';
 import * as d3 from 'd3';
 
@@ -28,7 +28,7 @@ class Footer extends React.Component{
                 <a
                     className="footer-info"
                     href={pdf}
-                    download='cv.pdf'
+                    download='SaulSotoCV_eng.pdf'
                 >
                     download cv
                 </a>
