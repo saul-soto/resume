@@ -19,7 +19,7 @@ class Gallery extends React.Component{
                 <h3 className='title'>Gallery<span>+</span>Projects</h3>
 
                 <div className='gallery-menu'>
-                    {['Excel','Python','Power BI','D3.js'].map((tool,i)=>{return(
+                    {['Excel','Power BI','Python','D3.js'].map((tool,i)=>{return(
                         <p 
                             key={i} 
                             className='gallery-menu-option' 

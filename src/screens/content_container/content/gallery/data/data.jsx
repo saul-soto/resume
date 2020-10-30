@@ -6,23 +6,55 @@
 import React from 'react';
 import MathJax from 'react-mathjax';
 
-import Excel_1 from './Excel/excel_1.png';
+import MetallurgicDashboard from './Excel/excel_metallurgic.png';
+import RetentionAnalysis from './Excel/retention_analysis.png';
+
+import DailyTrend from './Power BI/pbi_daily_trend.png';
+import GoalsForecast from './Power BI/pbi_goals_forecast.png';
+
 import {ReactComponent as MonteCarloSim} from './Python/montecarlo_simulation/graph.svg';
 import {ReactComponent as NBABestPlayers} from './Python/top_best_nba_players/graph.svg';
 import GoodnessOfFit from './D3.js/goodness_of_fit/graph';
-
-console.log(Excel_1)
 
 //ALL D3.JS MUST HAVE A <div className='react-component'>
 const gallery_data = [
     {
         tool:'Excel',
-        source:Excel_1,
+        source:MetallurgicDashboard,
+        type:'png',
+        title:'Excel Report',
+        description:'This is a dashboard using MS Excel',
+        hide_info:true,
+    },
+    {
+        tool:'Excel',
+        source:RetentionAnalysis,
         type:'png',
         title:'Excel Report',
         description:'This is a report using MS Excel',
         hide_info:true,
     },
+
+    {
+        tool:'Power BI',
+        source:DailyTrend,
+        type:'png',
+        title:'Power BI Report',
+        description:'This is a report using PBI',
+        hide_info:true,
+    },
+
+    {
+        tool:'Power BI',
+        source:GoalsForecast,
+        type:'png',
+        title:'Power BI Report',
+        description:'This is a report using PBI',
+        hide_info:true,
+    },
+
+
+
     {
         tool:'Python',
         source:MonteCarloSim,
