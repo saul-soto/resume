@@ -79,7 +79,7 @@ class Slider extends React.Component{
                             <div 
                                 className='identifier-cont'
                                 style={{width:100/this.props.data.length+'%'}}
-                                onClick={() => {this.props.navigate_through_graphs(i,[])}}
+                                // onClick={() => {this.props.navigate_through_graphs(i,[])}}
                             >
                                 <div 
                                     key={i} 
