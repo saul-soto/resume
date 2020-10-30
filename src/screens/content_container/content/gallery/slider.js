@@ -1,12 +1,14 @@
 import React from 'react';
-import * as d3 from 'd3';
+import { select as d3select, range } from 'd3';
 import {ReactComponent as SVGArrow} from '../../../../assets/arrow_right.svg';
 
 class Slider extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            flex_direction: ''
+            flex_direction: '',
+
+
         }
     }
 
@@ -22,6 +24,7 @@ class Slider extends React.Component{
 
         const data_length = this.props.data.length;
 
+        console.log(data_length);
         return(
             <div className='slider'>                
                 <div className='arrows-container'>
@@ -38,7 +41,7 @@ class Slider extends React.Component{
                         style={initial_arrow_style}
                         onPointerOver={()=>{this._restyle_arrow('#right-arrow',initial_value,final_value)}}
                         onPointerLeave={()=>{this._restyle_arrow('#right-arrow',final_value,initial_value)}}
-                        onClick={()=>{this.props.navigate_through_graphs('left',data_length)}}
+                        onClick={()=>{this.props.navigate_through_graphs('right',data_length)}}
                     />
                 </div>
 
@@ -58,7 +61,7 @@ class Slider extends React.Component{
                                             <>
                                                 <h3 className='graph-description-header'>Title</h3>
                                                 <p className='graph-description'>{row.title}</p>
-                                                <h3 className='graph-description-header'>Description</h3>
+                                                    <h3 className='graph-description-header'>Description</h3>
                                                 <p className='graph-description'>{row.description}</p>
                                             </>
                                         }
@@ -68,7 +71,34 @@ class Slider extends React.Component{
                         )})
                     }
                 </div>
-                <p className='note'>**Data is random and used for display purposes only</p>                
+
+                <div className='navigation-identifier'>
+                    <div className='identifiers-container'>
+                        {range(data_length).map(i => {return (
+                            
+                            <div 
+                                className='identifier-cont'
+                                style={{width:100/this.props.data.length+'%'}}
+                                onClick={() => {this.props.navigate_through_graphs(i,[])}}
+                            >
+                                <div 
+                                    key={i} 
+                                    className='identifier' 
+                                    id= {i===this.props.graph_idx_selection && data_length > 1?'is_selected': data_length === 1 ? 'only-one-element': null}
+                                    
+                                >
+                                </div>
+                            </div>
+
+
+                            
+                        )})}
+
+                    </div>
+
+                    {/* <p className='note'>**Data is random and used for display purposes only</p> */}
+                </div>
+                
         </div>
         )
     }
@@ -76,7 +106,7 @@ class Slider extends React.Component{
     _restyle_arrow(id_name, initial_value, final_value){
         const basic_style = 'height:35px;width:50px;cursor:pointer;z-index:999';
         
-        d3.select(id_name)
+        d3select(id_name)
             .attr('style', basic_style)
             .attr('fill',"rgba(26, 27, 31, "+initial_value+")")
             .transition().duration(350)

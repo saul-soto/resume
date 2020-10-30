@@ -55,6 +55,8 @@ class Gallery extends React.Component{
             new_idx = new_idx < 0                      ? go_around ? data_length-1: 0 :new_idx;
 
             this.setState({graph_idx_selection: new_idx});
+        } else {
+            this.setState({graph_idx_selection: direction});
         }
     }    
 }
