@@ -6,14 +6,21 @@
 import React from 'react';
 import MathJax from 'react-mathjax';
 
+//EXCEL
 import MetallurgicDashboard from './Excel/excel_metallurgic.png';
 import RetentionAnalysis from './Excel/retention_analysis.png';
 
+//POWER BI
+import DashboardSentimentAnalysis from './Power BI/pbi_dashboard.png';
+import DashboardTelemarketing from './Power BI/pbi_dashboard_1.png';
 import DailyTrend from './Power BI/pbi_daily_trend.png';
 import GoalsForecast from './Power BI/pbi_goals_forecast.png';
 
+//PYTHON
 import {ReactComponent as MonteCarloSim} from './Python/montecarlo_simulation/graph.svg';
 import {ReactComponent as NBABestPlayers} from './Python/top_best_nba_players/graph.svg';
+
+//D3.js
 import GoodnessOfFit from './D3.js/goodness_of_fit/graph';
 
 //ALL D3.JS MUST HAVE A <div className='react-component'>
@@ -35,6 +42,24 @@ const gallery_data = [
         hide_info:true,
     },
 
+    {
+        tool:'Power BI',
+        source:DashboardSentimentAnalysis,
+        type:'png',
+        title:'Power BI Report',
+        description:'This is a report using PBI',
+        hide_info:true,
+    },
+
+    {
+        tool:'Power BI',
+        source:DashboardTelemarketing,
+        type:'png',
+        title:'Power BI Report',
+        description:'This is a report using PBI',
+        hide_info:true,
+    },
+    
     {
         tool:'Power BI',
         source:DailyTrend,

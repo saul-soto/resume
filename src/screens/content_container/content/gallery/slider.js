@@ -68,7 +68,7 @@ class Slider extends React.Component{
                         )})
                     }
                 </div>
-
+                <p className='note'>**Data is random and used for display purposes only</p>                
         </div>
         )
     }
