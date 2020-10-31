@@ -12,7 +12,7 @@
 
     .footer-info{
         width: 15%;
-        font-size: 13px;
+        font-size: 15px; 
         text-align: center;
         cursor: pointer;
 
@@ -37,8 +37,15 @@
             .language{
 
                 &:hover{
-                    transition: 1s;
                     text-decoration: underline;
+                }
+            }
+
+            #is-selected{
+                font-weight: 700;
+                
+                &:hover{
+                    text-decoration: none;
                 }
             }
 
