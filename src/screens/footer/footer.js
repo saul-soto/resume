@@ -48,8 +48,8 @@ class Footer extends React.Component{
                     <div className='lang-menu-background' id={!this.state.show_lang ? 'not-visible':null}>
                         {['English', 'Spanish'].map(lan => {return(
                             <p 
-                                onClick={() => {this.setState({show_lang:!this.state.show_lang})}}
                                 className='language'
+                                onClick={() => {this.setState({show_lang:!this.state.show_lang})}}
                             >
                                 {lan}
                             </p>
