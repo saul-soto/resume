@@ -1,6 +1,7 @@
 import React from 'react';
 import * as d3 from 'd3';
 import debounce from 'debounce';
+import content from './languages.jsx';
 
 class Header extends React.Component{
     constructor(props){
@@ -12,31 +13,37 @@ class Header extends React.Component{
 
 
     render(){
+        const lang = this.props.lang;
+        const menu_data = this.props.menudata;
+
         return(
             <div className='navigation'>
-                <p><b>Saúl</b> Soto</p>
+                <p><b>{content.first_name[lang]}</b> Soto</p>
 
                 <div className='buttons-selection'>
                     {this.props.menudata.map( (button,i) => {
-                        const ls_words = button.split('+');
+                        const ls_words = button.split('+');//text
+                        {/*text*/}
                         const content = !(ls_words.length > 1)?<>{button}</>:<>{ls_words[0]}<span>+</span>{ls_words[1]}</>;
-                        const menu_data = this.props.menudata;
+                        
 
                         return(
                             <div key={i} className='menu-option' id={i+1 === menu_data.length? 'is-last-option': null}>
                                 <p 
                                     className='option'
-                                    id={button}
+                                    
+                                    id={button /*tag */}
                                     onClick={() => {
-                                        const tag = '#nav-'+button.replace('+','_').toLowerCase();
+                                        const tag = '#nav-'+button.replace('+','_').toLowerCase();//tag
                                         const selection = d3.select(tag)._groups[0][0];
                                         const DOM_top = i+1 === menu_data.length ? selection.offsetParent.offsetTop:selection.offsetTop;
                                         window.scrollTo(0,DOM_top-60);
-                                        this.setState({selected_option:button})
+                                        this.setState({selected_option:button})//tag
                                     }}
                                 >
                                     {content}
                                 </p>
+                                {/*tag*/}
                                 <div className='svg-animation' id={button !== this.state.selected_option?null:'is-selected'}></div>
                                 
                             </div>                        
@@ -88,7 +95,12 @@ class Header extends React.Component{
 
 
 Header.defaultProps = {
-    menudata: ['About','Experience','Skills+Tools','Gallery+Projects']
+    menudata: [
+        'About',
+        'Experience',
+        'Skills+Tools',
+        'Gallery+Projects'
+    ]
 }
 
 export default Header;
