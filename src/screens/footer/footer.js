@@ -1,5 +1,6 @@
 import React from 'react';
 import pdf from '../../assets/SaulSotoCV_eng.pdf';
+import {ReactComponent as SVGLanguage} from '../../assets/language.svg'
 import Modal from './modal';
 import * as d3 from 'd3';
 
@@ -7,7 +8,8 @@ class Footer extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            modal_is_visible: true
+            modal_is_visible: true,
+            show_language_menu: false
         }
     }
 
@@ -33,9 +35,33 @@ class Footer extends React.Component{
                     download cv
                 </a>
 
+                <div className='language-selector'>
+                    <SVGLanguage 
+                        width='30px'
+                        height='auto'
+                        className='language'
+                        onMouseOver={() => {d3.select('.language').attr('width',35)}}
+                        onMouseLeave={() => {d3.select('.language').attr('width',30)}}
+                        onClick={() => {this.setState({show_lang:!this.state.show_lang})}}
+                    />
+
+                    <div className='lang-menu-background' id={!this.state.show_lang ? 'not-visible':null}>
+                        {['English', 'Spanish'].map(lan => {return(
+                            <p 
+                                onClick={() => {this.setState({show_lang:!this.state.show_lang})}}
+                                className='language'
+                            >
+                                {lan}
+                            </p>
+                        )})}
+                    </div>
+                </div> 
+
                 <Modal 
                     change_modal_visibility={() =>  {this._handleModal(animation_duration)}}
-                />                
+                />
+
+
                 
             </div>
         )

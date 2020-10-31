@@ -25,4 +25,27 @@
             text-decoration: underline;
         }
     }
+
+    .language-selector{
+        position: absolute;
+        bottom: 5px;
+        right: 20px;
+        cursor: pointer;
+
+        .lang-menu-background{
+            
+            .language{
+
+                &:hover{
+                    transition: 1s;
+                    text-decoration: underline;
+                }
+            }
+
+        }
+
+        #not-visible{
+            display: none;
+        }
+    }
 }
