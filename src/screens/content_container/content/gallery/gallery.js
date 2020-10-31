@@ -1,6 +1,7 @@
 import React from 'react';
 import gallery_data from './data/data.jsx';
 import Slider from './slider';
+import content from './languages.jsx';
 
 
 class Gallery extends React.Component{
@@ -16,7 +17,7 @@ class Gallery extends React.Component{
         return(
             <div className='content-gallery' id='nav-gallery_projects'>
 
-                <h3 className='title'>Gallery<span>+</span>Projects</h3>
+                <h3 className='title'>{content[this.props.lang].gallery_label}<span>+</span>{content[this.props.lang].projects_label}</h3>
 
                 <div className='gallery-menu'>
                     {['Excel','Power BI','Python','D3.js'].map((tool,i)=>{return(

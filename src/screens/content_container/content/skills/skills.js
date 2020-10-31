@@ -1,19 +1,21 @@
 import React from 'react';
-import skills_data from './data.jsx';
+import content from './data.jsx';
 
 class Skills extends React.Component{
     render(){
+        const lang = this.props.lang;
+
         return(
             <div className='content-skills' id='nav-skills_tools'>
-                <h3 className='title'>Skills<span>+</span>Tools</h3>
+                <h3 className='title'>{content.labels[lang].skill_label}<span>+</span>{content.labels[lang].tool_label}</h3>
 
                 <div className='piles-container'>
-                    {[...new Set(this.props.skills_data.map(r => r.type))].map((type,i) => {return(
+                    {[...new Set(content.skills[lang].map(r => r.type))].map((type,i) => {return(
                         <div key={i} className='pile'>
                             
                             <p className='pile-title'>{type}</p>
                             
-                            {this.props.skills_data.filter(row => {return row.type === type}).map((row,i) => {return(
+                            {content.skills[lang].filter(row => {return row.type === type}).map((row,i) => {return(
                                 <div key={i} className='skill'>
                                     <p className='skill-title'>{row.tool}</p>
                                     {row.modules === null ? null: 
@@ -36,6 +38,6 @@ class Skills extends React.Component{
     }
 }
 
-Skills.defaultProps = {skills_data}
+// Skills.defaultProps = {skills_data}
 
 export default Skills;
