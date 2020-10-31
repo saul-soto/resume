@@ -4,7 +4,7 @@ const content = {
         spanish:'Saúl'
     },
 
-    menudata:{
+    menu_data:{
         english:[
             {text:'About', tag:'About'},
             {text:'Experience', tag:'Experience'},
