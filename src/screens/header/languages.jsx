@@ -12,7 +12,7 @@ const content = {
             {text:'Gallery+Projects', tag:'Gallery+Projects'}
         ],
         spanish:[
-            {text:'Sobre', tag:'About'},
+            {text:'General', tag:'About'},
             {text:'Experiencia', tag:'Experience'},
             {text:'Habilidades+Herramientas', tag:'Skills+Tools'},
             {text:'Galeria+Proyectos', tag:'Gallery+Projects'}

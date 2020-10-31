@@ -1,10 +1,11 @@
 import React from 'react';
+import content from './languages.jsx';
 
 class Introduction extends React.Component{
     render(){
         return(
             <div className='content-introduction' id='nav-about'>
-                {this.props.intro_data.map( (row,i)  => {return(
+                {content[this.props.lang].map( (row,i)  => {return(
                     <div key={i} className='intro-row'>
                         <h3 className='intro-title'>{row.title}</h3>
                         <div className='svg-line'></div>
@@ -15,14 +16,6 @@ class Introduction extends React.Component{
             
         )
     }
-}
-
-
-Introduction.defaultProps = {
-    intro_data: [
-        {title:'Profile', desc:'Data driven and curious about all things mathematics and programming'},
-        {title:'About me', desc:'I\'m a data analyst from Mexico City, 28 years old and currently living in Puerto Vallarta, Mexico'},
-    ]
 }
 
 export default Introduction;
