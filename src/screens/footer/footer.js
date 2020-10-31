@@ -49,7 +49,10 @@ class Footer extends React.Component{
                         {['English', 'Spanish'].map(lan => {return(
                             <p 
                                 className='language'
-                                onClick={() => {this.setState({show_lang:!this.state.show_lang})}}
+                                onClick={() => {
+                                    this.props.choose_language(lan.toLocaleLowerCase());
+                                    this.setState({show_lang:!this.state.show_lang});
+                                }}
                             >
                                 {lan}
                             </p>

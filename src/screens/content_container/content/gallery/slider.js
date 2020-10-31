@@ -24,7 +24,6 @@ class Slider extends React.Component{
 
         const data_length = this.props.data.length;
 
-        console.log(data_length);
         return(
             <div className='slider'>                
                 <div className='arrows-container'>

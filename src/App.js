@@ -6,18 +6,22 @@ import Footer from './screens/footer/footer';
 
 
 class App extends React.Component{
+	constructor(props){
+		super(props);
+		this.state = {
+			language: 'english'
+		}
+	}
 
-  render(){
+	render(){
 		return(
 			<>
 				<Header />
 				<ContentContainer />
-				<Footer />
-			</>
-			
+				<Footer choose_language={(language) => {console.log(language); this.setState({language})}}/>
+			</>		
 		)
-  	}
-
+	}
 }
 
 export default App;
