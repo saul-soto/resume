@@ -1,5 +1,5 @@
 import React from 'react';
-import experience_data from './data.jsx';
+import content from './languages.jsx';
 import * as d3 from 'd3';
 
 class Experience extends React.Component{
@@ -10,19 +10,21 @@ class Experience extends React.Component{
             return d3.timeFormat('%b%Y')(date)
         };
 
+        const lang = this.props.lang;
+
         return(
             <div className='content-experience' id='nav-experience'>
-                <h3 className='title'>Experience</h3>
+                <h3 className='title'>{content.language_labels[lang].title}</h3>
 
                 <div className='category'>
 
-                    <h3 className='exp-subtitle'>Education</h3>
+                    <h3 className='exp-subtitle'>{content.language_labels[lang].eduaction_title}</h3>
                     <div className='exp-cat-detail-container'>
-                        {this.props.experience_data.education.map( (row,i) => {return(
+                        {content.education.map( (row,i) => {return(
                             <div key={i} className='exp-cat-detail'>
-                                <p className='exp-cat-detail-title'>{row.University}</p>
-                                <p className='exp-cat-detail-subtitle'>{row.Degree}</p>
-                                <p className='exp-cat-detail-desc'>{row.Description}</p>
+                                <p className='exp-cat-detail-title'>{row.University[lang]}</p>
+                                <p className='exp-cat-detail-subtitle'>{row.Degree[lang]}</p>
+                                <p className='exp-cat-detail-desc'>{row.Description[lang]}</p>
                             </div>
                         )})}
                     </div>
@@ -31,13 +33,13 @@ class Experience extends React.Component{
                 </div>
                 <div className='category'>
 
-                    <h3 className='exp-subtitle'>Places I've worked in</h3>
+                    <h3 className='exp-subtitle'>{content.language_labels[lang].job_title}</h3>
                     <div className='exp-cat-detail-container'>
-                        {this.props.experience_data.jobs.map( (row,i) => {return(
+                        {content.jobs.map( (row,i) => {return(
                             <div key={i} className='exp-cat-detail'>
-                                <p className='exp-cat-detail-title'>{row.PositionName}</p>
+                                <p className='exp-cat-detail-title'>{row.PositionName[lang]}</p>
                                 <p className='exp-cat-detail-subtitle'>{row.Company} | {parse_date(row.DateBegin)}-{row.DateEnd===null?null:parse_date(row.DateEnd)}</p>
-                                {row.Responsibilities.map( (resp,i) => {return(
+                                {row.Responsibilities[lang].map( (resp,i) => {return(
                                     <p key={i} className='exp-cat-detail-desc'>{resp}</p>
                                 )})}
                                 
@@ -51,7 +53,5 @@ class Experience extends React.Component{
         )
     }
 }
-
-Experience.defaultProps = {experience_data}
 
 export default Experience;
