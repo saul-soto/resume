@@ -22,6 +22,7 @@ import {ReactComponent as NBABestPlayers} from './Python/top_best_nba_players/gr
 
 //D3.js
 import GoodnessOfFit from './D3.js/goodness_of_fit/graph';
+import MonteCarloGraph from './D3.js/montecarlo_animation/graph';
 
 //ALL D3.JS MUST HAVE A <div className='react-component'>
 const gallery_data = [
@@ -102,12 +103,23 @@ const gallery_data = [
         hide_info:false
     },
 
+
+
     {
         tool:'D3.js',
         source: GoodnessOfFit,
         type:'react component',
         title:'Goodness of Fit',
         description:'Random simulation of goodness of fit',
+        hide_info:false
+    },
+
+    {
+        tool:'D3.js',
+        source: MonteCarloGraph,
+        type:'react component',
+        title:'Monte Carlo Simulation',
+        description:'A random Monte Carlo simulation an it\'s parameters',
         hide_info:false
     },
 ]
