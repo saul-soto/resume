@@ -8,10 +8,11 @@ class MonteCarloGraph extends React.Component{
         this.state = {
             width: null,
             height: null,
+            y_scaler:null,
             line_coords: [],
-            data: [0],
+            data: [],
             cumsum: [],
-            simulations: 5,
+            simulations: 500,
             probability: .5
         }
     }
@@ -29,12 +30,26 @@ class MonteCarloGraph extends React.Component{
         )
     }
 
-    async _update_sizes(){
-        const  div_container = await d3.select('#react-component').node();
+    _get_margins(){
+        return {margin_horizontal:10, margin_vertical: 10}   
+    }
+
+    _get_updated_y_scaler(new_height, new_min, new_max){
+        const { margin_vertical} = this._get_margins();
+        const scaler = 
+            d3.scaleLinear()
+                .domain([  new_min, new_max ])
+                .range([ 0 + margin_vertical, new_height - margin_vertical])
+        ;
+        return scaler
+    }
+
+    _update_sizes(){
+        const  div_container = d3.select('#react-component').node();
         const width = div_container.offsetWidth;
         const height = div_container.offsetHeight;
-        const margin_horizontal = 10;
-        const margin_vertical = 10;
+        const { margin_horizontal, margin_vertical } = this._get_margins();
+        const cumsum = this.state.cumsum;
 
         this.setState({
             width,
@@ -48,10 +63,11 @@ class MonteCarloGraph extends React.Component{
                     x_1:margin_horizontal,y_1:height - margin_vertical,
                     x_2:width - margin_horizontal,y_2:height - margin_vertical
                 },
-            ]
+            ],
+            y_scaler: this._get_updated_y_scaler(height, d3.min(cumsum), d3.max(cumsum))
         });
 
-        this.render_graph('update');
+        this._render_graph('update');
     };
 
     _bind_implicit_data(){
@@ -86,11 +102,12 @@ class MonteCarloGraph extends React.Component{
         ;
 
 
-
     }
 
-    patterns(pattern){
-        const resize_svgs = () =>{
+
+
+    _render_graph(pattern){
+        const merge_enter_update = () =>{
             const line_coords = this.state.line_coords;
 
             d3.selectAll('.axis')
@@ -103,11 +120,36 @@ class MonteCarloGraph extends React.Component{
 
         if(pattern==='enter'){
             this._bind_implicit_data();
-            resize_svgs();
+            merge_enter_update();
+
+            d3.selectAll('.time-series')
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-width", 2)
+            ;
         }
 
         else if(pattern==='update'){
-            resize_svgs();
+            merge_enter_update();
+
+            const { simulations, width, y_scaler, cumsum} = this.state;
+            const { margin_horizontal } = this._get_margins();
+            
+            const x_scaler = 
+                d3.scaleLinear()
+                    .domain([ 0, simulations - 1])
+                    .range([ 0 + margin_horizontal, width - margin_horizontal])
+                ;
+
+            d3.selectAll('.time-series')
+                .transition().duration(100)
+                .attr("d", d3.line()
+                    .curve(d3.curveBasis)
+                    .x(function(_,i) { return x_scaler(i) })
+                    .y(function(d) { return y_scaler(d) })
+                    (cumsum)
+                )
+                
         }
 
         else if(pattern==='exit'){
@@ -115,31 +157,34 @@ class MonteCarloGraph extends React.Component{
         }
     }
 
-    render_graph(pattern){
-        this.patterns(pattern);
+    _run_animation(speed){
+        d3.range(this.state.simulations).map( i => {
+            setTimeout(
+                async () => {
+                    const update_state = () => {
+                        const data = this.state.data;
+                        data.push(d3.randomBernoulli(this.state.probability)() ===1?1:-1 );
+                        const cumsum = data.map( (_,i) => {return d3.sum(data.slice(0,i))} );
+                        const height = this.state.height;
+                
+                        this.setState({ 
+                            data,
+                            cumsum,
+                            y_scaler: this._get_updated_y_scaler(height, d3.min(cumsum), d3.max(cumsum))
+                        });
+                    }
+                    await update_state();
+                    this._render_graph('update');
 
+            }, speed*i);
+        })
     }
 
     async componentDidMount(){
         await this._update_sizes();
         window.addEventListener('resize', this._update_sizes.bind(this));
-        this.render_graph('enter');
-
-
-        d3.range(this.state.simulations).map( i => {
-            setTimeout(() => {
-                let data = this.state.data;
-                data.push(d3.randomBernoulli(this.state.probability)() ===1?1:-1 )
-
-                console.log(data);
-                console.log(this.state.cumsum);
-                this.setState({ 
-                    data,
-                    cumsum: data.map( (_,i) => {return d3.sum(data.slice(0,i))} )
-                })
-            }, 1000*i);
-
-        })
+        this._render_graph('enter');
+        this._run_animation(50);
     }
 
 
