@@ -46,32 +46,6 @@ class MonteCarloGraph extends React.Component{
         return scaler
     }
 
-    _update_sizes(){
-        const  div_container = d3.select('#react-component').node();
-        const width = div_container.offsetWidth;
-        const height = div_container.offsetHeight;
-        const { margin_horizontal, margin_vertical } = this._get_margins();
-        const cumsum = this.state.cumsum;
-
-        this.setState({
-            width,
-            height,
-            line_coords: [
-                {
-                    x_1:margin_horizontal,y_1:margin_vertical,
-                    x_2:margin_horizontal,y_2:height - margin_vertical
-                },
-                {
-                    x_1:margin_horizontal,y_1:height - margin_vertical,
-                    x_2:width - margin_horizontal,y_2:height - margin_vertical
-                },
-            ],
-            y_scaler: this._get_updated_y_scaler(height, d3.min(cumsum), d3.max(cumsum))
-        });
-
-        this._render_graph('update');
-    }
-
     _get_slicer_scaler(){
         const scaler = 
             d3.scaleLinear()
@@ -110,7 +84,7 @@ class MonteCarloGraph extends React.Component{
                             if (0 <= probability && probability <= 1){
                                 probability = Math.round(probability*100,4)/100;
                                 this.setState({ probability, slicer_position: e.x });
-                                this._render_graph('update');
+                                this._run_pattern('update');
                             }
 
                         })
@@ -134,7 +108,7 @@ class MonteCarloGraph extends React.Component{
 
     }
 
-    _render_graph(pattern){
+    _run_pattern(pattern){
         const { simulations, width, y_scaler, cumsum, probability} = this.state;
         const { margin_horizontal, margin_vertical } = this._get_margins();
         
@@ -239,7 +213,7 @@ class MonteCarloGraph extends React.Component{
                     //TO AVOID MEMORY LEAKAGE VERIFY IF COMPONENT IS MOUNTED
                     if(this._is_mounted){
                         update_state();
-                        this._render_graph('update');
+                        this._run_pattern('update');
                     }
 
             }, speed*i);
@@ -248,10 +222,36 @@ class MonteCarloGraph extends React.Component{
         })
     }
 
+    _update_responsive_sizes(){
+        const  div_container = d3.select('#react-component').node();
+        const width = div_container.offsetWidth;
+        const height = div_container.offsetHeight;
+        const { margin_horizontal, margin_vertical } = this._get_margins();
+        const cumsum = this.state.cumsum;
+
+        this.setState({
+            width,
+            height,
+            line_coords: [
+                {
+                    x_1:margin_horizontal,y_1:margin_vertical,
+                    x_2:margin_horizontal,y_2:height - margin_vertical
+                },
+                {
+                    x_1:margin_horizontal,y_1:height - margin_vertical,
+                    x_2:width - margin_horizontal,y_2:height - margin_vertical
+                },
+            ],
+            y_scaler: this._get_updated_y_scaler(height, d3.min(cumsum), d3.max(cumsum))
+        });
+
+        this._run_pattern('update');
+    }
+    
     async componentDidMount(){
-        await this._update_sizes();
-        window.addEventListener('resize', this._update_sizes.bind(this));
-        this._render_graph('enter');
+        await this._update_responsive_sizes();
+        window.addEventListener('resize', this._update_responsive_sizes.bind(this));
+        this._run_pattern('enter');
         this._run_animation(150);
         this._is_mounted = true;
     }
