@@ -12,7 +12,7 @@ class MonteCarloGraph extends React.Component{
             line_coords: [],
             data: [],
             cumsum: [],
-            simulations: 100,
+            simulations: 500,
             probability: .5
         }
     }
@@ -129,8 +129,6 @@ class MonteCarloGraph extends React.Component{
 
     }
 
-
-
     _render_graph(pattern){
         const { simulations, width, y_scaler, cumsum, probability} = this.state;
         const { margin_horizontal, margin_vertical } = this._get_margins();
@@ -220,7 +218,7 @@ class MonteCarloGraph extends React.Component{
                 async () => {
                     const update_state = () => {
                         const data = this.state.data;
-                        data.push(d3.randomBernoulli(this.state.probability)() ===1?1:-1 );
+                        data.push(d3.randomBernoulli(this.state.probability)() ===1?-1:1 );
                         const cumsum = data.map( (_,i) => {return d3.sum(data.slice(0,i))} );
                         const height = this.state.height;
                 
@@ -241,7 +239,7 @@ class MonteCarloGraph extends React.Component{
         await this._update_sizes();
         window.addEventListener('resize', this._update_sizes.bind(this));
         this._render_graph('enter');
-        this._run_animation(5);
+        this._run_animation(250);
     }
 
 
