@@ -1,7 +1,7 @@
 import React from 'react';
 import Introduction from './content/introduction/introduction';
 import Experience from './content/experience/experience';
-import Skills from './content/skills/skills';
+import Skills from './content/skills/skills_d3_graph';
 import Gallery from './content/gallery/gallery';
 
 class ContentContainer extends React.Component{

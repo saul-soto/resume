@@ -38,6 +38,4 @@ class Skills extends React.Component{
     }
 }
 
-// Skills.defaultProps = {skills_data}
-
 export default Skills;

@@ -1,0 +1,14 @@
+.content-skills{
+    
+    // ORIGINAL IDEA
+    // @import '/original_idea';
+
+    // D3 HORIZONTAL GRAPH
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    
+    #skills-canvas-container{
+        flex-grow: 1;
+    }
+}
