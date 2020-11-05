@@ -14,7 +14,8 @@ class MonteCarloGraph extends React.Component{
             data: [],
             cumsum: [],
             simulations: 500,
-            probability: .5
+            probability: .5,
+            slicer_position:null
         }
     }
 
@@ -105,10 +106,13 @@ class MonteCarloGraph extends React.Component{
                         .on("drag", (e) => {
                             const unit_to_add = e.dx < 0 ? -1:e.dx > 1 ?1:0;
                             let probability = this.state.probability + unit_to_add/80;
-                            probability = probability > 1? 1: probability < 0 ? 0: probability;
-                            probability = Math.round(probability*100,8)/100;
-                            this.setState({ probability });
-                            this._render_graph('update');
+
+                            if (0 <= probability && probability <= 1){
+                                probability = Math.round(probability*100,4)/100;
+                                this.setState({ probability, slicer_position: e.x });
+                                this._render_graph('update');
+                            }
+
                         })
                     )                    
         ;
@@ -171,7 +175,7 @@ class MonteCarloGraph extends React.Component{
             d3.selectAll('.slicer-selector')
                 .attr('r', 5)
                 .attr('fill', 'gray')
-                .attr('cx', x_local_scaler(this.state.probability))
+                .attr('cx', this.state.slicer_position)
                 .attr('cy', margin_vertical)                
             ;
 
