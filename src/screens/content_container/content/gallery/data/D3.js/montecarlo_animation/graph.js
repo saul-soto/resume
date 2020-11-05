@@ -5,6 +5,7 @@ import * as d3 from 'd3';
 class MonteCarloGraph extends React.Component{
     constructor(props){
         super(props);
+        this._is_mounted = false;
         this.state = {
             width: null,
             height: null,
@@ -24,7 +25,7 @@ class MonteCarloGraph extends React.Component{
                     className='canvas' 
                     width={this.state.width}
                     height={this.state.height}
-                    style={{ borderStyle:'solid'}} 
+                    // style={{ borderStyle:'solid'}} 
                 />
             </div>
         )
@@ -68,7 +69,7 @@ class MonteCarloGraph extends React.Component{
         });
 
         this._render_graph('update');
-    };
+    }
 
     _get_slicer_scaler(){
         const scaler = 
@@ -143,7 +144,7 @@ class MonteCarloGraph extends React.Component{
             d3.selectAll('.axis')
                 .attr('x1', (_,i) =>{return line_coords[i].x_1}  ).attr('y1', (_,i) =>{return line_coords[i].y_1} )
                 .attr('x2', (_,i) =>{return line_coords[i].x_2}  ).attr('y2', (_,i) =>{return line_coords[i].y_2} )
-                .attr('stroke', 'black')
+                .attr('stroke', (_,i) => {return i === 0 ? 'white': 'black'})
             ;
 
             // SLICER GROUP
@@ -155,6 +156,8 @@ class MonteCarloGraph extends React.Component{
             d3.selectAll('.slicer-title')
                 .text('Probability: ' + probability*100+'%')
                 .attr('font-size', 14)
+                .attr('x', x_local_scaler(.5))
+                .attr('text-anchor', 'middle')
             ;
                 
             
@@ -228,10 +231,16 @@ class MonteCarloGraph extends React.Component{
                             y_scaler: this._get_updated_y_scaler(height, d3.min(cumsum), d3.max(cumsum))
                         });
                     }
-                    await update_state();
-                    this._render_graph('update');
+
+                    //TO AVOID MEMORY LEAKAGE VERIFY IF COMPONENT IS MOUNTED
+                    if(this._is_mounted){
+                        update_state();
+                        this._render_graph('update');
+                    }
 
             }, speed*i);
+
+            return null
         })
     }
 
@@ -240,8 +249,12 @@ class MonteCarloGraph extends React.Component{
         window.addEventListener('resize', this._update_sizes.bind(this));
         this._render_graph('enter');
         this._run_animation(250);
+        this._is_mounted = true;
     }
 
+    componentWillUnmount(){
+        this._is_mounted = false;
+    }
 
 }
 
