@@ -21,7 +21,7 @@ class Skills extends React.Component{
                                     {row.modules === null ? null: 
                                         <div className='subskills-set'>
                                             {row.modules.map((module,i) => {return(
-                                                <p key={i} className='subskill'>{module.toLowerCase()}</p>
+                                                <p key={i} className='subskill'>{module.name.toLowerCase()}</p>
                                             )})}
                                         </div>
                                     }
