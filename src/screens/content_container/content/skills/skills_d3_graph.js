@@ -64,10 +64,11 @@ class Skills extends React.Component{
                             const modules = e.modules===null? 
                                 [{name:e.tool, expertise:e.expertise, no_modules:true}]:
                                 e.modules
-                            return {tool:e.tool, modules}
+                            return {type:e.type, tool:e.tool, modules}
                         });
                     })
                         .enter().append('g')
+                            .attr('id', (d) => {return d.type})
                             .attr('class', 'tool-group')
         ;
 
@@ -116,7 +117,9 @@ class Skills extends React.Component{
         if(pattern==='update'){
             const canvas = d3.select('#skills-canvas');
             const { width, height } = this.state;
-            const number_types = [...new Set( content.skills[this.props.lang].map( d => {return d.type}) )].length;
+            const data = content.skills[this.props.lang];
+            const unique_types = [...new Set( data.map( d => {return d.type}) )]
+            const number_types = unique_types.length;
 
             canvas.selectAll('.type-group')
                 .attr('transform', (_,i)=>{return `translate(${(width/number_types)*i}, 0)`})
@@ -135,12 +138,30 @@ class Skills extends React.Component{
                 .attr('height', height-30)
             ;
 
-            canvas.selectAll('.tool-group')
-                .attr('transform', (_,i) => {return `translate(${(width/number_types)/5*i}, ${height-30} )`})
+
+
+            unique_types.map( (type,i) => {
+                const n_tools = data.filter( d => {return d.type === type}).length;
+
+                canvas.selectAll('.tool-group')
+                    .filter( d => {return d.type === type})
+                        .attr('transform', (_,i) => {
+                            const x_distance =  (width/number_types)/n_tools;
+                            return `translate(${  x_distance*(i+.5)  }, ${height-40} )`
+                        })
+                ;
+            })
+                
+
             ;
+                
+            
+            
+
+
 
             canvas.selectAll('.tool-title')
-                .text((d)=>{return d.tool})
+                .text((d,i)=>{return d.tool})
                 .attr('font-size', 12)
             ;
 

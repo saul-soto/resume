@@ -62,7 +62,7 @@ const skills = {
         },
         {
             type: 'Descriptive Analysis', 
-            tool: 'D3.js visualizations',
+            tool: 'D3.js',
             modules: null,
             expertise: 4
         },
