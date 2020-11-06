@@ -1,6 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,500);
 
-
 @mixin App($screen-type) {
     $my_font: 'montserrat';
     $nav_height: 10vh;
@@ -11,7 +10,12 @@
     }
 
     body {
-        font-family: $my_font;
+        // @if $screen-type == 'phones-potrait'{
+        //     font-family: $my_font;
+        // }@else{
+        //     font-family: 'ahhhhh';
+        // };
+        font-family: $screen-type;
         font-weight: 400;
         font-size: 16px;
         color: #1a1b1f;
@@ -58,31 +62,31 @@
 };
 
 @mixin phones-potrait {
-    @media (max-width: 576px){    
+    @media (min-width: 300px) and (max-width: 575px){
         @include App('phones-portrait');
     }    
 }
 
 @mixin small-tablets-phones-landscape {
-    @media (max-width: 768px){    
-        @include App('phones-portrait');
+    @media (min-width: 576px) and (max-width: 768px){
+        @include App('small-tablets-phones-landscape');
     }    
 }
 
 @mixin small-desktops {
-    @media (min-width: 992px){
+    @media (min-width: 769px) and (max-width: 1024px){
         @include App('small-desktops');
     }
 }
 
 @mixin regular-desktops {
-    @media (min-width: 1200px){
+    @media (min-width: 1025px){
         @include App('regular-desktops');
     }    
 }
 
 
 @include phones-potrait;
-// @include small-tablets-phones-landscape;
-// @include small-desktops;
-// @include regular-desktops;
+@include small-tablets-phones-landscape;
+@include small-desktops;
+@include regular-desktops;
