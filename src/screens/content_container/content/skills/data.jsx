@@ -25,9 +25,8 @@ const skills = {
         },
         {
             type: 'Data Preprocessing', 
-            tool: 'Python Pandas',
-            modules: null,
-            expertise:4
+            tool: 'Python',
+            modules: [{name:'Pandas', expertise:4}],
         },
         {
             type: 'Data Preprocessing', 
@@ -99,9 +98,8 @@ const skills = {
         },
         {
             type: 'Extracción de Datos', 
-            tool: 'Python Pandas',
-            modules: null,
-            expertise:4
+            tool: 'Python',
+            modules: [{name: 'Pandas', expertise:4}],
         },
         {
             type: 'Extracción de Datos', 

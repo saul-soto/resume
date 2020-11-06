@@ -6,8 +6,8 @@ class Skills extends React.Component{
     constructor(props){super(props);
         this.margins = {horizontal:30, vertical: 30};
         this.state = {
-            height: null,
-            width: null
+            height: 0,
+            width: 0
         };
 
     }
@@ -40,8 +40,8 @@ class Skills extends React.Component{
 
         // TYPE-GROUPS
         const canvas = d3.select('#skills-canvas');
-        canvas.selectAll('g').data( data_by_type )
-            .enter().append('g')
+        canvas.selectAll('svg').data( data_by_type )
+            .enter().append('svg')
                 .attr('class', 'type-group')
                 // .attr('id', (d) => {return d[0].type.split(' ').map( w => {return w.toLowerCase()}).join('-')})
         ;
@@ -56,7 +56,7 @@ class Skills extends React.Component{
 
         // FOR EACH skills-group APPEND THE A tool-group THAT CONTAINS tool-title AND ITS modules
         const tool_groups = all_type_groups
-            .append('g')
+            .append('svg')
                 .attr('class', 'skills-group')
 
                     .selectAll('g').data((d) => {
@@ -108,25 +108,47 @@ class Skills extends React.Component{
     }
 
     _run_pattern(pattern){
-        const canvas = d3.select('#skills-canvas');
+
 
         if(pattern==='enter'){
             this._bind_implicit_data();
-
         }
         if(pattern==='update'){
+            const canvas = d3.select('#skills-canvas');
+            const { width, height } = this.state;
+            const number_types = [...new Set( content.skills[this.props.lang].map( d => {return d.type}) )].length;
+
+            canvas.selectAll('.type-group')
+                .attr('transform', (_,i)=>{return `translate(${(width/number_types)*i}, 0)`})
+                .attr('width',  width / number_types)
+                .attr('height', height)
+            ;
+
             canvas.selectAll('.type-title')
                 .text((d)=>{return d[0].type})
+                .attr('y', height)
+                .attr('x', (width/number_types)/2)
+                .attr('text-anchor', 'middle')
+            ;
+
+            canvas.selectAll('.skills-group')
+                .attr('height', height-30)
+            ;
+
+            canvas.selectAll('.tool-group')
+                .attr('transform', (_,i) => {return `translate(${(width/number_types)/5*i}, ${height-30} )`})
             ;
 
             canvas.selectAll('.tool-title')
                 .text((d)=>{return d.tool})
+                .attr('font-size', 12)
+            ;
 
-            canvas.selectAll('.module-title')
-                .text( (d)=>{return d.name})
+            // canvas.selectAll('.module-title')
+            //     .text( (d)=>{return d.name})
 
-            canvas.selectAll('.expertise')
-                .attr('cy', (d) => {return d})
+            // canvas.selectAll('.expertise')
+            //     .attr('cy', (d) => {return d})
 
         }
         if(pattern==='exit'){
@@ -140,13 +162,14 @@ class Skills extends React.Component{
         const height = div_container.offsetHeight-this.margins.vertical;
         const width = div_container.offsetWidth-this.margins.horizontal;
         this.setState({ width, height });
+        this._run_pattern('update');
     }
 
-    componentDidMount(){
-        this._update_responsive_sizes();
+    async componentDidMount(){
+        await this._update_responsive_sizes();
         window.addEventListener('resize', this._update_responsive_sizes.bind(this));
-        this._run_pattern('enter');
-        this._run_pattern('update');
+        await this._run_pattern('enter');
+        await this._run_pattern('update');
     }
 
 }
