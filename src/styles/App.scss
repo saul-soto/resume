@@ -1,55 +1,88 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,500);
 
-$my_font: 'Montserrat';
-$nav_height: 10vh;
+
+@mixin App($screen-type) {
+    $my_font: 'montserrat';
+    $nav_height: 10vh;
 
 
-h3, p{
-    margin: 0;
-}
-
-body {
-    font-family: $my_font;
-    font-weight: 400;
-    font-size: 16px;
-    color: #1a1b1f;
-    padding: 0;
-    margin: 0;
-
-    @import 'header';
-
-    .content-container{
-        margin-top: $nav_height;
-
-
-        .content-box{
-            display: 'flex';
-            flex-direction: column;
-            min-height: 100vh-$nav_height;
-
-            .title{
-                padding: 5px 0 20px 0;
-                font-size: 50px;
-                text-align: center;
-                font-weight: 400;
-
-                span{
-                    color: rgba(26, 27, 31, 0.20);
-                }
-            }
-
-            @import 'content_container/introduction';
-            @import 'content_container/experience';
-            @import 'content_container/skills/skills';
-            @import 'content_container/gallery';
-        }
-
-        #relative-box{
-            position: relative;
-        }
+    h3, p{
+        margin: 0;
     }
 
-    @import 'footer/footer';
-    @import 'footer/modal';
+    body {
+        font-family: $my_font;
+        font-weight: 400;
+        font-size: 16px;
+        color: #1a1b1f;
+        padding: 0;
+        margin: 0;
 
+        @import 'header';
+
+        .content-container{
+            margin-top: $nav_height;
+
+
+            .content-box{
+                display: 'flex';
+                flex-direction: column;
+                min-height: 100vh-$nav_height;
+
+                .title{
+                    padding: 5px 0 20px 0;
+                    font-size: 50px;
+                    text-align: center;
+                    font-weight: 400;
+
+                    span{
+                        color: rgba(26, 27, 31, 0.20);
+                    }
+                }
+
+                @import 'content_container/introduction';
+                @import 'content_container/experience';
+                @import 'content_container/skills/skills';
+                @import 'content_container/gallery';
+            }
+
+            #relative-box{
+                position: relative;
+            }
+        }
+
+        @import 'footer/footer';
+        @import 'footer/modal';
+    }
+
+};
+
+@mixin phones-potrait {
+    @media (max-width: 576px){    
+        @include App('phones-portrait');
+    }    
 }
+
+@mixin small-tablets-phones-landscape {
+    @media (max-width: 768px){    
+        @include App('phones-portrait');
+    }    
+}
+
+@mixin small-desktops {
+    @media (min-width: 992px){
+        @include App('small-desktops');
+    }
+}
+
+@mixin regular-desktops {
+    @media (min-width: 1200px){
+        @include App('regular-desktops');
+    }    
+}
+
+
+@include phones-potrait;
+// @include small-tablets-phones-landscape;
+// @include small-desktops;
+// @include regular-desktops;
