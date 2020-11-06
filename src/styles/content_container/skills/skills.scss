@@ -1,17 +1,17 @@
 .content-skills{
     
     // ORIGINAL IDEA
-    // @import '/original_idea';
+    @import '/original_idea';
 
     // D3 HORIZONTAL GRAPH
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
+    // height: 80vh;
+    // display: flex;
+    // flex-direction: column;
     
-    #skills-canvas-container{
-        flex-grow: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+    // #skills-canvas-container{
+    //     flex-grow: 1;
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    // }
 }

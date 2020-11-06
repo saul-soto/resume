@@ -59,7 +59,7 @@ class Skills extends React.Component{
             .append('svg')
                 .attr('class', 'skills-group')
 
-                    .selectAll('g').data((d) => {
+                    .selectAll('svg').data((d) => {
                         return d.map(e => {
                             const modules = e.modules===null? 
                                 [{name:e.tool, expertise:e.expertise, no_modules:true}]:
@@ -67,7 +67,8 @@ class Skills extends React.Component{
                             return {type:e.type, tool:e.tool, modules}
                         });
                     })
-                        .enter().append('g')
+                        .enter().append('svg')
+                            .attr('overflow','auto')
                             .attr('id', (d) => {return d.type})
                             .attr('class', 'tool-group')
         ;
@@ -121,52 +122,51 @@ class Skills extends React.Component{
             const unique_types = [...new Set( data.map( d => {return d.type}) )]
             const number_types = unique_types.length;
 
+            const type_height = height/number_types;
+
             canvas.selectAll('.type-group')
-                .attr('transform', (_,i)=>{return `translate(${(width/number_types)*i}, 0)`})
-                .attr('width',  width / number_types)
-                .attr('height', height)
+                .attr('transform', (d,i)=>{
+                    const type = d[0].type;
+                    return `translate(0,${(height/number_types)*i})`
+                })
+                .attr('width',  width)
+                .attr('height', type_height)
             ;
 
             canvas.selectAll('.type-title')
                 .text((d)=>{return d[0].type})
-                .attr('y', height)
-                .attr('x', (width/number_types)/2)
-                .attr('text-anchor', 'middle')
+                .attr('height', type_height)
+                // .attr('y', height/2)
             ;
 
-            canvas.selectAll('.skills-group')
-                .attr('height', height-30)
-            ;
+            // canvas.selectAll('.skills-group')
+            //     .attr('height', height/2-30)
+            // ;
 
 
 
-            unique_types.map( (type,i) => {
-                const n_tools = data.filter( d => {return d.type === type}).length;
+            // unique_types.map( (type) => {
+            //     const n_tools = data.filter( d => {return d.type === type}).length;
+            //     const x_distance =  (width/number_types)/n_tools;
 
-                canvas.selectAll('.tool-group')
-                    .filter( d => {return d.type === type})
-                        .attr('transform', (_,i) => {
-                            const x_distance =  (width/number_types)/n_tools;
-                            return `translate(${  x_distance*(i+.5)  }, ${height-40} )`
-                        })
-                ;
-            })
+            //     canvas.selectAll('.tool-group')
+            //         .filter( d => {return d.type === type})
+            //             .attr('transform', (_,i) => {return `translate(${  x_distance*(i)  }, ${height/2-40} )`})
+            //             .attr('width',x_distance) 
+            //     ;
+            // })
                 
 
-            ;
-                
-            
-            
-
-
-
-            canvas.selectAll('.tool-title')
-                .text((d,i)=>{return d.tool})
-                .attr('font-size', 12)
-            ;
+            // ;
+            // canvas.selectAll('.tool-title')
+            //     .text( d =>{return d.tool})
+            //     .attr('font-size', 12)
+            // ;
 
             // canvas.selectAll('.module-title')
-            //     .text( (d)=>{return d.name})
+            //     .text( (d)=>{return d.no_modules ? '': d.name})
+            //     .attr('y', -30)
+            //     .attr('font-size', 12)
 
             // canvas.selectAll('.expertise')
             //     .attr('cy', (d) => {return d})
