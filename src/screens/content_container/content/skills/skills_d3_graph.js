@@ -54,11 +54,6 @@ class Skills extends React.Component{
                 .attr('class', 'type-title')
         ;
 
-        all_type_groups
-            .append('g')
-                .attr('class', 'expertise-data-group')
-        ;
-
         // FOR EACH skills-group APPEND THE A tool-group THAT CONTAINS tool-title AND ITS modules
         const tool_groups = all_type_groups
             .append('g')
@@ -81,16 +76,34 @@ class Skills extends React.Component{
                 .attr('class', 'tool-title')
         ;
 
-        
-        tool_groups.filter( (d) => { return d.modules[0].no_modules !== true } )
-            .append('g')
-                .attr('class', 'tool-modules')
-
-                    .selectAll('text').data( d => {return d.modules})
-                        .enter().append('text')
-                            .attr('class', 'modules')
+        // FOR EACH module-group BIND THEIR module-title AND THEIR expertise-group
+        const tool_groups_modules = 
+            tool_groups
+                .append('g')
+                    .attr('class', 'tool-modules')
         ;
-        
+
+        const module_group = 
+            tool_groups_modules
+                .selectAll('g').data( d => {return d.modules} )
+                    .enter().append('g')
+                        .attr('class', 'module-group')
+
+        module_group
+            .append('text')
+                .attr('is-module', (d) => { return !d.no_modules ? true: false})
+                .attr('class', 'module-title')
+        ;
+
+        // FOR EACH expertise-group BIND THE FIGURES FOR EACH EXPERTISE LEVEL
+        module_group
+            .append('g')
+                .attr('class', 'expertise-group')
+                    
+                    .selectAll('circle').data( d => {return d3.range(d.expertise)})
+                        .enter().append('circle')
+                            .attr('class', 'expertise')
+        ;
         
     }
 
@@ -109,8 +122,11 @@ class Skills extends React.Component{
             canvas.selectAll('.tool-title')
                 .text((d)=>{return d.tool})
 
-            canvas.selectAll('.modules')
+            canvas.selectAll('.module-title')
                 .text( (d)=>{return d.name})
+
+            canvas.selectAll('.expertise')
+                .attr('cy', (d) => {return d})
 
         }
         if(pattern==='exit'){
