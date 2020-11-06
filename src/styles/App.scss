@@ -3,6 +3,7 @@
 @mixin App($screen-type) {
     $my_font: 'montserrat';
     $nav_height: 10vh;
+    $is_phone_portrait: str-index($screen-type, "phones-portrait");
 
 
     h3, p{
@@ -10,12 +11,7 @@
     }
 
     body {
-        // @if $screen-type == 'phones-potrait'{
-        //     font-family: $my_font;
-        // }@else{
-        //     font-family: 'ahhhhh';
-        // };
-        font-family: $screen-type;
+        font-family: $my_font;
         font-weight: 400;
         font-size: 16px;
         color: #1a1b1f;

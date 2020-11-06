@@ -19,6 +19,12 @@ class Header extends React.Component{
             <div className='navigation'>
                 <p><b>{content.first_name[lang]}</b> Soto</p>
 
+                <svg className='ham-menu' display='none' viewBox="0 0 100 80" width="40" height="40" fill='black'>
+                    {[0,0,0].map( (_,i) => {return (
+                        <rect key={i} y={i*30} width="100" height="15" rx="7"></rect>
+                    )})}
+                </svg>
+
                 <div className='buttons-selection'>
                     {menu_data.map( (button,i) => {
                         const ls_words = button.text.split('+');

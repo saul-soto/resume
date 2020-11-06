@@ -2,14 +2,32 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 50px 0px 50px;
+
+    @if $is_phone_portrait{
+        padding: 0px 20px 0px 20px;
+        font-size: 27px;
+    }@else{
+        padding: 0px 50px 0px 50px;
+    };
+
     height: $nav_height;
     position: fixed; top: 0%; left: 0%; right: 0%; bottom: 0%;
     background-color: rgba(255, 255, 255, 1);
     
+    .ham-menu{
+        @if $is_phone_portrait{
+            position: absolute;
+            right: 25px;
+            display: flex;
+        }
+    }
 
     .buttons-selection{
-        display: flex;
+        @if $is_phone_portrait{
+            display: none;
+        }@else{
+            display: flex;
+        }
 
         .menu-option{
             padding-right: 20px;
