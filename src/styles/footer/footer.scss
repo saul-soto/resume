@@ -1,6 +1,6 @@
 .footer-contact{
     display: flex;
-    @if $is_phone_portrait or $is_phone_landscape{
+    @if $is_phone_portrait {
         justify-content: space-around;
     }@else{
         justify-content: center;

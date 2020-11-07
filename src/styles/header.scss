@@ -2,17 +2,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    @if $is_phone_portrait{
-        padding: 0px 20px 0px 20px;
-        font-size: 27px;
-    }@else{
-        padding: 0px 50px 0px 50px;
-    };
-
     height: $nav_height;
     position: fixed; top: 0%; left: 0%; right: 0%; bottom: 0%;
     background-color: rgba(255, 255, 255, 1);
+    @if $is_phone_portrait{
+        padding: 0px 20px 0px 20px;
+        font-size: 27px;
+    }@else if $is_phone_landscape{
+        padding: 0px 20px 0px 20px;
+        font-size: 20px;
+    }@else{
+        padding: 0px 50px 0px 50px;
+    };
     
     .ham-menu{
         @if $is_phone_portrait{
