@@ -40,7 +40,82 @@ class Skills extends React.Component{
         ;
     }
 
+    _transform_data(){
+        const x = this._get_x_scaler();
+
+        const data = 
+            content.skills[this.props.lang].map((d,i)=>{
+                d['is_module'] = d.tool !== d.module
+                d['min_rad'] = x(i)
+                d['max_rad'] = x(i) + x.bandwidth()
+                return d
+            })
+        ;
+
+        const type_tool_grouped = (is_filtered_by_modules) => {
+            return (
+                nest()
+                .key(d=>d.type).key(d=>d.tool)
+                .rollup(d=> {return { 
+                    min: d3.min(d, d=>d.min_rad ), 
+                    max: d3.max(d, d=>d.min_rad ) 
+                }})
+                .entries(data.filter(d=>is_filtered_by_modules?d.is_module:true) )
+            )
+
+        }
+
+        const types = 
+            type_tool_grouped(false).map(d=>{return {
+                type: d.key,
+                min_rad: d3.min(d.values.map(d=>d.value.min)),
+                max_rad: d3.max(d.values.map(d=>d.value.max))
+            }})
+        ;
+
+        const tools = 
+            d3.merge(
+                type_tool_grouped(true).map(d=>d.values).map(d=>{
+                    return d.map(d=>{return {
+                        tool: d.key,
+                        mir_rad: d.value.min,
+                        max_rad: d.value.max,
+                    }})
+                })
+            )
+        ;
+        
+        return {tools, types, data};
+    }
+
     _bind_implicit_data(){
+        const canvas = d3.select('#skills-canvas');
+
+        const modules = this._transform_data().data.filter(d=>d.is_module);
+        console.table(modules);
+
+        canvas.selectAll('path').data(modules)
+            .enter().append('path')
+                .attr('stroke', 'black')
+                .attr('fill', 'none')
+                .attr('transform', `translate(${this.state.width/2},${this.state.height/2})`)
+                .attr('d', d => {
+                    return (
+                        d3.arc()({
+                            innerRadius: 140,
+                            outerRadius: 150,
+                            startAngle: d.min_rad,
+                            endAngle: d.max_rad
+                        })
+                    )
+                })
+        ;
+
+        
+        
+
+        
+
         let data = content.skills[this.props.lang];
         const x_scaler = this._get_x_scaler();
         data = data.map((d,i)=>{
@@ -71,7 +146,7 @@ class Skills extends React.Component{
                 })
         ;
 
-        const canvas = d3.select('#skills-canvas');
+        
 
         const labels_group = canvas.append('g')
             .attr('class', 'labels-group')
@@ -99,7 +174,7 @@ class Skills extends React.Component{
 
 
 
-        console.table(data);
+        // console.table(data);
     }
 
     _run_pattern(pattern){
@@ -126,7 +201,7 @@ class Skills extends React.Component{
                     const degree =  get_degrees(d.radians) * (180 / Math.PI) - 90;
                     const rotate = `rotate(${degree})`;
                     const not_module_title = !d.is_module?0:40;
-                    const translate = ` translate(${220-not_module_title},0)`;
+                    const translate = ` translate(${320-not_module_title},0)`;
                     return rotate + translate
                 })
             ;
@@ -143,10 +218,10 @@ class Skills extends React.Component{
 
             canvas.selectAll('.missing-label-container')
                 .attr('transform', d => {
-                    console.log(d)
+                    // console.log(d)
                     const degree =  get_degrees(d.middle) * (180 / Math.PI) - 90;
                     const rotate = `rotate(${degree})`;
-                    const translate = ` translate(${195},0)`;
+                    const translate = ` translate(${320},0)`;
                     return rotate + translate
                 })
             ;
