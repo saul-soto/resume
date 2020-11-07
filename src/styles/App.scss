@@ -4,6 +4,7 @@
     $my_font: 'montserrat';
     $nav_height: 10vh;
     $is_phone_portrait: str-index($screen-type, "phones-portrait");
+    $is_phone_landscape: str-index($screen-type, "phone-landscape");
 
 
     h3, p{
@@ -63,9 +64,9 @@
     }    
 }
 
-@mixin small-tablets-phones-landscape {
+@mixin phone-landscape {
     @media (min-width: 576px) and (max-width: 768px){
-        @include App('small-tablets-phones-landscape');
+        @include App('phone-landscape');
     }    
 }
 
@@ -83,6 +84,6 @@
 
 
 @include phones-potrait;
-@include small-tablets-phones-landscape;
+@include phone-landscape;
 @include small-desktops;
 @include regular-desktops;
