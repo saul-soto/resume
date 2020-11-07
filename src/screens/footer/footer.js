@@ -46,8 +46,9 @@ class Footer extends React.Component{
                     />
 
                     <div className='lang-menu-background' id={!this.state.show_lang ? 'not-visible':null}>
-                        {['English', 'Spanish'].map(lan => {return(
-                            <p 
+                        {['English', 'Spanish'].map((lan,i) => {return(
+                            <p  
+                                key={i}
                                 className='language'
                                 id={this.props.lang === lan.toLocaleLowerCase() ? 'is-selected' : null}
                                 onClick={() => {

@@ -32,11 +32,40 @@ class Skills extends React.Component{
         )
     }
 
-    _bind_implicit_data(){
-        const data = content.skills[this.props.lang];
-        console.log(data);
+    _get_x_scaler(){
+        const scaler = d3.scaleBand()
+            .domain(d3.range(content.skills[this.props.lang].length))
+            .range([0, 2*Math.PI])
+        ;
+        return scaler
 
-        
+    }
+
+    _bind_implicit_data(){
+        let data = content.skills[this.props.lang];
+        const x_scaler = this._get_x_scaler();
+        data = data.map((d,i)=>{
+            d['radians'] = x_scaler(i)
+            return d
+        });
+
+        const canvas = d3.select('#skills-canvas');
+
+        canvas.append('g')
+            .attr('class', 'labels-group')
+
+                .selectAll('g').data(data)
+                    .enter().append('g')
+                        .attr('class', 'label-container')
+
+                            .append('text')
+                                .attr('class', 'label')
+        ;
+
+
+
+
+        console.table(data);
     }
 
     _run_pattern(pattern){
@@ -46,6 +75,26 @@ class Skills extends React.Component{
             this._bind_implicit_data();
         }
         if(pattern==='update'){
+            const canvas = d3.select('#skills-canvas');
+
+            canvas.selectAll('.labels-group')
+                .attr('transform', `translate(${this.state.width/2},${this.state.height/2})`)
+            ;
+
+            canvas.selectAll('.label-container')
+                .attr('transform', d => {
+                    const degree =  (d.radians + this._get_x_scaler().bandwidth()/2) * (180 / Math.PI) - 90;
+                    const rotate = `rotate(${degree})`;
+                    const translate = ` translate(150,0)`;
+                    return rotate + translate
+                })
+            ;
+
+            canvas.selectAll('.label')
+                .text(d=>d.module)
+                .attr('font-size', 13)
+            ;
+
 
         }
         if(pattern==='exit'){
