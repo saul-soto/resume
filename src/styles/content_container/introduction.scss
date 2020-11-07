@@ -17,6 +17,8 @@
         @if $is_phone_portrait{
             padding: 35px 0 35px 0;
             flex-direction: column;
+        }@else if $is_phone_landscape{
+            padding: 30px 0 30px 0;
         }@else{
             padding: 15px 0 15px 0;
         }
@@ -30,6 +32,9 @@
                 font-size: 30px;
                 text-align: center;
                 width: 90%;
+            }@else if $is_phone_landscape{
+                font-size: 30px;
+                text-align: right;
             }@else{
                 font-size: 50px;
                 text-align: right;
