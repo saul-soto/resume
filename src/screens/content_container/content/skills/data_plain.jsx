@@ -86,21 +86,21 @@ const skills = {
             
             type: 'Predictive Analysis', 
             tool: 'Python',
-            module: 'scikit-learn', 
+            module: 'Sklearn', 
             expertise: 4
         },
         {
             
             type: 'Predictive Analysis', 
             tool: 'Python',
-            module: 'scipy', 
+            module: 'Scipy', 
             expertise: 3
         },
         {
             
             type: 'Predictive Analysis', 
             tool: 'Python',
-            module: 'tensorflow', 
+            module: 'Tensorflow', 
             expertise: 3
         },
     ],

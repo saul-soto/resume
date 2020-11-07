@@ -1,6 +1,7 @@
 import React from 'react';
 import content from './data_plain.jsx';
 import * as d3 from 'd3';
+import { nest } from 'd3-collection';
 
 class Skills extends React.Component{
     constructor(props){super(props);
@@ -33,12 +34,10 @@ class Skills extends React.Component{
     }
 
     _get_x_scaler(){
-        const scaler = d3.scaleBand()
+        return d3.scaleBand()
             .domain(d3.range(content.skills[this.props.lang].length))
             .range([0, 2*Math.PI])
         ;
-        return scaler
-
     }
 
     _bind_implicit_data(){
@@ -46,20 +45,55 @@ class Skills extends React.Component{
         const x_scaler = this._get_x_scaler();
         data = data.map((d,i)=>{
             d['radians'] = x_scaler(i)
+            d['is_module'] = d.tool !== d.module
             return d
         });
 
+        let grouped_is_modules =
+            nest()
+                .key(d=>d.type)
+                .key(d=>d.tool)
+                
+                .rollup(d=>{
+                    const min = d3.min(d, d=>d.radians );
+                    const max = d3.max(d, d=>d.radians );
+                    const middle = min+(max-min)/2;
+                    return { min, max, middle }
+                })
+                .entries(data.filter(d => d.is_module===true))
+        ;
+
+        grouped_is_modules =
+            d3.merge(grouped_is_modules.map(d=>d.values))
+                .map(d=>{
+                    d.value['tool'] = d.key;
+                    return d.value
+                })
+        ;
+
         const canvas = d3.select('#skills-canvas');
 
-        canvas.append('g')
+        const labels_group = canvas.append('g')
             .attr('class', 'labels-group')
+        ;
 
-                .selectAll('g').data(data)
-                    .enter().append('g')
-                        .attr('class', 'label-container')
+        labels_group
+            .selectAll('labels-group').data(data)
+                .enter().append('g')
+                    .attr('class', 'label-container')
 
-                            .append('text')
-                                .attr('class', 'label')
+                        .append('text')
+                            .attr('class', 'label')
+        ;
+
+
+        labels_group
+            .selectAll('labels-group').data(grouped_is_modules)
+                .enter().append('g')
+                    .attr('class', 'missing-label-container')
+
+                        .append('text')
+                            .attr('class', 'missing-label')
         ;
 
 
@@ -91,19 +125,41 @@ class Skills extends React.Component{
                 .attr('transform', d => {
                     const degree =  get_degrees(d.radians) * (180 / Math.PI) - 90;
                     const rotate = `rotate(${degree})`;
-                    const translate = ` translate(200,0)`;
+                    const not_module_title = !d.is_module?0:40;
+                    const translate = ` translate(${220-not_module_title},0)`;
                     return rotate + translate
                 })
             ;
 
             canvas.selectAll('.label')
                 .text(d=>d.module)
-                .style("font-size", 14)
+                .attr("font-size", 15)
                 .attr("transform", (_,i) => (x(i) + x.bandwidth() / 2 + Math.PI / 2) % (2 * Math.PI) < Math.PI
                     ? "rotate(90)translate(0,16)"
                     : "rotate(-90)translate(0,-9)")
                 .attr('text-anchor','middle')
             ;
+
+
+            canvas.selectAll('.missing-label-container')
+                .attr('transform', d => {
+                    console.log(d)
+                    const degree =  get_degrees(d.middle) * (180 / Math.PI) - 90;
+                    const rotate = `rotate(${degree})`;
+                    const translate = ` translate(${195},0)`;
+                    return rotate + translate
+                })
+            ;
+
+            canvas.selectAll('.missing-label')
+                .text(d=>d.tool)
+                .attr("font-size", 15)
+                .attr("transform", d => (x(d.middle) + Math.PI / 2) % (2 * Math.PI) < Math.PI
+                    ? "rotate(-90)translate(0,16)"
+                    : "rotate(90)translate(0,-9)")
+                .attr('text-anchor','middle')
+            ;
+
 
 
         }
