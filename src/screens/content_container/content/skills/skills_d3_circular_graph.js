@@ -90,11 +90,12 @@ class Skills extends React.Component{
     }
 
     _bind_implicit_data(){
-        const { modules, tools } = this._transform_data();
+        const { modules, tools, types  } = this._transform_data();
+        const { width, height } = this.state;
         
         const canvas = d3.select('#skills-canvas');
 
-        const radius = 70;
+        const radius = 130;
         const y_offset = 30;
 
         const bind_modules = () => {
@@ -115,11 +116,11 @@ class Skills extends React.Component{
                 .append('path')
                     .attr('id', (_,i) => 'arc-text'+i)
                     .attr('fill', 'none')
-                    .attr('transform', `translate(${this.state.width/2},${this.state.height/2})`)
+                    .attr('transform', `translate(${width/2},${height/2})`)
                     .attr('stroke', d => d.is_module?'black':'red')
                     .attr('d', d => {return (
                         d3.arc()({
-                            innerRadius: radius-10,
+                            innerRadius: radius-3,
                             outerRadius: radius,
                             startAngle: d.min_rad,
                             endAngle: d.max_rad
@@ -141,7 +142,7 @@ class Skills extends React.Component{
             const types_selection = 
                 canvas
                     .append('g')
-                        .attr('class', 'types')
+                        .attr('class', 'tools')
 
                             .selectAll('g').data(tools)
             ;
@@ -149,19 +150,19 @@ class Skills extends React.Component{
             const type_groups = 
                 types_selection
                     .enter().append('g')
-                        .attr('class', 'type-group')
+                        .attr('class', 'tool-group')
             ;
 
             type_groups
                 .append('path')
-                    .attr('id', (_,i)=>'type-arc-'+i)
+                    .attr('id', (_,i)=>'tool-arc-'+i)
                     .attr('fill','none')
                     .attr('stroke', 'black')
-                    .attr('transform', `translate(${this.state.width/2},${this.state.height/2})`)
+                    .attr('transform', `translate(${width/2},${height/2})`)
                     .attr('d', d=>{return(
                         d3.arc()({
-                            innerRadius: radius-10+y_offset,
-                            outerRadius: radius+y_offset,
+                            innerRadius: radius-3-y_offset,
+                            outerRadius: radius-y_offset,
                             startAngle: d.min_rad,
                             endAngle: d.max_rad
                         })
@@ -170,15 +171,55 @@ class Skills extends React.Component{
 
             type_groups
                 .append('text').append('textPath')
-                    .attr('xlink:href', (_,i)=>'#type-arc-'+i)
+                    .attr('xlink:href', (_,i)=>'#tool-arc-'+i)
                     .text(d=>d.tool)
+                    .attr('font-size',14)
+            ;
+        }
+
+        const bind_types = () => {
+            const types_selection = 
+                canvas
+                    .append('g')
+                        .attr('class', 'types')
+                            .selectAll('g').data(types)
             ;
 
-            console.table(tools);
+            const types_groups = 
+                types_selection
+                    .enter().append('g')
+                        .attr('class', 'type-group')
+            ;
+
+            types_groups
+                .append('path')
+                    .attr('id', (_,i)=>'type-arc-'+i)
+                    .attr('transform', `translate(${width/2},${height/2})`)
+                    .attr('stroke', 'black')
+                    .attr('fill', 'none')
+                    .attr('d', d=>{return(
+                        d3.arc()({
+                            innerRadius: radius-y_offset*2-3,
+                            outerRadius: radius-y_offset*2,
+                            startAngle: d.min_rad,
+                            endAngle: d.max_rad
+                        })
+                    )})
+            ;
+
+            types_groups
+                .append('text').append('textPath')
+                    .attr('xlink:href', (_,i)=>'#type-arc-'+i)
+                    .text(d=>d.type)
+                    .attr('font-size',10)
+            ;
+
+            console.table(types);
         }
 
         bind_modules();
         bind_tools();
+        bind_types();
 
     }
 
