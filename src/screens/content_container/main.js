@@ -8,7 +8,7 @@ class ContentContainer extends React.Component{
     render(){
         const ls_components = [
             <Introduction lang={this.props.lang}/>, 
-            // <Experience lang={this.props.lang}/>, 
+            <Experience lang={this.props.lang}/>, 
             // <Skills lang={this.props.lang}/>, 
             // <Gallery lang={this.props.lang}/>
         ];
