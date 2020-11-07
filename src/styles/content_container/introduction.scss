@@ -2,34 +2,67 @@
     min-height: 100vh-$nav_height;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     margin-top: -5vh; padding-bottom: 5vh;
+    @if $is_phone_portrait{
+        justify-content: center;
+    }@else{
+        justify-content: center;
+    }
 
     .intro-row{
         display: flex;
         align-content: stretch;
         justify-content: center;
-        padding: 15px 0 15px 0;
         height: 15vh;
+        @if $is_phone_portrait{
+            padding: 35px 0 35px 0;
+            flex-direction: column;
+        }@else{
+            padding: 15px 0 15px 0;
+        }
 
         .intro-title{
             align-self: center;
             padding-right: 10px;
             width: 35%;
-            font-size: 50px;
-            text-align: right;
             font-weight: 400;
+            @if $is_phone_portrait{
+                font-size: 30px;
+                text-align: center;
+                width: 100%;
+            }@else{
+                font-size: 50px;
+                text-align: right;
+            }
         }
 
         .svg-line{
-            width: 5%;
-            border-left: 2px solid;
-            border-color: rgba(26, 27, 31, 0.24);
+            @if $is_phone_portrait{
+                align-self: center;
+                width: 50%;
+                border-bottom: 2px solid;
+                border-color: rgba(26, 27, 31, 0.15);
+            }@else{
+                width: 5%;
+                border-left: 2px solid;
+                border-color: rgba(26, 27, 31, 0.24);
+            }
+            
+            
+
         }
 
         .intro-description{
-            align-self: center;
-            width: 35%;
+            @if $is_phone_portrait{
+                width: 80%;
+                align-self: center;
+                text-align: center;
+                padding-top: 10px;
+            }@else{
+                width: 35%;
+                align-self: center;
+            }
+            
         }
     }
 }
