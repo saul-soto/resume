@@ -89,13 +89,26 @@ class Skills extends React.Component{
     }
 
     _bind_implicit_data(){
-        const canvas = d3.select('#skills-canvas');
         const { modules } = this._transform_data();
-        const modules_selection = canvas.selectAll('path').data(modules);
+        
+        const canvas = d3.select('#skills-canvas');
 
-        modules_selection
-            .enter().append('path')
-                .attr('id', (_,i) => 'arcs_'+i)
+        const modules_selection = 
+            canvas
+                .append('g')
+                    .attr('class', 'modules')
+                        .selectAll('path').data(modules);
+
+        const modules_groups = 
+            modules_selection
+                .enter().append('g')
+                    .attr('class', 'module-group')
+                    
+        ;
+
+        modules_groups
+            .append('path')
+                .attr('id', (_,i) => 'arc-text'+i)
                 .attr('fill', 'none')
                 .attr('transform', `translate(${this.state.width/2},${this.state.height/2})`)
                 .attr('stroke', d => d.is_module?'black':'red')
@@ -109,13 +122,12 @@ class Skills extends React.Component{
                 )})
         ;
 
-        modules_selection
-            .enter().append('text').append('textPath')
-                .attr('xlink:href', (_,i) => '#arcs_'+i)
+        modules_groups
+            .append('text').append('textPath')
+                .attr('xlink:href', (_,i) => '#arc-text'+i)
                 .attr('font-size', 14)
                 .text(d=>d.module)
                 .attr('fill',d=>d.is_module?'black':'red')
-
         ;
     }
 
