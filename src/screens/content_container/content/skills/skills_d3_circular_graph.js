@@ -56,10 +56,11 @@ class Skills extends React.Component{
             return (
                 nest()
                 .key(d=>d.type).key(d=>d.tool)
-                .rollup(d=> {return { 
-                    min: d3.min(d, d=>d.min_rad ), 
-                    max: d3.max(d, d=>d.min_rad ) 
-                }})
+                .rollup(d=> {
+                    const min = d3.min(d, d=>d.min_rad );
+                    const max = d3.max(d, d=>d.min_rad ) + x.bandwidth();
+                    return { min, max }
+                })
                 .entries(data.filter(d=>is_filtered_by_modules?d.is_module:true) )
             )
 
@@ -78,7 +79,7 @@ class Skills extends React.Component{
                 type_tool_grouped(true).map(d=>d.values).map(d=>{
                     return d.map(d=>{return {
                         tool: d.key,
-                        mir_rad: d.value.min,
+                        min_rad: d.value.min,
                         max_rad: d.value.max,
                     }})
                 })
@@ -89,46 +90,96 @@ class Skills extends React.Component{
     }
 
     _bind_implicit_data(){
-        const { modules } = this._transform_data();
+        const { modules, tools } = this._transform_data();
         
         const canvas = d3.select('#skills-canvas');
 
-        const modules_selection = 
-            canvas
-                .append('g')
-                    .attr('class', 'modules')
-                        .selectAll('path').data(modules);
+        const radius = 70;
+        const y_offset = 30;
 
-        const modules_groups = 
-            modules_selection
-                .enter().append('g')
-                    .attr('class', 'module-group')
-                    
-        ;
+        const bind_modules = () => {
+            const modules_selection = 
+                canvas
+                    .append('g')
+                        .attr('class', 'modules')
+                            .selectAll('path').data(modules);
 
-        modules_groups
-            .append('path')
-                .attr('id', (_,i) => 'arc-text'+i)
-                .attr('fill', 'none')
-                .attr('transform', `translate(${this.state.width/2},${this.state.height/2})`)
-                .attr('stroke', d => d.is_module?'black':'red')
-                .attr('d', d => {return (
-                    d3.arc()({
-                        innerRadius: 140,
-                        outerRadius: 150,
-                        startAngle: d.min_rad,
-                        endAngle: d.max_rad
-                    })
-                )})
-        ;
+            const modules_groups = 
+                modules_selection
+                    .enter().append('g')
+                        .attr('class', 'module-group')
+                        
+            ;
 
-        modules_groups
-            .append('text').append('textPath')
-                .attr('xlink:href', (_,i) => '#arc-text'+i)
-                .attr('font-size', 14)
-                .text(d=>d.module)
-                .attr('fill',d=>d.is_module?'black':'red')
-        ;
+            modules_groups
+                .append('path')
+                    .attr('id', (_,i) => 'arc-text'+i)
+                    .attr('fill', 'none')
+                    .attr('transform', `translate(${this.state.width/2},${this.state.height/2})`)
+                    .attr('stroke', d => d.is_module?'black':'red')
+                    .attr('d', d => {return (
+                        d3.arc()({
+                            innerRadius: radius-10,
+                            outerRadius: radius,
+                            startAngle: d.min_rad,
+                            endAngle: d.max_rad
+                        })
+                    )})
+            ;
+
+            modules_groups
+                .append('text').append('textPath')
+                    .attr('xlink:href', (_,i) => '#arc-text'+i)
+                    .attr('font-size', 12)
+                    .text(d=>d.module)
+                    .attr('fill',d=>d.is_module?'black':'red')
+            ;
+
+        }
+
+        const bind_tools = () => {
+            const types_selection = 
+                canvas
+                    .append('g')
+                        .attr('class', 'types')
+
+                            .selectAll('g').data(tools)
+            ;
+
+            const type_groups = 
+                types_selection
+                    .enter().append('g')
+                        .attr('class', 'type-group')
+            ;
+
+            type_groups
+                .append('path')
+                    .attr('id', (_,i)=>'type-arc-'+i)
+                    .attr('fill','none')
+                    .attr('stroke', 'black')
+                    .attr('transform', `translate(${this.state.width/2},${this.state.height/2})`)
+                    .attr('d', d=>{return(
+                        d3.arc()({
+                            innerRadius: radius-10+y_offset,
+                            outerRadius: radius+y_offset,
+                            startAngle: d.min_rad,
+                            endAngle: d.max_rad
+                        })
+                    )})
+            ;
+
+            type_groups
+                .append('text').append('textPath')
+                    .attr('xlink:href', (_,i)=>'#type-arc-'+i)
+                    .text(d=>d.tool)
+            ;
+
+            console.table(tools);
+        }
+
+        bind_modules();
+        bind_tools();
+
     }
 
     _run_pattern(pattern){
