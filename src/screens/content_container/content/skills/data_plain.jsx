@@ -14,8 +14,8 @@ const skills = {
         {
             
             type: 'Data Preprocessing', 
-            tool: 'MySQL',
-            module: 'MySQL',
+            tool: 'SQL',
+            module: 'SQL',
             expertise: 4
         },
         {
@@ -41,13 +41,6 @@ const skills = {
         },
         {
             
-            type: 'Data Preprocessing', 
-            tool: 'MS Excel',
-            module: 'MS Excel',
-            expertise: 5
-        },
-        {
-            
             type: 'Descriptive Analysis', 
             tool: 'Python',
             module: 'Pandas', 
@@ -64,22 +57,14 @@ const skills = {
             
             type: 'Descriptive Analysis', 
             tool: 'Python',
-            module: 'Matplotlib', 
+            module: 'Pyplot', 
             expertise: 3
         },
-
         {
             
             type: 'Descriptive Analysis', 
-            tool: 'Power BI',
-            module: 'Visualizations', 
-            expertise: 4
-        },
-        {
-            
-            type: 'Descriptive Analysis', 
-            tool: 'Power BI',
-            module: 'Dashboards', 
+            tool: 'PowerBI',
+            module: 'PowerBI', 
             expertise: 5
         },
         {
@@ -92,8 +77,8 @@ const skills = {
         {
             
             type: 'Descriptive Analysis', 
-            tool: 'MS Excel',
-            module: 'MS Excel',
+            tool: 'Excel',
+            module: 'Excel',
             expertise: 5
         },
 
@@ -181,7 +166,7 @@ const skills = {
             
             type: 'Análisis Descriptivo', 
             tool: 'Python',
-            module: 'Matplotlib', 
+            module: 'Pyplot', 
             expertise: 3
         },
         {

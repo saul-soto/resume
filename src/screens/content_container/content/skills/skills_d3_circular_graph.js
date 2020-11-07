@@ -76,6 +76,12 @@ class Skills extends React.Component{
         }
         if(pattern==='update'){
             const canvas = d3.select('#skills-canvas');
+            const x = this._get_x_scaler();
+
+            const get_degrees = (radians) => {
+                return radians + x.bandwidth()*0/2
+            };
+
 
             canvas.selectAll('.labels-group')
                 .attr('transform', `translate(${this.state.width/2},${this.state.height/2})`)
@@ -83,16 +89,20 @@ class Skills extends React.Component{
 
             canvas.selectAll('.label-container')
                 .attr('transform', d => {
-                    const degree =  (d.radians + this._get_x_scaler().bandwidth()/2) * (180 / Math.PI) - 90;
+                    const degree =  get_degrees(d.radians) * (180 / Math.PI) - 90;
                     const rotate = `rotate(${degree})`;
-                    const translate = ` translate(150,0)`;
+                    const translate = ` translate(200,0)`;
                     return rotate + translate
                 })
             ;
 
             canvas.selectAll('.label')
                 .text(d=>d.module)
-                .attr('font-size', 13)
+                .style("font-size", 14)
+                .attr("transform", (_,i) => (x(i) + x.bandwidth() / 2 + Math.PI / 2) % (2 * Math.PI) < Math.PI
+                    ? "rotate(90)translate(0,16)"
+                    : "rotate(-90)translate(0,-9)")
+                .attr('text-anchor','middle')
             ;
 
 
