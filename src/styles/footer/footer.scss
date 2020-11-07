@@ -1,6 +1,10 @@
 .footer-contact{
     display: flex;
-    justify-content: center;
+    @if $is_phone_portrait{
+        justify-content: space-around;
+    }@else{
+        justify-content: center;
+    }
     padding-bottom: 7px;
     position: fixed; top: auto; right: 0; bottom: 0; left: 0;
     background-color: rgba(255, 255, 255, 0.5);
@@ -28,7 +32,11 @@
 
     .language-selector{
         position: absolute;
-        bottom: 5px;
+        @if $is_phone_portrait{
+            bottom: 55px;
+        }@else{
+            bottom: 5px;
+        }
         right: 20px;
         cursor: pointer;
 
