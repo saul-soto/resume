@@ -12,15 +12,19 @@ class Experience extends React.Component{
 
         const lang = this.props.lang;
 
+        const data = content;
+        const data_jobs = content.jobs.sort( (x,y) => {return d3.descending(x.DateBegin, y.DateBegin)} );
+
+
         return(
             <div className='content-experience' id='nav-experience'>
-                <h3 className='title'>{content.language_labels[lang].title}</h3>
+                <h3 className='title'>{data.language_labels[lang].title}</h3>
 
                 <div className='category'>
 
-                    <h3 className='exp-subtitle'>{content.language_labels[lang].eduaction_title}</h3>
+                    <h3 className='exp-subtitle'>{data.language_labels[lang].eduaction_title}</h3>
                     <div className='exp-cat-detail-container'>
-                        {content.education.map( (row,i) => {return(
+                        {data.education.map( (row,i) => {return(
                             <div key={i} className='exp-cat-detail'>
                                 <p className='exp-cat-detail-title'>{row.University[lang]}</p>
                                 <p className='exp-cat-detail-subtitle'>{row.Degree[lang]}</p>
@@ -33,9 +37,9 @@ class Experience extends React.Component{
                 </div>
                 <div className='category'>
 
-                    <h3 className='exp-subtitle'>{content.language_labels[lang].job_title}</h3>
+                    <h3 className='exp-subtitle'>{data.language_labels[lang].job_title}</h3>
                     <div className='exp-cat-detail-container'>
-                        {content.jobs.map( (row,i) => {return(
+                        {data_jobs.map( (row,i) => {return(
                             <div key={i} className='exp-cat-detail'>
                                 <p className='exp-cat-detail-title'>{row.PositionName[lang]}</p>
                                 <p className='exp-cat-detail-subtitle'>{row.Company} | {parse_date(row.DateBegin)}-{row.DateEnd===null?null:parse_date(row.DateEnd)}</p>
