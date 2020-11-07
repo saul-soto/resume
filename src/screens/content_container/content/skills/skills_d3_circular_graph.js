@@ -85,96 +85,38 @@ class Skills extends React.Component{
             )
         ;
         
-        return {tools, types, data};
+        return {tools, types, modules: data};
     }
 
     _bind_implicit_data(){
         const canvas = d3.select('#skills-canvas');
+        const { modules } = this._transform_data();
+        const modules_selection = canvas.selectAll('path').data(modules);
 
-        const modules = this._transform_data().data.filter(d=>d.is_module);
-        console.table(modules);
-
-        canvas.selectAll('path').data(modules)
+        modules_selection
             .enter().append('path')
-                .attr('stroke', 'black')
+                .attr('id', (_,i) => 'arcs_'+i)
                 .attr('fill', 'none')
                 .attr('transform', `translate(${this.state.width/2},${this.state.height/2})`)
-                .attr('d', d => {
-                    return (
-                        d3.arc()({
-                            innerRadius: 140,
-                            outerRadius: 150,
-                            startAngle: d.min_rad,
-                            endAngle: d.max_rad
-                        })
-                    )
-                })
+                .attr('stroke', d => d.is_module?'black':'red')
+                .attr('d', d => {return (
+                    d3.arc()({
+                        innerRadius: 140,
+                        outerRadius: 150,
+                        startAngle: d.min_rad,
+                        endAngle: d.max_rad
+                    })
+                )})
         ;
 
-        
-        
+        modules_selection
+            .enter().append('text').append('textPath')
+                .attr('xlink:href', (_,i) => '#arcs_'+i)
+                .attr('font-size', 14)
+                .text(d=>d.module)
+                .attr('fill',d=>d.is_module?'black':'red')
 
-        
-
-        let data = content.skills[this.props.lang];
-        const x_scaler = this._get_x_scaler();
-        data = data.map((d,i)=>{
-            d['radians'] = x_scaler(i)
-            d['is_module'] = d.tool !== d.module
-            return d
-        });
-
-        let grouped_is_modules =
-            nest()
-                .key(d=>d.type)
-                .key(d=>d.tool)
-                
-                .rollup(d=>{
-                    const min = d3.min(d, d=>d.radians );
-                    const max = d3.max(d, d=>d.radians );
-                    const middle = min+(max-min)/2;
-                    return { min, max, middle }
-                })
-                .entries(data.filter(d => d.is_module===true))
         ;
-
-        grouped_is_modules =
-            d3.merge(grouped_is_modules.map(d=>d.values))
-                .map(d=>{
-                    d.value['tool'] = d.key;
-                    return d.value
-                })
-        ;
-
-        
-
-        const labels_group = canvas.append('g')
-            .attr('class', 'labels-group')
-        ;
-
-        labels_group
-            .selectAll('labels-group').data(data)
-                .enter().append('g')
-                    .attr('class', 'label-container')
-
-                        .append('text')
-                            .attr('class', 'label')
-        ;
-
-
-        labels_group
-            .selectAll('labels-group').data(grouped_is_modules)
-                .enter().append('g')
-                    .attr('class', 'missing-label-container')
-
-                        .append('text')
-                            .attr('class', 'missing-label')
-        ;
-
-
-
-
-        // console.table(data);
     }
 
     _run_pattern(pattern){
@@ -184,58 +126,6 @@ class Skills extends React.Component{
             this._bind_implicit_data();
         }
         if(pattern==='update'){
-            const canvas = d3.select('#skills-canvas');
-            const x = this._get_x_scaler();
-
-            const get_degrees = (radians) => {
-                return radians + x.bandwidth()*0/2
-            };
-
-
-            canvas.selectAll('.labels-group')
-                .attr('transform', `translate(${this.state.width/2},${this.state.height/2})`)
-            ;
-
-            canvas.selectAll('.label-container')
-                .attr('transform', d => {
-                    const degree =  get_degrees(d.radians) * (180 / Math.PI) - 90;
-                    const rotate = `rotate(${degree})`;
-                    const not_module_title = !d.is_module?0:40;
-                    const translate = ` translate(${320-not_module_title},0)`;
-                    return rotate + translate
-                })
-            ;
-
-            canvas.selectAll('.label')
-                .text(d=>d.module)
-                .attr("font-size", 15)
-                .attr("transform", (_,i) => (x(i) + x.bandwidth() / 2 + Math.PI / 2) % (2 * Math.PI) < Math.PI
-                    ? "rotate(90)translate(0,16)"
-                    : "rotate(-90)translate(0,-9)")
-                .attr('text-anchor','middle')
-            ;
-
-
-            canvas.selectAll('.missing-label-container')
-                .attr('transform', d => {
-                    // console.log(d)
-                    const degree =  get_degrees(d.middle) * (180 / Math.PI) - 90;
-                    const rotate = `rotate(${degree})`;
-                    const translate = ` translate(${320},0)`;
-                    return rotate + translate
-                })
-            ;
-
-            canvas.selectAll('.missing-label')
-                .text(d=>d.tool)
-                .attr("font-size", 15)
-                .attr("transform", d => (x(d.middle) + Math.PI / 2) % (2 * Math.PI) < Math.PI
-                    ? "rotate(-90)translate(0,16)"
-                    : "rotate(90)translate(0,-9)")
-                .attr('text-anchor','middle')
-            ;
-
-
 
         }
         if(pattern==='exit'){
