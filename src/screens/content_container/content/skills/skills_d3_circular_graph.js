@@ -115,6 +115,7 @@ class Skills extends React.Component{
             modules_groups
                 .append('path')
                     .attr('id', (_,i) => 'arc-text'+i)
+                    .attr('class', 'module-arc-text-base')
             ;
 
             modules_groups
@@ -213,13 +214,12 @@ class Skills extends React.Component{
         }
 
 
-
-
-
         const bind_expertise = () => {
-            const expertise_selection =
+            
+            const expertise_groups = 
                 canvas.append('g')
                     .attr('class', 'expertise')
+
                         .selectAll('g').data(d3.range(1,6).map(thold => {
                             return(
                                 modules.filter(d=>thold<=d.expertise).map(d=>{return {
@@ -227,30 +227,15 @@ class Skills extends React.Component{
                                 }})
                             )
                         }))
-            ;
-            
-            const expertise_groups = 
-                expertise_selection
-                    .enter().append('g')
-                        .attr('transform', `translate(${width/2},${height/2})`)
-                        .attr('class',(_,i)=>'exp-group-'+i)
+                            .enter().append('g')
+                                .attr('class','expertise-groups')
             ; 
 
             // EXPERTISE
             expertise_groups
                 .selectAll('path').data(d=>d)
                     .enter().append('path')
-                        .attr('stroke','lightgrey')
-                        .attr('fill','darkred')
-                        .attr('opacity', d=>(d.thold)*.18+0)
-                        .attr('d', d=>{return(
-                            d3.arc()({
-                                innerRadius: 30+radius+(y_offset/2)*d.thold+10,
-                                outerRadius: 30+radius+(y_offset/2)*d.thold,
-                                startAngle: d.min_rad+.1,
-                                endAngle: d.max_rad-.1
-                            })
-                        )})
+                        .attr('class', 'expertise-levels')
             ;
             
             
@@ -285,7 +270,14 @@ class Skills extends React.Component{
                 .selectAll('path')
                     .attr('transform', `translate(${width/2},${height/2})`)
 
+            // TOOLS
+
+            // TYPES
             canvas.selectAll('.types-axis')
+                .attr('transform', `translate(${width/2},${height/2})`)
+            ;
+
+            canvas.selectAll('.expertise-groups')
                 .attr('transform', `translate(${width/2},${height/2})`)
             ;
         }
@@ -294,7 +286,7 @@ class Skills extends React.Component{
             this._bind_implicit_data();
             merge_enter_update();
 
-            // TITLE
+            // ENTER - TITLE
             canvas.select('.skills-title')
                 .text('Skills & Tools')
                 .attr('text-anchor', 'middle')
@@ -302,7 +294,7 @@ class Skills extends React.Component{
                 .attr('font-size', font_size+8) 
             ;
 
-            // MODULES
+            // ENTER - MODULES
             canvas.selectAll('.module-group')
                 .selectAll('path')
                     .attr('fill', 'none')
@@ -326,10 +318,10 @@ class Skills extends React.Component{
                     .attr('fill',d=>d.is_module?'grey':'black')
             ;
                 
+            // ENTER - TOOLS
 
 
-
-            // TYPES
+            // ENTER - TYPES
             canvas.selectAll('.types-axis')
                 .attr('stroke', 'lightgrey')
                 .attr('stroke-width',2)
@@ -343,7 +335,6 @@ class Skills extends React.Component{
                         endAngle: d.max_rad
                     })
                 )})
-            ;
 
             canvas.selectAll('.types-texts')
                 .attr('xlink:href', (_,i)=>'#type-arc-'+i)
@@ -352,6 +343,22 @@ class Skills extends React.Component{
                 .attr('font-size',font_size +8)
                 .attr('startOffset', '25%')
                 .attr('text-anchor', 'middle')
+            ;
+
+
+            // ENTER - EXPERTISE
+            canvas.selectAll('.expertise-levels')
+                .attr('stroke','lightgrey')
+                .attr('fill','darkred')
+                .attr('opacity', d=>(d.thold)*.18+0)
+                .attr('d', d=>{return(
+                    d3.arc()({
+                        innerRadius: 30+radius+(y_offset/2)*d.thold+10,
+                        outerRadius: 30+radius+(y_offset/2)*d.thold,
+                        startAngle: d.min_rad+.1,
+                        endAngle: d.max_rad-.1
+                    })
+                )})
             ;
             
         }
