@@ -1,16 +1,16 @@
 import React from 'react';
-import Introduction from './content/introduction/introduction';
-import Experience from './content/experience/experience';
+// import Introduction from './content/introduction/introduction';
+// import Experience from './content/experience/experience';
 import Skills from './content/skills/skills_d3_circular_graph';
-import Gallery from './content/gallery/gallery';
+// import Gallery from './content/gallery/gallery';
 
 class ContentContainer extends React.Component{
     render(){
         const ls_components = [
-            <Introduction lang={this.props.lang}/>, 
-            <Experience lang={this.props.lang}/>, 
+            // <Introduction lang={this.props.lang}/>, 
+            // <Experience lang={this.props.lang}/>, 
             <Skills lang={this.props.lang}/>, 
-            <Gallery lang={this.props.lang}/>
+            // <Gallery lang={this.props.lang}/>
         ];
         return(
             <div className='content-container'>

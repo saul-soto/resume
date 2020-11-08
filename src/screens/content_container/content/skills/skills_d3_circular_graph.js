@@ -96,12 +96,9 @@ class Skills extends React.Component{
 
         const canvas = d3.select('#skills-canvas');
 
-        canvas.append('text')
-            .text('Skills & Tools')
-            .attr('transform', `translate(${width/2}, ${height/2})`)
-            .attr('text-anchor', 'middle')
-            .attr('font-family', 'Helvetica')
-            .attr('font-size', font_size+8) 
+        canvas
+            .append('text')
+                .attr('class', 'skills-title')
         ;
 
         const bind_modules = () => {
@@ -121,27 +118,11 @@ class Skills extends React.Component{
             modules_groups
                 .append('path')
                     .attr('id', (_,i) => 'arc-text'+i)
-                    .attr('fill', 'none')
-                    .attr('transform', `translate(${width/2},${height/2})`)
-                    .attr('d', d => {return (
-                        d3.arc()({
-                            outerRadius: radius+20,
-                            startAngle: d.min_rad,
-                            endAngle: d.max_rad
-                        })
-                    )})
             ;
 
             modules_groups
                 .append('text').append('textPath')
-                    .attr('xlink:href', (_,i) => '#arc-text'+i)
-                    .attr('font-size', font_size)
-                    .attr('font-weight', d=>d.is_module?500:600)
-                    .text(d=>d.module)
-                    .attr('startOffset', '50%')
-                    .attr('text-anchor', 'middle')
-                    .attr('fill',d=>d.is_module?'grey':'black')
-
+                    .attr('class', 'text-paths')
             ;
 
         }
@@ -307,11 +288,67 @@ class Skills extends React.Component{
 
     _run_pattern(pattern){
 
+        const { width, height } = this.state;
+        const font_size = 12;
+        const radius = 110;
+        const y_offset = 35;
+
+
+        const canvas = d3.select('#skills-canvas');
+
+
+        const merge_enter_update = () => {
+            // TITLE
+            canvas.select('.skills-title')
+                .attr('transform', `translate(${width/2}, ${height/2})`)
+            ;
+
+            // MODULES
+            canvas.selectAll('.module-group')
+                .selectAll('path')
+                    .attr('transform', `translate(${width/2},${height/2})`)
+
+        }
 
         if(pattern==='enter'){
             this._bind_implicit_data();
+            merge_enter_update();
+
+            // TITLE
+            canvas.select('.skills-title')
+                .text('Skills & Tools')
+                .attr('text-anchor', 'middle')
+                .attr('font-family', 'Helvetica')
+                .attr('font-size', font_size+8) 
+            ;
+
+            // MODULES
+            canvas.selectAll('.module-group')
+                .selectAll('path')
+                    .attr('fill', 'none')
+                    .attr('d', d => {return (
+                        d3.arc()({
+                            outerRadius: radius+20,
+                            startAngle: d.min_rad,
+                            endAngle: d.max_rad
+                        })
+                    )})
+            ;
+
+            canvas
+                .selectAll('.text-paths')
+                    .attr('xlink:href', (_,i) => '#arc-text'+i)
+                    .attr('font-size', font_size)
+                    .attr('font-weight', d=>d.is_module?500:600)
+                    .text(d=>d.module)
+                    .attr('startOffset', '50%')
+                    .attr('text-anchor', 'middle')
+                    .attr('fill',d=>d.is_module?'grey':'black')
+            ;
+                
         }
         if(pattern==='update'){
+            merge_enter_update();
 
         }
         if(pattern==='exit'){
