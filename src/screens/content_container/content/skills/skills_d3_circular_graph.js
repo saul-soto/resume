@@ -102,17 +102,14 @@ class Skills extends React.Component{
         ;
 
         const bind_modules = () => {
-            const modules_selection = 
+            const modules_groups = 
                 canvas
                     .append('g')
                         .attr('class', 'modules')
-                            .selectAll('path').data(modules);
 
-            const modules_groups = 
-                modules_selection
-                    .enter().append('g')
-                        .attr('class', 'module-group')
-                        
+                            .selectAll('path').data(modules)
+                                .enter().append('g')
+                                    .attr('class', 'module-group')
             ;
 
             modules_groups
@@ -191,47 +188,27 @@ class Skills extends React.Component{
 
 
         const bind_types = () => {
-            const types_selection = 
+            const types_groups = 
                 canvas
                     .append('g')
                         .attr('class', 'types')
-                            .selectAll('g').data(types)
-            ;
 
-            const types_groups = 
-                types_selection
-                    .enter().append('g')
-                        .attr('class', 'type-group')
+                            .selectAll('g').data(types)
+                                .enter().append('g')
+                                    .attr('class', 'type-group')
             ;
 
             types_groups
                 .append('path')
                     .attr('id', (_,i)=>'type-arc-'+i)
-                    .attr('transform', `translate(${width/2},${height/2})`)
-                    .attr('stroke', 'lightgrey')
-                    .attr('stroke-width',2)
-                    .attr('opacity', .6)
-                    .attr('fill', 'none')
-                    .attr('d', d=>{return(
-                        d3.arc()({
-                            innerRadius: radius-y_offset+170,
-                            outerRadius: radius-y_offset,
-                            startAngle: d.min_rad,
-                            endAngle: d.max_rad
-                        })
-                    )})
+                    .attr('class', 'types-axis')
             ;
 
             types_groups
                 .append('text')
                     .attr('dy',-8)
                         .append('textPath')
-                            .attr('xlink:href', (_,i)=>'#type-arc-'+i)
-                            .text(d=>d.type)
-                            .attr('font-family', 'Helvetica')
-                            .attr('font-size',font_size +8)
-                            .attr('startOffset', '25%')
-                            .attr('text-anchor', 'middle')
+                            .attr('class', 'types-texts')
             ;
         }
 
@@ -308,6 +285,9 @@ class Skills extends React.Component{
                 .selectAll('path')
                     .attr('transform', `translate(${width/2},${height/2})`)
 
+            canvas.selectAll('.types-axis')
+                .attr('transform', `translate(${width/2},${height/2})`)
+            ;
         }
 
         if(pattern==='enter'){
@@ -346,6 +326,34 @@ class Skills extends React.Component{
                     .attr('fill',d=>d.is_module?'grey':'black')
             ;
                 
+
+
+
+            // TYPES
+            canvas.selectAll('.types-axis')
+                .attr('stroke', 'lightgrey')
+                .attr('stroke-width',2)
+                .attr('opacity', .6)
+                .attr('fill', 'none')
+                .attr('d', d=>{return(
+                    d3.arc()({
+                        innerRadius: radius-y_offset+170,
+                        outerRadius: radius-y_offset,
+                        startAngle: d.min_rad,
+                        endAngle: d.max_rad
+                    })
+                )})
+            ;
+
+            canvas.selectAll('.types-texts')
+                .attr('xlink:href', (_,i)=>'#type-arc-'+i)
+                .text(d=>d.type)
+                .attr('font-family', 'Helvetica')
+                .attr('font-size',font_size +8)
+                .attr('startOffset', '25%')
+                .attr('text-anchor', 'middle')
+            ;
+            
         }
         if(pattern==='update'){
             merge_enter_update();
