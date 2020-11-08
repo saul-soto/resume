@@ -25,7 +25,7 @@ class Skills extends React.Component{
                         id='skills-canvas'
                         height = {this.state.height} 
                         width = {this.state.width}
-                        style = {{border: 'grey', borderStyle:'solid'}}
+                        // style = {{border: 'grey', borderStyle:'solid'}}
                     />                    
                 </div>
 
@@ -95,8 +95,9 @@ class Skills extends React.Component{
         
         const canvas = d3.select('#skills-canvas');
 
-        const radius = 130;
-        const y_offset = 30;
+        const radius = 100;
+        const y_offset = 25;
+        const font_size = 12;
 
         const bind_modules = () => {
             const modules_selection = 
@@ -117,11 +118,10 @@ class Skills extends React.Component{
                     .attr('id', (_,i) => 'arc-text'+i)
                     .attr('fill', 'none')
                     .attr('transform', `translate(${width/2},${height/2})`)
-                    .attr('stroke', d => d.is_module?'black':'red')
+                    .attr('stroke', 'lightgrey')
                     .attr('d', d => {return (
                         d3.arc()({
-                            innerRadius: radius-3,
-                            outerRadius: radius,
+                            outerRadius: radius+20,
                             startAngle: d.min_rad,
                             endAngle: d.max_rad
                         })
@@ -131,12 +131,17 @@ class Skills extends React.Component{
             modules_groups
                 .append('text').append('textPath')
                     .attr('xlink:href', (_,i) => '#arc-text'+i)
-                    .attr('font-size', 12)
+                    .attr('font-size', font_size)
                     .text(d=>d.module)
+                    .attr('startOffset', '50%')
+                    .attr('text-anchor', 'middle')
                     .attr('fill',d=>d.is_module?'black':'red')
+
             ;
 
         }
+
+
 
         const bind_tools = () => {
             const types_selection = 
@@ -157,12 +162,11 @@ class Skills extends React.Component{
                 .append('path')
                     .attr('id', (_,i)=>'tool-arc-'+i)
                     .attr('fill','none')
-                    .attr('stroke', 'black')
+                    .attr('stroke', 'lightgrey')
                     .attr('transform', `translate(${width/2},${height/2})`)
                     .attr('d', d=>{return(
                         d3.arc()({
-                            innerRadius: radius-3-y_offset,
-                            outerRadius: radius-y_offset,
+                            outerRadius: radius,
                             startAngle: d.min_rad,
                             endAngle: d.max_rad
                         })
@@ -173,9 +177,13 @@ class Skills extends React.Component{
                 .append('text').append('textPath')
                     .attr('xlink:href', (_,i)=>'#tool-arc-'+i)
                     .text(d=>d.tool)
-                    .attr('font-size',14)
+                    .attr('font-size',font_size)
+                    .attr('startOffset', '50%')
+                    .attr('text-anchor', 'middle')
             ;
         }
+
+
 
         const bind_types = () => {
             const types_selection = 
@@ -195,12 +203,11 @@ class Skills extends React.Component{
                 .append('path')
                     .attr('id', (_,i)=>'type-arc-'+i)
                     .attr('transform', `translate(${width/2},${height/2})`)
-                    .attr('stroke', 'black')
+                    .attr('stroke', 'lightgrey')
                     .attr('fill', 'none')
                     .attr('d', d=>{return(
                         d3.arc()({
-                            innerRadius: radius-y_offset*2-3,
-                            outerRadius: radius-y_offset*2,
+                            outerRadius: radius-y_offset,
                             startAngle: d.min_rad,
                             endAngle: d.max_rad
                         })
@@ -211,15 +218,61 @@ class Skills extends React.Component{
                 .append('text').append('textPath')
                     .attr('xlink:href', (_,i)=>'#type-arc-'+i)
                     .text(d=>d.type)
-                    .attr('font-size',10)
+                    .attr('font-size',font_size )
+                    .attr('startOffset', '50%')
+                    .attr('text-anchor', 'middle')
+            ;
+        }
+
+
+
+
+
+        const bind_expertise = () => {
+            const expertise_selection =
+                canvas.append('g')
+                    .attr('class', 'expertise')
+                        .selectAll('g').data(d3.range(1,6))
+            ;
+            
+            console.table(modules);
+
+            
+            const expertise_groups = 
+                expertise_selection
+                    .enter().append('g')
+                        .attr('transform', `translate(${width/2},${height/2})`)
+                        .attr('class',d=>'exp-group-'+d)
+            ; 
+
+            expertise_groups
+                .append('path')
+                    .attr('stroke', 'lightgrey')
+                    .attr('fill', 'none')
+                    .attr('d', i=>{return(
+                        d3.arc()({
+                            outerRadius:y_offset*(3/2)+radius + i*y_offset/2,
+                            startAngle: 0+.04,
+                            endAngle: 2*Math.PI-.04
+                        })
+                    )})
             ;
 
-            console.table(types);
+            expertise_groups
+                .append('text')
+                    .text(d=>d)
+                    .attr('fill', 'grey')
+                    .attr('font-size', 10)
+                    .attr('text-anchor', 'middle')
+                    .attr('transform', i=>`translate(0,${-(radius+y_offset*1.3)-(y_offset/2)*i})`)
+            ;
+            
         }
 
         bind_modules();
         bind_tools();
         bind_types();
+        bind_expertise();
 
     }
 
