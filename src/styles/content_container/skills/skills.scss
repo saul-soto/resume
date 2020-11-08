@@ -7,6 +7,21 @@
     height: 80vh;
     display: flex;
     flex-direction: column;
+
+    .angle-input-container{
+        align-self: center;
+        width: 15%;
+        margin-bottom: 20px;
+        z-index: 999;
+
+        .input-title{
+            text-align: center;
+        }
+
+        .angle-input{
+            cursor: pointer;
+        }
+    }
     
     #skills-canvas-container{
         flex-grow: 1;

@@ -8,7 +8,8 @@ class Skills extends React.Component{
         this.margins = {horizontal:30, vertical: 30};
         this.state = {
             height: 0,
-            width: 0
+            width: 0,
+            rotation: 0
         };
 
     }
@@ -20,12 +21,26 @@ class Skills extends React.Component{
             <div className='content-skills' id='nav-skills_tools'>
                 {/* <h3 className='title'>{content.labels[lang].skill_label}<span>+</span>{content.labels[lang].tool_label}</h3> */}
 
+                <div className="angle-input-container">
+                    <p className='input-title'>angle {this.state.rotation}°</p>
+                    <input 
+                        className="angle-input" 
+                        type="range" 
+                        min="0" 
+                        max="360" 
+                        value={this.state.rotation}
+                        onChange={(e)=>{this.setState({rotation: e.target.value})}}
+                    ></input>   
+                </div>
+                
+                
                 <div id='skills-canvas-container'>
                     <svg 
                         id='skills-canvas'
                         height = {this.state.height} 
                         width = {this.state.width}
                         overflow = 'visible'
+                        transform = {`rotate(${this.state.rotation})`}
                         // style = {{border: 'grey', borderStyle:'solid'}}
                     />                    
                 </div>
@@ -302,7 +317,7 @@ class Skills extends React.Component{
             canvas.selectAll('.tools-modules-lines')
                 .attr('fill','none')
                 .attr('stroke', 'grey')
-                .attr('stroke-dasharray', '1,1')                
+                .attr('stroke-dasharray', '3,10')                
                 .attr('d', d=>{return(
                     d3.arc()({
                         innerRadius: radius-y_offset+170,
@@ -326,7 +341,7 @@ class Skills extends React.Component{
             // ENTER - TYPES
             canvas.selectAll('.types-axis')
                 .attr('stroke', 'lightgrey')
-                .attr('stroke-width',2)
+                .attr('stroke-width',5  )
                 .attr('opacity', .6)
                 .attr('fill', 'none')
                 .attr('d', d=>{return(
