@@ -25,6 +25,7 @@ class Skills extends React.Component{
                         id='skills-canvas'
                         height = {this.state.height} 
                         width = {this.state.width}
+                        overflow = 'visible'
                         // style = {{border: 'grey', borderStyle:'solid'}}
                     />                    
                 </div>
@@ -93,13 +94,11 @@ class Skills extends React.Component{
         const { modules, tools, types  } = this._transform_data();
         const { width, height } = this.state;
         
-        const canvas = d3.select('#skills-canvas');
-
-
-
         const radius = 110;
         const y_offset = 35;
         const font_size = 12;
+
+        const canvas = d3.select('#skills-canvas');
 
         canvas.append('text')
             .text('Skills & Tools')
@@ -128,7 +127,6 @@ class Skills extends React.Component{
                     .attr('id', (_,i) => 'arc-text'+i)
                     .attr('fill', 'none')
                     .attr('transform', `translate(${width/2},${height/2})`)
-                    // .attr('stroke', 'lightgrey')
                     .attr('d', d => {return (
                         d3.arc()({
                             outerRadius: radius+20,
@@ -172,11 +170,26 @@ class Skills extends React.Component{
             type_groups
                 .append('path')
                     .attr('id', (_,i)=>'tool-arc-'+i)
+                    .attr('transform', `translate(${width/2},${height/2})`)
                     .attr('fill','none')
-                    .attr('stroke', 'lightgrey')
+                    .attr('d', d=>{return(
+                        d3.arc()({
+                            // innerRadius: radius-y_offset*.5-10,
+                            outerRadius: radius-y_offset*.5,
+                            startAngle: d.min_rad,
+                            endAngle: d.max_rad
+                        })
+                    )})
+
+            type_groups
+                .append('path')
+                    .attr('fill','none')
+                    .attr('stroke', 'grey')
+                    .attr('stroke-dasharray', '1,1')
                     .attr('transform', `translate(${width/2},${height/2})`)
                     .attr('d', d=>{return(
                         d3.arc()({
+                            innerRadius: radius-y_offset+170,
                             outerRadius: radius-y_offset*.5,
                             startAngle: d.min_rad,
                             endAngle: d.max_rad
@@ -185,13 +198,16 @@ class Skills extends React.Component{
             ;
 
             type_groups
-                .append('text').append('textPath')
-                    .attr('xlink:href', (_,i)=>'#tool-arc-'+i)
-                    .text(d=>d.tool)
-                    .attr('font-weight', 500)
-                    .attr('font-size',font_size)
-                    .attr('startOffset', '50%')
-                    .attr('text-anchor', 'middle')
+                .append('text')
+                    .attr("dy", -8)
+                        .append('textPath')
+                            .attr('xlink:href', (_,i)=>'#tool-arc-'+i)
+                            .text(d=>d.tool)
+                            .attr('font-weight', 500)
+                            .attr('font-size',font_size)
+                            .attr('startOffset', '50%')
+                            .attr('text-anchor', 'middle')
+                    
             ;
         }
 
@@ -216,6 +232,7 @@ class Skills extends React.Component{
                     .attr('id', (_,i)=>'type-arc-'+i)
                     .attr('transform', `translate(${width/2},${height/2})`)
                     .attr('stroke', 'lightgrey')
+                    .attr('stroke-width',2)
                     .attr('opacity', .6)
                     .attr('fill', 'none')
                     .attr('d', d=>{return(
@@ -229,13 +246,15 @@ class Skills extends React.Component{
             ;
 
             types_groups
-                .append('text').append('textPath')
-                    .attr('xlink:href', (_,i)=>'#type-arc-'+i)
-                    .text(d=>d.type)
-                    .attr('font-family', 'Helvetica')
-                    .attr('font-size',font_size +8)
-                    .attr('startOffset', '25%')
-                    .attr('text-anchor', 'middle')
+                .append('text')
+                    .attr('dy',-8)
+                        .append('textPath')
+                            .attr('xlink:href', (_,i)=>'#type-arc-'+i)
+                            .text(d=>d.type)
+                            .attr('font-family', 'Helvetica')
+                            .attr('font-size',font_size +8)
+                            .attr('startOffset', '25%')
+                            .attr('text-anchor', 'middle')
             ;
         }
 

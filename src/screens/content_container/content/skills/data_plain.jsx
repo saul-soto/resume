@@ -37,7 +37,7 @@ const skills = {
             type: 'Preprocessing', 
             tool: 'Qlik',
             module: 'Sense',
-            expertise: 4
+            expertise: 2
         },
         {
             
