@@ -22,6 +22,19 @@ class MonteCarloGraph extends React.Component{
     render(){
         return(
             <div id='react-component'>
+                <div className='input-container' style={{width:'50%',display:"flex",flexDirection:'column', justifyContent:'center'}}>
+                    <p>Probability of going up {Math.round(this.state.probability*100,2)}%</p>
+                    <input 
+                        className="angle-input" 
+                        type="range" 
+                        min="0" 
+                        max="100" 
+                        value={this.state.probability*100}
+                        onChange={e=>{this.setState({probability:(e.target.value/100).toFixed(2) })}}
+                    >
+                    </input>
+
+                </div>
                 <svg 
                     className='canvas' 
                     width={this.state.width}
@@ -46,57 +59,15 @@ class MonteCarloGraph extends React.Component{
         return scaler
     }
 
-    _get_slicer_scaler(){
-        const scaler = 
-            d3.scaleLinear()
-                .domain([1, 2])
-                .range([this.state.width/3, (this.state.width/3)*2 ])
-            ;
-        return scaler;
-    }
-
     _bind_implicit_data(){
         const canvas = d3.select('.canvas');
 
-        const input_group_selection = canvas.append('g').attr('class','input-group');
+        canvas.append('g')
+            .attr('class', 'axis-group')
 
-        input_group_selection
-            .selectAll('text').data([null])
-                .enter().append('text')
-                    .attr('class','slicer-title')
-        ;
-        
-        input_group_selection
-            .selectAll('line').data([null])
-                .enter().append('line')
-                    .attr('class','slicer')
-        ;
-
-        input_group_selection
-            .selectAll('circle').data([this.state.probability])
-                .enter().append('circle')
-                    .attr('class','slicer-selector')
-                    .call(d3.drag()
-                        .on("drag", (e) => {
-                            const unit_to_add = e.dx < 0 ? -1:e.dx > 1 ?1:0;
-                            let probability = this.state.probability + unit_to_add/80;
-
-                            if (0 <= probability && probability <= 1){
-                                probability = Math.round(probability*100,4)/100;
-                                this.setState({ probability, slicer_position: e.x });
-                                this._run_pattern('update');
-                            }
-
-                        })
-                    )                    
-        ;
-
-        const axis_group = canvas.append('g').attr('class', 'axis-group');
-
-        axis_group
-            .selectAll('line').data([null,null])
-                .enter().append('line')
-                    .attr('class', 'axis')
+                .selectAll('line').data([null,null])
+                    .enter().append('line')
+                        .attr('class', 'axis')
         ;
         
         canvas
@@ -109,51 +80,16 @@ class MonteCarloGraph extends React.Component{
     }
 
     _run_pattern(pattern){
-        const { simulations, width, y_scaler, cumsum, probability} = this.state;
-        const { margin_horizontal, margin_vertical } = this._get_margins();
-        
-        const x_local_scaler = this._get_slicer_scaler();
+        const { simulations, width, y_scaler, cumsum, line_coords} = this.state;
+        const { margin_horizontal } = this._get_margins();
 
         const merge_enter_update = () =>{
-            const line_coords = this.state.line_coords;
-
             // AXIS
-
             d3.selectAll('.axis')
                 .attr('x1', (_,i) =>{return line_coords[i].x_1}  ).attr('y1', (_,i) =>{return line_coords[i].y_1} )
                 .attr('x2', (_,i) =>{return line_coords[i].x_2}  ).attr('y2', (_,i) =>{return line_coords[i].y_2} )
                 .attr('stroke', (_,i) => {return i === 0 ? 'white': 'black'})
-            ;
-
-            // SLICER GROUP
-            d3.selectAll('.input-group')
-                .attr('transform', `translate(${width/3},${margin_vertical+10})`)
-            ;
-
-
-            d3.selectAll('.slicer-title')
-                .text('Probability: ' + probability*100+'%')
-                .attr('font-size', 14)
-                .attr('x', x_local_scaler(.5))
-                .attr('text-anchor', 'middle')
-            ;
-                
-            
-            d3.selectAll('.slicer')
-                .attr('x1', x_local_scaler(0)).attr('y1', margin_vertical)
-                .attr('x2', x_local_scaler(1) ).attr('y2', margin_vertical)
-                .attr('stroke','lightgrey')
-                .attr('stroke-width', 3.5)
-            ;
-
-            d3.selectAll('.slicer-selector')
-                .attr('r', 5)
-                .attr('fill', 'gray')
-                .attr('cx', this.state.slicer_position)
-                .attr('cy', margin_vertical)                
-            ;
-
-            
+            ;            
         }
 
 
@@ -164,6 +100,7 @@ class MonteCarloGraph extends React.Component{
             d3.selectAll('.time-series')
                 .attr("fill", "none")
                 .attr("stroke", "steelblue")
+                .attr('opacity', .7)
                 .attr("stroke-width", 2)
             ;
         }
