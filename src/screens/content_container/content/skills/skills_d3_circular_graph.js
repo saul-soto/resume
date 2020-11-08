@@ -14,11 +14,11 @@ class Skills extends React.Component{
     }
 
     render(){
-        const lang = this.props.lang;
+        // const lang = this.props.lang;
 
         return(
             <div className='content-skills' id='nav-skills_tools'>
-                <h3 className='title'>{content.labels[lang].skill_label}<span>+</span>{content.labels[lang].tool_label}</h3>
+                {/* <h3 className='title'>{content.labels[lang].skill_label}<span>+</span>{content.labels[lang].tool_label}</h3> */}
 
                 <div id='skills-canvas-container'>
                     <svg 
@@ -95,9 +95,19 @@ class Skills extends React.Component{
         
         const canvas = d3.select('#skills-canvas');
 
-        const radius = 100;
-        const y_offset = 25;
+
+
+        const radius = 110;
+        const y_offset = 35;
         const font_size = 12;
+
+        canvas.append('text')
+            .text('Skills & Tools')
+            .attr('transform', `translate(${width/2}, ${height/2})`)
+            .attr('text-anchor', 'middle')
+            .attr('font-family', 'Helvetica')
+            .attr('font-size', font_size+8) 
+        ;
 
         const bind_modules = () => {
             const modules_selection = 
@@ -118,7 +128,7 @@ class Skills extends React.Component{
                     .attr('id', (_,i) => 'arc-text'+i)
                     .attr('fill', 'none')
                     .attr('transform', `translate(${width/2},${height/2})`)
-                    .attr('stroke', 'lightgrey')
+                    // .attr('stroke', 'lightgrey')
                     .attr('d', d => {return (
                         d3.arc()({
                             outerRadius: radius+20,
@@ -132,10 +142,11 @@ class Skills extends React.Component{
                 .append('text').append('textPath')
                     .attr('xlink:href', (_,i) => '#arc-text'+i)
                     .attr('font-size', font_size)
+                    .attr('font-weight', d=>d.is_module?500:600)
                     .text(d=>d.module)
                     .attr('startOffset', '50%')
                     .attr('text-anchor', 'middle')
-                    .attr('fill',d=>d.is_module?'black':'red')
+                    .attr('fill',d=>d.is_module?'grey':'black')
 
             ;
 
@@ -166,7 +177,7 @@ class Skills extends React.Component{
                     .attr('transform', `translate(${width/2},${height/2})`)
                     .attr('d', d=>{return(
                         d3.arc()({
-                            outerRadius: radius,
+                            outerRadius: radius-y_offset*.5,
                             startAngle: d.min_rad,
                             endAngle: d.max_rad
                         })
@@ -177,6 +188,7 @@ class Skills extends React.Component{
                 .append('text').append('textPath')
                     .attr('xlink:href', (_,i)=>'#tool-arc-'+i)
                     .text(d=>d.tool)
+                    .attr('font-weight', 500)
                     .attr('font-size',font_size)
                     .attr('startOffset', '50%')
                     .attr('text-anchor', 'middle')
@@ -204,9 +216,11 @@ class Skills extends React.Component{
                     .attr('id', (_,i)=>'type-arc-'+i)
                     .attr('transform', `translate(${width/2},${height/2})`)
                     .attr('stroke', 'lightgrey')
+                    .attr('opacity', .6)
                     .attr('fill', 'none')
                     .attr('d', d=>{return(
                         d3.arc()({
+                            innerRadius: radius-y_offset+170,
                             outerRadius: radius-y_offset,
                             startAngle: d.min_rad,
                             endAngle: d.max_rad
@@ -218,8 +232,9 @@ class Skills extends React.Component{
                 .append('text').append('textPath')
                     .attr('xlink:href', (_,i)=>'#type-arc-'+i)
                     .text(d=>d.type)
-                    .attr('font-size',font_size )
-                    .attr('startOffset', '50%')
+                    .attr('font-family', 'Helvetica')
+                    .attr('font-size',font_size +8)
+                    .attr('startOffset', '25%')
                     .attr('text-anchor', 'middle')
             ;
         }
@@ -232,40 +247,39 @@ class Skills extends React.Component{
             const expertise_selection =
                 canvas.append('g')
                     .attr('class', 'expertise')
-                        .selectAll('g').data(d3.range(1,6))
+                        .selectAll('g').data(d3.range(1,6).map(thold => {
+                            return(
+                                modules.filter(d=>thold<=d.expertise).map(d=>{return {
+                                    thold,min_rad:d.min_rad, max_rad:d.max_rad
+                                }})
+                            )
+                        }))
             ;
-            
-            console.table(modules);
-
             
             const expertise_groups = 
                 expertise_selection
                     .enter().append('g')
                         .attr('transform', `translate(${width/2},${height/2})`)
-                        .attr('class',d=>'exp-group-'+d)
+                        .attr('class',(_,i)=>'exp-group-'+i)
             ; 
 
+            // EXPERTISE
             expertise_groups
-                .append('path')
-                    .attr('stroke', 'lightgrey')
-                    .attr('fill', 'none')
-                    .attr('d', i=>{return(
-                        d3.arc()({
-                            outerRadius:y_offset*(3/2)+radius + i*y_offset/2,
-                            startAngle: 0+.04,
-                            endAngle: 2*Math.PI-.04
-                        })
-                    )})
+                .selectAll('path').data(d=>d)
+                    .enter().append('path')
+                        .attr('stroke','lightgrey')
+                        .attr('fill','darkred')
+                        .attr('opacity', d=>(d.thold)*.18+0)
+                        .attr('d', d=>{return(
+                            d3.arc()({
+                                innerRadius: 30+radius+(y_offset/2)*d.thold+10,
+                                outerRadius: 30+radius+(y_offset/2)*d.thold,
+                                startAngle: d.min_rad+.1,
+                                endAngle: d.max_rad-.1
+                            })
+                        )})
             ;
-
-            expertise_groups
-                .append('text')
-                    .text(d=>d)
-                    .attr('fill', 'grey')
-                    .attr('font-size', 10)
-                    .attr('text-anchor', 'middle')
-                    .attr('transform', i=>`translate(0,${-(radius+y_offset*1.3)-(y_offset/2)*i})`)
-            ;
+            
             
         }
 

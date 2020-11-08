@@ -13,70 +13,70 @@ const skills = {
     english:[
         {
             
-            type: 'Data Preprocessing', 
+            type: 'Preprocessing', 
             tool: 'SQL',
             module: 'SQL',
             expertise: 4
         },
         {
             
-            type: 'Data Preprocessing', 
+            type: 'Preprocessing', 
             tool: 'Python',
             module: 'Pandas',
             expertise: 4
         },
         {
             
-            type: 'Data Preprocessing', 
+            type: 'Preprocessing', 
             tool: 'Qlik',
             module: 'View',
             expertise: 3
         },
         {
             
-            type: 'Data Preprocessing', 
+            type: 'Preprocessing', 
             tool: 'Qlik',
             module: 'Sense',
             expertise: 4
         },
         {
             
-            type: 'Descriptive Analysis', 
+            type: 'Descriptive', 
             tool: 'Python',
             module: 'Pandas', 
             expertise: 4
         },
         {
             
-            type: 'Descriptive Analysis', 
+            type: 'Descriptive', 
             tool: 'Python',
             module: 'Numpy', 
             expertise: 3
         },
         {
             
-            type: 'Descriptive Analysis', 
+            type: 'Descriptive', 
             tool: 'Python',
             module: 'Pyplot', 
             expertise: 3
         },
         {
             
-            type: 'Descriptive Analysis', 
+            type: 'Descriptive', 
             tool: 'PowerBI',
             module: 'PowerBI', 
             expertise: 5
         },
         {
             
-            type: 'Descriptive Analysis', 
+            type: 'Descriptive', 
             tool: 'D3.js',
             module: 'D3.js',
             expertise: 4
         },
         {
             
-            type: 'Descriptive Analysis', 
+            type: 'Descriptive', 
             tool: 'Excel',
             module: 'Excel',
             expertise: 5
@@ -84,21 +84,21 @@ const skills = {
 
         {
             
-            type: 'Predictive Analysis', 
+            type: 'Predictive', 
             tool: 'Python',
             module: 'Sklearn', 
             expertise: 4
         },
         {
             
-            type: 'Predictive Analysis', 
+            type: 'Predictive', 
             tool: 'Python',
             module: 'Scipy', 
             expertise: 3
         },
         {
             
-            type: 'Predictive Analysis', 
+            type: 'Predictive', 
             tool: 'Python',
             module: 'Tensorflow', 
             expertise: 3
