@@ -29,7 +29,10 @@ class Skills extends React.Component{
                         min="0" 
                         max="360" 
                         value={this.state.rotation}
-                        onChange={(e)=>{this.setState({rotation: e.target.value})}}
+                        onChange={(e)=>{
+                            this.setState({rotation: e.target.value});
+                            this._run_pattern('update');
+                        }}
                     ></input>   
                 </div>
                 
@@ -40,7 +43,7 @@ class Skills extends React.Component{
                         height = {this.state.height} 
                         width = {this.state.width}
                         overflow = 'visible'
-                        transform = {`rotate(${this.state.rotation})`}
+                        // transform = {`rotate(${this.state.rotation})`}
                         // style = {{border: 'grey', borderStyle:'solid'}}
                     />                    
                 </div>
@@ -227,7 +230,7 @@ class Skills extends React.Component{
 
     _run_pattern(pattern){
 
-        const { width, height } = this.state;
+        const { width, height, rotation } = this.state;
         const font_size = 12;
         const radius = 110;
         const y_offset = 35;
@@ -237,6 +240,11 @@ class Skills extends React.Component{
 
 
         const merge_enter_update = () => {
+            // CANVAS
+            canvas
+                .attr('transform', `rotate(${rotation})`)
+            ;
+
             // TITLE
             canvas.select('.skills-title')
                 .attr('transform', `translate(${width/2}, ${height/2})`)
@@ -392,7 +400,8 @@ class Skills extends React.Component{
     _update_responsive_sizes(){
         const div_container = d3.select('#skills-canvas-container').node();
         const height = div_container.offsetHeight-this.margins.vertical;
-        const width = div_container.offsetWidth-this.margins.horizontal;
+        // const width = div_container.offsetWidth-this.margins.horizontal;
+        const width = height;
         this.setState({ width, height });
         this._run_pattern('update');
     }
