@@ -88,12 +88,6 @@ class Skills extends React.Component{
 
     _bind_implicit_data(){
         const { modules, tools, types  } = this._transform_data();
-        const { width, height } = this.state;
-        
-        const radius = 110;
-        const y_offset = 35;
-        const font_size = 12;
-
         const canvas = d3.select('#skills-canvas');
 
         canvas
@@ -125,68 +119,36 @@ class Skills extends React.Component{
 
         }
 
-
-
         const bind_tools = () => {
-            const types_selection = 
+
+            const tool_groups = 
                 canvas
                     .append('g')
                         .attr('class', 'tools')
 
                             .selectAll('g').data(tools)
+                                .enter().append('g')
+                                    .attr('class', 'tool-group')
             ;
 
-            const type_groups = 
-                types_selection
-                    .enter().append('g')
-                        .attr('class', 'tool-group')
-            ;
-
-            type_groups
+            tool_groups
                 .append('path')
                     .attr('id', (_,i)=>'tool-arc-'+i)
-                    .attr('transform', `translate(${width/2},${height/2})`)
-                    .attr('fill','none')
-                    .attr('d', d=>{return(
-                        d3.arc()({
-                            // innerRadius: radius-y_offset*.5-10,
-                            outerRadius: radius-y_offset*.5,
-                            startAngle: d.min_rad,
-                            endAngle: d.max_rad
-                        })
-                    )})
-
-            type_groups
-                .append('path')
-                    .attr('fill','none')
-                    .attr('stroke', 'grey')
-                    .attr('stroke-dasharray', '1,1')
-                    .attr('transform', `translate(${width/2},${height/2})`)
-                    .attr('d', d=>{return(
-                        d3.arc()({
-                            innerRadius: radius-y_offset+170,
-                            outerRadius: radius-y_offset*.5,
-                            startAngle: d.min_rad,
-                            endAngle: d.max_rad
-                        })
-                    )})
+                    .attr('class', 'tools-text-path-base')
             ;
 
-            type_groups
+            tool_groups
+                .append('path')
+                    .attr('class', 'tools-modules-lines')
+            ;
+
+            tool_groups
                 .append('text')
                     .attr("dy", -8)
                         .append('textPath')
-                            .attr('xlink:href', (_,i)=>'#tool-arc-'+i)
-                            .text(d=>d.tool)
-                            .attr('font-weight', 500)
-                            .attr('font-size',font_size)
-                            .attr('startOffset', '50%')
-                            .attr('text-anchor', 'middle')
-                    
+                            .attr('class', 'tools-texts')
             ;
         }
-
-
 
         const bind_types = () => {
             const types_groups = 
@@ -271,6 +233,13 @@ class Skills extends React.Component{
                     .attr('transform', `translate(${width/2},${height/2})`)
 
             // TOOLS
+            canvas.selectAll('.tools-text-path-base')
+                .attr('transform', `translate(${width/2},${height/2})`)
+            ;
+
+            canvas.selectAll('.tools-modules-lines')
+                .attr('transform', `translate(${width/2},${height/2})`)
+            ;
 
             // TYPES
             canvas.selectAll('.types-axis')
@@ -319,6 +288,39 @@ class Skills extends React.Component{
             ;
                 
             // ENTER - TOOLS
+            canvas.selectAll('.tools-text-path-base')
+                .attr('fill','none')
+                .attr('d', d=>{return(
+                    d3.arc()({
+                        outerRadius: radius-y_offset*.5,
+                        startAngle: d.min_rad,
+                        endAngle: d.max_rad
+                    })
+                )})     
+            ;
+
+            canvas.selectAll('.tools-modules-lines')
+                .attr('fill','none')
+                .attr('stroke', 'grey')
+                .attr('stroke-dasharray', '1,1')                
+                .attr('d', d=>{return(
+                    d3.arc()({
+                        innerRadius: radius-y_offset+170,
+                        outerRadius: radius-y_offset*.5,
+                        startAngle: d.min_rad,
+                        endAngle: d.max_rad
+                    })
+                )})
+            ;
+
+            canvas.selectAll('tools-texts')
+                .attr('xlink:href', (_,i)=>'#tool-arc-'+i)
+                .text(d=>d.tool)
+                .attr('font-weight', 500)
+                .attr('font-size',font_size)
+                .attr('startOffset', '50%')
+                .attr('text-anchor', 'middle')
+            ;
 
 
             // ENTER - TYPES
