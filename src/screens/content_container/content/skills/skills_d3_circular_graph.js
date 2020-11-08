@@ -34,15 +34,11 @@ class Skills extends React.Component{
         )
     }
 
-    _get_x_scaler(){
-        return d3.scaleBand()
+    _transform_data(){
+        const x = d3.scaleBand()
             .domain(d3.range(content.skills[this.props.lang].length))
             .range([0, 2*Math.PI])
         ;
-    }
-
-    _transform_data(){
-        const x = this._get_x_scaler();
 
         const data = 
             content.skills[this.props.lang].map((d,i)=>{
