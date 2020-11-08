@@ -313,7 +313,7 @@ class Skills extends React.Component{
                 )})
             ;
 
-            canvas.selectAll('tools-texts')
+            canvas.selectAll('.tools-texts')
                 .attr('xlink:href', (_,i)=>'#tool-arc-'+i)
                 .text(d=>d.tool)
                 .attr('font-weight', 500)
