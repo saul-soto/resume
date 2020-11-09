@@ -11,10 +11,11 @@ import MetallurgicDashboard from './Excel/excel_metallurgic.png';
 import RetentionAnalysis from './Excel/retention_analysis.png';
 
 //POWER BI
-import DashboardSentimentAnalysis from './Power BI/pbi_dashboard.png';
+import { ReactComponent as TripAdvisor } from './Power BI/TripAdvisor WebScraping.svg';
 import DashboardTelemarketing from './Power BI/pbi_dashboard_1.png';
 import DailyTrend from './Power BI/pbi_daily_trend.png';
 import GoalsForecast from './Power BI/pbi_goals_forecast.png';
+
 
 //PYTHON
 import {ReactComponent as MonteCarloSim} from './Python/montecarlo_simulation/graph.svg';
@@ -45,10 +46,10 @@ const gallery_data = [
 
     {
         tool:'Power BI',
-        source:DashboardSentimentAnalysis,
-        type:'png',
+        source:TripAdvisor,
+        type:'svg',
         title:'Power BI Report',
-        description:'This is a report using PBI',
+        description:'Test',
         hide_info:true,
     },
 
