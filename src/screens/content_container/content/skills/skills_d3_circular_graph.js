@@ -37,6 +37,7 @@ class Skills extends React.Component{
                     <input 
                         className="angle-input" 
                         type="range" 
+                        orient={this.state.media_query==='phone-landscape'?"vertical":null}
                         min="0" 
                         max="360" 
                         step='10'
@@ -266,10 +267,19 @@ class Skills extends React.Component{
             ;
 
 
-            const g_scaler = media_query==='phone-portrait'?.9:1;
+            const g_scaler = () => {
+                if(media_query==='phone-landscape'){
+                    return .7
+                }
+                if(media_query==='phone-portrait'){
+                    return .9
+                }else{
+                    return 1
+                }
+            };
             // const scaled_middle = (height/g_scaler)*(1-g_scaler)/2;
             canvas.select('.canvas-group')
-                .attr('transform',  `scale(${g_scaler})`)
+                .attr('transform',  `scale(${g_scaler()})`)
             ;
 
             // TITLE
