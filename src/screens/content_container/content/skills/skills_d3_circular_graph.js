@@ -21,6 +21,16 @@ class Skills extends React.Component{
         return(
             <div className='content-skills' id='nav-skills_tools'>
                 {/* <h3 className='title'>{content.labels[lang].skill_label}<span>+</span>{content.labels[lang].tool_label}</h3> */}
+                
+                <div id='skills-canvas-container'>
+                    <svg 
+                        id='skills-canvas'
+                        height = {this.state.height} 
+                        width = {this.state.width}
+                        overflow = 'visible'
+                        // style = {{border: 'grey', borderStyle:'solid'}}
+                    />                    
+                </div>
 
                 <div className="angle-input-container">
                     <p className='input-title'>angle {this.state.rotation}°</p>
@@ -35,17 +45,6 @@ class Skills extends React.Component{
                             this._run_pattern('update');
                         }}
                     ></input>   
-                </div>
-                
-                
-                <div id='skills-canvas-container'>
-                    <svg 
-                        id='skills-canvas'
-                        height = {this.state.height} 
-                        width = {this.state.width}
-                        overflow = 'visible'
-                        // style = {{border: 'grey', borderStyle:'solid'}}
-                    />                    
                 </div>
 
             </div>
