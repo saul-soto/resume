@@ -10,7 +10,7 @@ class Skills extends React.Component{
         this.state = {
             height: 0,
             width: 0,
-            rotation: 0,
+            rotation: 300,
             media_query: 'regular-desktops'
         };
 
@@ -435,9 +435,6 @@ class Skills extends React.Component{
         
         );
         await this._run_pattern('enter');
-        this.setState({rotation:10})
-        await this._run_pattern('update');
-        this.setState({rotation:1})
         await this._run_pattern('update');
     }
 
