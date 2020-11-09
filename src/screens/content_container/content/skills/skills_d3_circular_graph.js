@@ -9,7 +9,8 @@ class Skills extends React.Component{
         this.state = {
             height: 0,
             width: 0,
-            rotation: 0
+            rotation: 0,
+            media_query: 'regular-desktops'
         };
 
     }
@@ -30,7 +31,7 @@ class Skills extends React.Component{
                         max="360" 
                         value={this.state.rotation}
                         onChange={(e)=>{
-                            this.setState({rotation: e.target.value});
+                            this.setState({rotation: e.target.value < 10?0:e.target.value});
                             this._run_pattern('update');
                         }}
                     ></input>   
@@ -43,7 +44,6 @@ class Skills extends React.Component{
                         height = {this.state.height} 
                         width = {this.state.width}
                         overflow = 'visible'
-                        // transform = {`rotate(${this.state.rotation})`}
                         // style = {{border: 'grey', borderStyle:'solid'}}
                     />                    
                 </div>
@@ -106,7 +106,11 @@ class Skills extends React.Component{
 
     _bind_implicit_data(){
         const { modules, tools, types  } = this._transform_data();
-        const canvas = d3.select('#skills-canvas');
+        const canvas = 
+            d3.select('#skills-canvas')
+                .append('g')
+                    .attr('class', 'canvas-group')
+        ;
 
         canvas
             .append('text')
@@ -398,11 +402,12 @@ class Skills extends React.Component{
     }
 
     _update_responsive_sizes(){
-        const div_container = d3.select('#skills-canvas-container').node();
-        const height = div_container.offsetHeight-this.margins.vertical;
-        // const width = div_container.offsetWidth-this.margins.horizontal;
+        const div_container = d3.select('#skills-canvas-container');
+        const height = div_container.node().offsetHeight-this.margins.vertical;
+        // const width = div_container.node().offsetWidth-this.margins.horizontal;
         const width = height;
-        this.setState({ width, height });
+        const media_query = div_container.style('font-family');
+        this.setState({ width, height, media_query });
         this._run_pattern('update');
     }
 

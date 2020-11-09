@@ -3,7 +3,8 @@
     // ORIGINAL IDEA
     // @import '/original_idea';
 
-    // D3 HORIZONTAL GRAPH
+    // D3 CIRCULAR GRAPH
+    
     height: 80vh;
     display: flex;
     flex-direction: column;
@@ -28,5 +29,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        //USING font-family TO LET KNOW REACT WHICH MEDIA QUERY WE'RE IN
+        @if $is_phone_portrait{
+            font-family: 'phone-portrait';
+        }
     }
 }
