@@ -7,8 +7,8 @@ class Slider extends React.Component{
         super(props);
         this.state = {
             flex_direction: '',
-
-
+            width:0,
+            height:0
         }
     }
 
@@ -33,14 +33,20 @@ class Slider extends React.Component{
                         style={initial_arrow_style}
                         onPointerOver={()=>{this._restyle_arrow('#left-arrow',initial_value,final_value)}}
                         onPointerLeave={()=>{this._restyle_arrow('#left-arrow',final_value,initial_value)}}
-                        onClick={()=>{this.props.navigate_through_graphs('left',data_length)}}
+                        onClick={()=>{
+                            this.props.navigate_through_graphs('left',data_length);
+                            this._update_sizes();
+                        }}
                     />
                     <SVGArrow
                         id='right-arrow'
                         style={initial_arrow_style}
                         onPointerOver={()=>{this._restyle_arrow('#right-arrow',initial_value,final_value)}}
                         onPointerLeave={()=>{this._restyle_arrow('#right-arrow',final_value,initial_value)}}
-                        onClick={()=>{this.props.navigate_through_graphs('right',data_length)}}
+                        onClick={async ()=>{
+                            this.props.navigate_through_graphs('right',data_length)
+                            this._update_sizes();
+                        }}
                     />
                 </div>
 
@@ -49,8 +55,21 @@ class Slider extends React.Component{
                         this.props.data.map((row,i) => {return(
                             <>{this.props.graph_idx_selection === i ? 
                                 <>
-                                    {row.type ==='svg' || row.type ==='react component'? 
+                                    {/* POWER BI PDF TO SVG */}
+                                    {row.type === 'svg' && row.tool === 'Power BI' ? 
+                                        <svg
+                                            width={this.state.width}
+                                            height={this.state.height}
+                                        >
+                                                <row.source />
+                                            
+                                        </svg>
+                                    
+                                    // D3 REACT COMPONENTS
+                                    :row.type ==='svg' || row.type === 'react component'? 
                                         <row.source /> 
+
+                                    // SIMPLE IMAGES
                                     :row.type === 'png' ? 
                                         <img onCompositionEnd id='image-source' src={row.source} alt="_" />
                                     :null
@@ -111,6 +130,29 @@ class Slider extends React.Component{
             .transition().duration(350)
             .attr('style',basic_style)
             .attr('fill',"rgba(26, 27, 31, "+final_value+")")
+    }
+
+    _update_sizes(){
+
+        const p_width = d3select('#pbi-g-container').style('widht').replace('px','');
+        
+        d3select('#pbi-g-container')
+            .attr('transform', `scale(.5) translate(${(1/3)*(this.state.width-p_width)}, 0)`)
+        ;
+        
+    }
+
+    componentDidMount(){
+        const width = d3select('.gallery-container').style('width').replace('px','');
+        const height = d3select('.gallery-container').style('height').replace('px','');
+        this.setState({width, height })
+
+        
+        const p_width = d3select('#pbi-g-container').style('widht').replace('px','');
+        d3select('#pbi-g-container')
+            .attr('transform', `scale(.5) translate(${(1/3)*(width-p_width)}, 0)`)
+        ;
+
     }
 }
 
