@@ -12,6 +12,7 @@ import RetentionAnalysis from './Excel/retention_analysis.png';
 
 //POWER BI
 import { ReactComponent as TripAdvisor } from './Power BI/TripAdvisor WebScraping.svg';
+import { ReactComponent as Telemarketing } from './Power BI/telemarketing.svg'
 import DashboardTelemarketing from './Power BI/pbi_dashboard_1.png';
 import DailyTrend from './Power BI/pbi_daily_trend.png';
 import GoalsForecast from './Power BI/pbi_goals_forecast.png';
@@ -47,6 +48,16 @@ const gallery_data = [
     {
         tool:'Power BI',
         source:TripAdvisor,
+        type:'svg',
+        title:'Power BI Report',
+        description:'Test',
+        hide_info:true,
+    },
+
+
+    {
+        tool:'Power BI',
+        source:Telemarketing,
         type:'svg',
         title:'Power BI Report',
         description:'Test',
