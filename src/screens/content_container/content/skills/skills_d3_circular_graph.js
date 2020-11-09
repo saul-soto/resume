@@ -25,15 +25,14 @@ class Skills extends React.Component{
                 <div id='skills-canvas-container'>
                     <svg 
                         id='skills-canvas'
-                        height = {this.state.height} 
-                        width = {this.state.width}
+                        height = '0'
+                        width = '0'
                         overflow = 'visible'
-                        // style = {{border: 'grey', borderStyle:'solid'}}
+                        style = {{border: 'grey', borderStyle:'solid'}}
                     />                    
                 </div>
 
                 <div className="angle-input-container">
-                    <p className='input-title'>angle {this.state.rotation}°</p>
                     <input 
                         className="angle-input" 
                         type="range" 
@@ -45,6 +44,7 @@ class Skills extends React.Component{
                             this._run_pattern('update');
                         }}
                     ></input>   
+                    <p className='input-title'>angle {this.state.rotation}°</p>
                 </div>
 
             </div>
@@ -251,7 +251,7 @@ class Skills extends React.Component{
             const g_scaler = media_query==='phone-portrait'?.7:1;
             const scaled_middle = (height/g_scaler)*(1-g_scaler)/2;
             canvas.select('.canvas-group')
-                .attr('transform',  `scale(${g_scaler}) translate(${scaled_middle}, ${scaled_middle})`)
+                .attr('transform',  `scale(${g_scaler}) `)
             ;
 
             // TITLE

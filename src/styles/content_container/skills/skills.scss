@@ -5,15 +5,35 @@
 
     // D3 CIRCULAR GRAPH
     
+    padding-top: 50px;
     height: 80vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+
+    
+    #skills-canvas-container{
+        //USING font-family TO LET KNOW REACT WHICH MEDIA QUERY WE'RE IN
+        margin-top: 30vh;
+
+        @if $is_phone_portrait{
+            font-family: 'phone-portrait';
+        }
+    }
 
     .angle-input-container{
-        align-self: center;
-        width: 15%;
-        margin-bottom: 20px;
         z-index: 999;
+        display: flex;
+        flex-direction: column;
+        
+        @if $is_phone_portrait{
+            width: 50vh;
+        }@else{
+            width: 15%;
+        }
+        
 
         .input-title{
             text-align: center;
@@ -21,18 +41,6 @@
 
         .angle-input{
             cursor: pointer;
-        }
-    }
-    
-    #skills-canvas-container{
-        flex-grow: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        //USING font-family TO LET KNOW REACT WHICH MEDIA QUERY WE'RE IN
-        @if $is_phone_portrait{
-            font-family: 'phone-portrait';
         }
     }
 }
