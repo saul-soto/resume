@@ -2,6 +2,7 @@ import React from 'react';
 import content from './data_plain.jsx';
 import * as d3 from 'd3';
 import { nest } from 'd3-collection';
+import debounce from 'debounce';
 
 class Skills extends React.Component{
     constructor(props){super(props);
@@ -25,10 +26,10 @@ class Skills extends React.Component{
                 <div id='skills-canvas-container'>
                     <svg 
                         id='skills-canvas'
-                        height = '0'
-                        width = '0'
+                        height = '1px'
+                        width = '1px'
                         overflow = 'visible'
-                        style = {{border: 'grey', borderStyle:'solid'}}
+                        // style = {{border: 'grey', borderStyle:'solid'}}
                     />                    
                 </div>
 
@@ -38,9 +39,13 @@ class Skills extends React.Component{
                         type="range" 
                         min="0" 
                         max="360" 
+                        step='10'
                         value={this.state.rotation}
-                        onChange={(e)=>{
-                            this.setState({rotation: e.target.value < 10?0:e.target.value});
+                        onChange={  e=>{
+                            const target_value = e.target.value;
+                            let rotation = target_value === 0 ? 1: target_value;
+                            rotation = rotation >= 344 ? 360: target_value
+                            this.setState({rotation});
                             this._run_pattern('update');
                         }}
                     ></input>   
@@ -233,7 +238,12 @@ class Skills extends React.Component{
 
     _run_pattern(pattern){
 
-        const { width, height, rotation, media_query } = this.state;
+        const { 
+            // width, 
+            // height, 
+            rotation, 
+            media_query 
+        } = this.state;
         const font_size = 12;
         const radius = 110;
         const y_offset = 35;
@@ -248,38 +258,39 @@ class Skills extends React.Component{
                 .attr('transform', `rotate(${rotation})`)
             ;
 
-            const g_scaler = media_query==='phone-portrait'?.7:1;
-            const scaled_middle = (height/g_scaler)*(1-g_scaler)/2;
+
+            const g_scaler = media_query==='phone-portrait'?.6:1;
+            // const scaled_middle = (height/g_scaler)*(1-g_scaler)/2;
             canvas.select('.canvas-group')
-                .attr('transform',  `scale(${g_scaler}) `)
+                .attr('transform',  `scale(${g_scaler})`)
             ;
 
             // TITLE
             canvas.select('.skills-title')
-                .attr('transform', `translate(${width/2}, ${height/2})`)
+                // .attr('transform', `translate(${width/2}, ${height/2})`)
             ;
 
             // MODULES
             canvas.selectAll('.module-group')
                 .selectAll('path')
-                    .attr('transform', `translate(${width/2},${height/2})`)
+                    // .attr('transform', `translate(${width/2},${height/2})`)
 
             // TOOLS
             canvas.selectAll('.tools-text-path-base')
-                .attr('transform', `translate(${width/2},${height/2})`)
+                // .attr('transform', `translate(${width/2},${height/2})`)
             ;
 
             canvas.selectAll('.tools-modules-lines')
-                .attr('transform', `translate(${width/2},${height/2})`)
+                // .attr('transform', `translate(${width/2},${height/2})`)
             ;
 
             // TYPES
             canvas.selectAll('.types-axis')
-                .attr('transform', `translate(${width/2},${height/2})`)
+                // .attr('transform', `translate(${width/2},${height/2})`)
             ;
 
             canvas.selectAll('.expertise-groups')
-                .attr('transform', `translate(${width/2},${height/2})`)
+                // .attr('transform', `translate(${width/2},${height/2})`)
             ;
         }
 
@@ -418,8 +429,15 @@ class Skills extends React.Component{
 
     async componentDidMount(){
         await this._update_responsive_sizes();
-        window.addEventListener('resize', this._update_responsive_sizes.bind(this));
+        window.addEventListener(
+            'resize', 
+            debounce(this._update_responsive_sizes.bind(this), 500)
+        
+        );
         await this._run_pattern('enter');
+        this.setState({rotation:10})
+        await this._run_pattern('update');
+        this.setState({rotation:1})
         await this._run_pattern('update');
     }
 

@@ -5,12 +5,18 @@
 
     // D3 CIRCULAR GRAPH
     
-    padding-top: 50px;
     height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    @if $is_phone_portrait{
+        margin-top: -30px;
+        justify-content: space-around;
+    }@else{
+        padding-top: 50px;
+        justify-content: space-between;
+    }
+    
 
 
     
@@ -29,9 +35,9 @@
         flex-direction: column;
         
         @if $is_phone_portrait{
-            width: 50vh;
+            width: 60vw;
         }@else{
-            width: 15%;
+            width: 20vw;
         }
         
 
