@@ -234,7 +234,7 @@ class Skills extends React.Component{
 
     _run_pattern(pattern){
 
-        const { width, height, rotation } = this.state;
+        const { width, height, rotation, media_query } = this.state;
         const font_size = 12;
         const radius = 110;
         const y_offset = 35;
@@ -247,6 +247,12 @@ class Skills extends React.Component{
             // CANVAS
             canvas
                 .attr('transform', `rotate(${rotation})`)
+            ;
+
+            const g_scaler = media_query==='phone-portrait'?.7:1;
+            const scaled_middle = (height/g_scaler)*(1-g_scaler)/2;
+            canvas.select('.canvas-group')
+                .attr('transform',  `scale(${g_scaler}) translate(${scaled_middle}, ${scaled_middle})`)
             ;
 
             // TITLE
@@ -406,7 +412,7 @@ class Skills extends React.Component{
         const height = div_container.node().offsetHeight-this.margins.vertical;
         // const width = div_container.node().offsetWidth-this.margins.horizontal;
         const width = height;
-        const media_query = div_container.style('font-family');
+        const media_query = div_container.style('font-family').replace('"','').replace('"','');
         this.setState({ width, height, media_query });
         this._run_pattern('update');
     }
