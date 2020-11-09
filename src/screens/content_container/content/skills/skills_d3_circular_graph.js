@@ -10,7 +10,7 @@ class Skills extends React.Component{
         this.state = {
             height: 0,
             width: 0,
-            rotation: 300,
+            rotation: 0,
             media_query: 'regular-desktops'
         };
 
@@ -26,8 +26,8 @@ class Skills extends React.Component{
                 <div id='skills-canvas-container'>
                     <svg 
                         id='skills-canvas'
-                        height = '1px'
-                        width = '1px'
+                        height = '.5px'
+                        width = '.5px'
                         overflow = 'visible'
                         // style = {{border: 'grey', borderStyle:'solid'}}
                     />                    
@@ -44,7 +44,7 @@ class Skills extends React.Component{
                         onChange={  e=>{
                             const target_value = e.target.value;
                             let rotation = target_value === 0 ? 1: target_value;
-                            rotation = rotation >= 344 ? 360: target_value
+                            rotation = rotation >= 355 ? 360: target_value
                             this.setState({rotation});
                             this._run_pattern('update');
                         }}
@@ -254,12 +254,19 @@ class Skills extends React.Component{
 
         const merge_enter_update = () => {
             // CANVAS
+            const translated_rotation = 
+                d3.scaleLinear().
+                    domain([0,360]).
+                    range([680,300])
+                        (rotation)
+            ;
+
             canvas
-                .attr('transform', `rotate(${rotation})`)
+                .attr('transform', `rotate(${translated_rotation})`)
             ;
 
 
-            const g_scaler = media_query==='phone-portrait'?.6:1;
+            const g_scaler = media_query==='phone-portrait'?.9:1;
             // const scaled_middle = (height/g_scaler)*(1-g_scaler)/2;
             canvas.select('.canvas-group')
                 .attr('transform',  `scale(${g_scaler})`)
@@ -267,6 +274,7 @@ class Skills extends React.Component{
 
             // TITLE
             canvas.select('.skills-title')
+                .attr('transform', `rotate(${-translated_rotation})`)
                 // .attr('transform', `translate(${width/2}, ${height/2})`)
             ;
 

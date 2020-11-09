@@ -26,6 +26,8 @@
 
         @if $is_phone_portrait{
             font-family: 'phone-portrait';
+        }@else if $is_phone_landscape{
+            font-family: 'phone-landscape';
         }
     }
 
