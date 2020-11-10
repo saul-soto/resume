@@ -8,7 +8,8 @@ class Slider extends React.Component{
         this.state = {
             flex_direction: '',
             width:0,
-            height:0
+            height:0,
+            media_query: null
         }
     }
 
@@ -61,7 +62,12 @@ class Slider extends React.Component{
                                             width={this.state.width}
                                             height={this.state.height}
                                         >
-                                                <row.source />
+                                                {this.state.media_query !== 'phone-portrait' ? 
+                                                    <row.source />
+                                                :
+                                                    <row.portrait_version />
+                                                }
+                                                
                                             
                                         </svg>
                                     
@@ -134,28 +140,27 @@ class Slider extends React.Component{
 
     _update_pbi_svg_sizes_if_exists(){  
         
-        const g_node = d3select('#pbi-g-container').node();
+        const g_selection = d3select('#pbi-g-container');
 
-        if(g_node!==null){
+        if(g_selection.node()!==null){
             const gallery_node = d3select('.gallery-container').node().getBoundingClientRect();
             const width = gallery_node.width;
             const height = gallery_node.height;
-            this.setState({width, height });
+            const media_query = d3select('.content-gallery').style('animation-name');
+            this.setState({width, height, media_query });
     
-            const g_width = g_node.getBoundingClientRect().width;
-            const g_height = g_node.getBoundingClientRect().height;
+            const g_width = g_selection.node().getBoundingClientRect().width;
+            const g_height = g_selection.node().getBoundingClientRect().height;
     
             const y_scale = (height+120)/g_height;
             const x_offset = .10
             const x_scale = ( width*(  1-x_offset  )  )/g_width;
         
-            const pbi_svg_selection = d3select('#pbi-g-container');
-            
-            pbi_svg_selection
+            g_selection
                 .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${(width)/2-g_height/2}, 0)  `)
             ;
 
-            pbi_svg_selection.selectAll('text')
+            g_selection.selectAll('text')
                 .attr('font-family', 'Helvetica')
             ;
         }
