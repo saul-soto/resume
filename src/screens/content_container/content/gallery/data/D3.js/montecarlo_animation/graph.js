@@ -21,8 +21,21 @@ class MonteCarloGraph extends React.Component{
 
     render(){
         return(
-            <div id='react-component'>
-                <div className='input-container' style={{width:'50%',display:"flex",flexDirection:'column', justifyContent:'center'}}>
+            <div 
+                id='react-component'
+                style={{position:'relative'}}
+            >
+                <div 
+                    className='input-container' 
+                    style={{
+                        width:'50%',
+                        display:"flex",
+                        flexDirection:'column', 
+                        alignItems:'center',
+                        position:'absolute',
+                        right:'0',
+                    }}
+                >
                     <p>Probability of going up {Math.round(this.state.probability*100,2)}%</p>
                     <input 
                         className="angle-input" 
