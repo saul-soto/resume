@@ -145,13 +145,13 @@ class Slider extends React.Component{
         const g_height = g_node.height;
 
         const y_scale = (height+120)/g_height;
-        const x_offset = 0
+        const x_offset = .10
         const x_scale = ( width*(  1-x_offset  )  )/g_width;
     
         console.log(width, height, g_width, g_height)
         d3select('#pbi-g-container')
             // .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${( (g_width-width)/2)/x_scale} ,0)`)
-            .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${(width)/2}, 0)  `)
+            .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${(width)/2-g_height/2}, 0)  `)
         ;
     }
 
