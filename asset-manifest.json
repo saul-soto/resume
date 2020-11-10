@@ -1,33 +1,34 @@
 {
   "files": {
-    "main.css": "/resume/static/css/main.02a6928c.chunk.css",
-    "main.js": "/resume/static/js/main.f0979ff9.chunk.js",
-    "main.js.map": "/resume/static/js/main.f0979ff9.chunk.js.map",
+    "main.css": "/resume/static/css/main.ff79b427.chunk.css",
+    "main.js": "/resume/static/js/main.8c103350.chunk.js",
+    "main.js.map": "/resume/static/js/main.8c103350.chunk.js.map",
     "runtime-main.js": "/resume/static/js/runtime-main.75d8c91e.js",
     "runtime-main.js.map": "/resume/static/js/runtime-main.75d8c91e.js.map",
-    "static/js/2.1d225ffe.chunk.js": "/resume/static/js/2.1d225ffe.chunk.js",
-    "static/js/2.1d225ffe.chunk.js.map": "/resume/static/js/2.1d225ffe.chunk.js.map",
+    "static/js/2.c78147bf.chunk.js": "/resume/static/js/2.c78147bf.chunk.js",
+    "static/js/2.c78147bf.chunk.js.map": "/resume/static/js/2.c78147bf.chunk.js.map",
     "index.html": "/resume/index.html",
-    "precache-manifest.3bd8e4a44900f743b9880852599e34d3.js": "/resume/precache-manifest.3bd8e4a44900f743b9880852599e34d3.js",
+    "precache-manifest.fffaf6b3e89f4ae09e772bf14d943dc2.js": "/resume/precache-manifest.fffaf6b3e89f4ae09e772bf14d943dc2.js",
     "service-worker.js": "/resume/service-worker.js",
-    "static/css/main.02a6928c.chunk.css.map": "/resume/static/css/main.02a6928c.chunk.css.map",
-    "static/js/2.1d225ffe.chunk.js.LICENSE.txt": "/resume/static/js/2.1d225ffe.chunk.js.LICENSE.txt",
+    "static/css/main.ff79b427.chunk.css.map": "/resume/static/css/main.ff79b427.chunk.css.map",
+    "static/js/2.c78147bf.chunk.js.LICENSE.txt": "/resume/static/js/2.c78147bf.chunk.js.LICENSE.txt",
     "static/media/SaulSotoCV_eng.pdf": "/resume/static/media/SaulSotoCV_eng.f65408d9.pdf",
+    "static/media/TripAdvisor WebScraping.9be39c11.svg": "/resume/static/media/TripAdvisor WebScraping.9be39c11.svg",
     "static/media/arrow_right.a0e061b5.svg": "/resume/static/media/arrow_right.a0e061b5.svg",
     "static/media/excel_metallurgic.png": "/resume/static/media/excel_metallurgic.0d54c482.png",
     "static/media/graph.7af8ba46.svg": "/resume/static/media/graph.7af8ba46.svg",
     "static/media/graph.7bed8d3c.svg": "/resume/static/media/graph.7bed8d3c.svg",
     "static/media/language.0cc46ef9.svg": "/resume/static/media/language.0cc46ef9.svg",
     "static/media/pbi_daily_trend.png": "/resume/static/media/pbi_daily_trend.26692eae.png",
-    "static/media/pbi_dashboard.png": "/resume/static/media/pbi_dashboard.a1a851da.png",
     "static/media/pbi_dashboard_1.png": "/resume/static/media/pbi_dashboard_1.a4443427.png",
     "static/media/pbi_goals_forecast.png": "/resume/static/media/pbi_goals_forecast.64aa7f75.png",
-    "static/media/retention_analysis.png": "/resume/static/media/retention_analysis.edd37a95.png"
+    "static/media/retention_analysis.png": "/resume/static/media/retention_analysis.edd37a95.png",
+    "static/media/telemarketing.a1405ae4.svg": "/resume/static/media/telemarketing.a1405ae4.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.75d8c91e.js",
-    "static/js/2.1d225ffe.chunk.js",
-    "static/css/main.02a6928c.chunk.css",
-    "static/js/main.f0979ff9.chunk.js"
+    "static/js/2.c78147bf.chunk.js",
+    "static/css/main.ff79b427.chunk.css",
+    "static/js/main.8c103350.chunk.js"
   ]
 }

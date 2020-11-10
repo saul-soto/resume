@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ce61b2e48b0ee7915394135e30595467",
+    "revision": "588a0cbf210b6319f1cfd051397de28c",
     "url": "/resume/index.html"
   },
   {
-    "revision": "eb99475b04d5e4447c70",
-    "url": "/resume/static/css/main.02a6928c.chunk.css"
+    "revision": "a0fa75a42b92670dae7f",
+    "url": "/resume/static/css/main.ff79b427.chunk.css"
   },
   {
-    "revision": "77b24c66395b57814d1b",
-    "url": "/resume/static/js/2.1d225ffe.chunk.js"
+    "revision": "21547c4f5383f154e529",
+    "url": "/resume/static/js/2.c78147bf.chunk.js"
   },
   {
     "revision": "65075b20798fa24012a1ad453c78c90d",
-    "url": "/resume/static/js/2.1d225ffe.chunk.js.LICENSE.txt"
+    "url": "/resume/static/js/2.c78147bf.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "eb99475b04d5e4447c70",
-    "url": "/resume/static/js/main.f0979ff9.chunk.js"
+    "revision": "a0fa75a42b92670dae7f",
+    "url": "/resume/static/js/main.8c103350.chunk.js"
   },
   {
     "revision": "8c1d914a1677cea53979",
@@ -26,6 +26,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "f65408d99037a1693792480782daea48",
     "url": "/resume/static/media/SaulSotoCV_eng.f65408d9.pdf"
+  },
+  {
+    "revision": "9be39c11f2970065557c756b419c6a11",
+    "url": "/resume/static/media/TripAdvisor WebScraping.9be39c11.svg"
   },
   {
     "revision": "a0e061b54507c1ea6361ee20ac930f2c",
@@ -52,10 +56,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/resume/static/media/pbi_daily_trend.26692eae.png"
   },
   {
-    "revision": "a1a851da94627d2e895a15074c45a8ee",
-    "url": "/resume/static/media/pbi_dashboard.a1a851da.png"
-  },
-  {
     "revision": "a4443427e7ffde28a3b604d528ec3207",
     "url": "/resume/static/media/pbi_dashboard_1.a4443427.png"
   },
@@ -66,5 +66,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "edd37a956f9fe1c19dec43ba4f546cae",
     "url": "/resume/static/media/retention_analysis.edd37a95.png"
+  },
+  {
+    "revision": "a1405ae4aaada2361cf86334e7bc8374",
+    "url": "/resume/static/media/telemarketing.a1405ae4.svg"
   }
 ]);
