@@ -30,6 +30,7 @@ class MonteCarloGraph extends React.Component{
                         min="0" 
                         max="100" 
                         value={this.state.probability*100}
+                        style={{cursor:'pointer'}}
                         onChange={e=>{this.setState({probability:(e.target.value/100).toFixed(2) })}}
                     >
                     </input>
