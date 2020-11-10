@@ -149,8 +149,14 @@ class Slider extends React.Component{
             const x_offset = .10
             const x_scale = ( width*(  1-x_offset  )  )/g_width;
         
-            d3select('#pbi-g-container')
+            const pbi_svg_selection = d3select('#pbi-g-container');
+            
+            pbi_svg_selection
                 .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${(width)/2-g_height/2}, 0)  `)
+            ;
+
+            pbi_svg_selection.selectAll('text')
+                .attr('font-family', 'Helvetica')
             ;
         }
     }

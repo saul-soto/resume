@@ -12,10 +12,11 @@ import RetentionAnalysis from './Excel/retention_analysis.png';
 
 //POWER BI
 import { ReactComponent as TripAdvisor } from './Power BI/TripAdvisor WebScraping Landscape.svg';
-import { ReactComponent as Telemarketing } from './Power BI/telemarketing landscape.svg'
-import DashboardTelemarketing from './Power BI/pbi_dashboard_1.png';
-import DailyTrend from './Power BI/pbi_daily_trend.png';
-import GoalsForecast from './Power BI/pbi_goals_forecast.png';
+import { ReactComponent as Telemarketing } from './Power BI/telemarketing landscape.svg';
+import { ReactComponent as TelemarketingQuality } from './Power BI/telemarketing quality landscape.svg';
+// import DashboardTelemarketing from './Power BI/pbi_dashboard_1.png';
+// import DailyTrend from './Power BI/pbi_daily_trend.png';
+// import GoalsForecast from './Power BI/pbi_goals_forecast.png';
 
 
 //PYTHON
@@ -64,14 +65,14 @@ const gallery_data = [
         hide_info:true,
     },
 
-    // {
-    //     tool:'Power BI',
-    //     source:DashboardTelemarketing,
-    //     type:'png',
-    //     title:'Power BI Report',
-    //     description:'This is a report using PBI',
-    //     hide_info:true,
-    // },
+    {
+        tool:'Power BI',
+        source:TelemarketingQuality,
+        type:'svg',
+        title:'Power BI Report',
+        description:'This is a report using PBI',
+        hide_info:true,
+    },
     
     // {
     //     tool:'Power BI',
@@ -116,7 +117,14 @@ const gallery_data = [
     },
 
 
-
+    {
+        tool:'D3.js',
+        source: MonteCarloGraph,
+        type:'react component',
+        title:'Monte Carlo Simulation',
+        description:'A random Monte Carlo simulation an it\'s parameters',
+        hide_info:false
+    },
     {
         tool:'D3.js',
         source: GoodnessOfFit,
@@ -126,14 +134,7 @@ const gallery_data = [
         hide_info:false
     },
 
-    {
-        tool:'D3.js',
-        source: MonteCarloGraph,
-        type:'react component',
-        title:'Monte Carlo Simulation',
-        description:'A random Monte Carlo simulation an it\'s parameters',
-        hide_info:false
-    },
+
 ]
 
 export default gallery_data;

@@ -9,7 +9,7 @@ class Gallery extends React.Component{
         super(props);
         this.state = {
             selected_option: 'D3.js',
-            graph_idx_selection: 1
+            graph_idx_selection: 0
         }
     }
 

@@ -94,7 +94,7 @@ class MonteCarloGraph extends React.Component{
     }
 
     _run_pattern(pattern){
-        const { simulations, width, y_scaler, cumsum,data, line_coords} = this.state;
+        const { simulations, width, y_scaler, cumsum, line_coords} = this.state;
         const { margin_horizontal } = this._get_margins();
 
         const x_scaler = 
