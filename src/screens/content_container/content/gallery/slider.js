@@ -33,20 +33,14 @@ class Slider extends React.Component{
                         style={initial_arrow_style}
                         onPointerOver={()=>{this._restyle_arrow('#left-arrow',initial_value,final_value)}}
                         onPointerLeave={()=>{this._restyle_arrow('#left-arrow',final_value,initial_value)}}
-                        onClick={()=>{
-                            this.props.navigate_through_graphs('left',data_length);
-                            this._update_sizes();
-                        }}
+                        onClick={()=>{this.props.navigate_through_graphs('left',data_length);}}
                     />
                     <SVGArrow
                         id='right-arrow'
                         style={initial_arrow_style}
                         onPointerOver={()=>{this._restyle_arrow('#right-arrow',initial_value,final_value)}}
                         onPointerLeave={()=>{this._restyle_arrow('#right-arrow',final_value,initial_value)}}
-                        onClick={async ()=>{
-                            this.props.navigate_through_graphs('right',data_length)
-                            this._update_sizes();
-                        }}
+                        onClick={async ()=>{this.props.navigate_through_graphs('right',data_length)}}
                     />
                 </div>
 
@@ -132,28 +126,28 @@ class Slider extends React.Component{
             .attr('fill',"rgba(26, 27, 31, "+final_value+")")
     }
 
-    _update_sizes(){
+    _update_pbi_svg_sizes(){
+        const width = d3select('.gallery-container').node().getBoundingClientRect().width;
+        const height = d3select('.gallery-container').node().getBoundingClientRect().height;
+        this.setState({width, height })
 
-        const p_width = d3select('#pbi-g-container').style('widht').replace('px','');
-        
+        const g_width = d3select('#pbi-g-container').node().getBoundingClientRect().width;
+        const g_height = d3select('#pbi-g-container').node().getBoundingClientRect().height;
+
+        const y_scale = height/g_height;
+        console.log(width, height, g_width, g_height);
         d3select('#pbi-g-container')
-            .attr('transform', `scale(.5) translate(${(1/3)*(this.state.width-p_width)}, 0)`)
+            .attr('transform', `scale(${y_scale}) translate(${( (g_width-width)/2)/y_scale} ,0)`)
+            
         ;
-        
+
     }
 
     componentDidMount(){
-        const width = d3select('.gallery-container').style('width').replace('px','');
-        const height = d3select('.gallery-container').style('height').replace('px','');
-        this.setState({width, height })
-
-        
-        const p_width = d3select('#pbi-g-container').style('widht').replace('px','');
-        d3select('#pbi-g-container')
-            .attr('transform', `scale(.5) translate(${(1/3)*(width-p_width)}, 0)`)
-        ;
+        this._update_pbi_svg_sizes()
 
     }
+
 }
 
 export default Slider;
