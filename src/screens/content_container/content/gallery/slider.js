@@ -133,27 +133,26 @@ class Slider extends React.Component{
     }
 
     _update_pbi_svg_sizes_if_exists(){  
-        if(d3select('#pbi-g-container').node()!==null){
-            const gallery_node = d3select('.gallery-container').node().getBoundingClientRect();
-            const width = d3select('.gallery-container').node().getBoundingClientRect().width;
-            const height = d3select('.gallery-container').node().getBoundingClientRect().height;
-            this.setState({width, height });
 
-            const g_width = d3select('#pbi-g-container').node().getBoundingClientRect().width;
-            const g_height = d3select('#pbi-g-container').node().getBoundingClientRect().height;
-    
-            const y_scale = (height+120)/g_height;
-            const x_offset = 0
-            const x_scale = ( width*(  1-x_offset  )  )/g_width;
+        const gallery_node = d3select('.gallery-container').node().getBoundingClientRect();
+        const g_node = d3select('#pbi-g-container').node().getBoundingClientRect();
         
-            console.log(width, height, g_width, g_height)
-            d3select('#pbi-g-container')
-                // .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${( (g_width-width)/2)/x_scale} ,0)`)
-                .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${width/2}, 0)  `)
-            ;
-        }
+        const width = gallery_node.width;
+        const height = gallery_node.height;
+        this.setState({width, height });
 
+        const g_width = g_node.width;
+        const g_height = g_node.height;
 
+        const y_scale = (height+120)/g_height;
+        const x_offset = 0
+        const x_scale = ( width*(  1-x_offset  )  )/g_width;
+    
+        console.log(width, height, g_width, g_height)
+        d3select('#pbi-g-container')
+            // .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${( (g_width-width)/2)/x_scale} ,0)`)
+            .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${(width)/2}, 0)  `)
+        ;
     }
 
     componentDidMount(){
