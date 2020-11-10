@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ad1a24355a4f741ee362e80051132cc9",
+    "revision": "fb6f2fad845dc7b6e2bca25c85e6f11c",
     "url": "/resume/index.html"
   },
   {
-    "revision": "ab7522c36adcb200776c",
-    "url": "/resume/static/css/main.e5cc7243.chunk.css"
+    "revision": "0898dcc92e79e9976826",
+    "url": "/resume/static/css/main.fe455ebd.chunk.css"
   },
   {
-    "revision": "6ffa6114260cded1c3c8",
-    "url": "/resume/static/js/2.a6aacbcd.chunk.js"
+    "revision": "ddcc9454fc97ca2fe548",
+    "url": "/resume/static/js/2.f8f9c679.chunk.js"
   },
   {
     "revision": "65075b20798fa24012a1ad453c78c90d",
-    "url": "/resume/static/js/2.a6aacbcd.chunk.js.LICENSE.txt"
+    "url": "/resume/static/js/2.f8f9c679.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ab7522c36adcb200776c",
-    "url": "/resume/static/js/main.7142d986.chunk.js"
+    "revision": "0898dcc92e79e9976826",
+    "url": "/resume/static/js/main.6b6d27ed.chunk.js"
   },
   {
     "revision": "8c1d914a1677cea53979",
@@ -32,20 +32,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/resume/static/media/TripAdvisor WebScraping Landscape.0480b8db.svg"
   },
   {
-    "revision": "a0e061b54507c1ea6361ee20ac930f2c",
-    "url": "/resume/static/media/arrow_right.a0e061b5.svg"
+    "revision": "d0f51a9009c92ec45a93803580efd8d6",
+    "url": "/resume/static/media/arrow_right.d0f51a90.svg"
   },
   {
     "revision": "0d54c48209ac7935e13e21ac801cd419",
     "url": "/resume/static/media/excel_metallurgic.0d54c482.png"
   },
   {
-    "revision": "7af8ba461439b9130034019365218bd7",
-    "url": "/resume/static/media/graph.7af8ba46.svg"
+    "revision": "1232ae432847ce1a0ac5d3b91d0c35e2",
+    "url": "/resume/static/media/graph.1232ae43.svg"
   },
   {
-    "revision": "7bed8d3c28898b151bc51a0d14098833",
-    "url": "/resume/static/media/graph.7bed8d3c.svg"
+    "revision": "a652dd395e61fbab548ab20e9bfc2551",
+    "url": "/resume/static/media/graph.a652dd39.svg"
   },
   {
     "revision": "0cc46ef96f7c2bc48a07a366806cf32f",

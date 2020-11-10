@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/resume/static/css/main.e5cc7243.chunk.css",
-    "main.js": "/resume/static/js/main.7142d986.chunk.js",
-    "main.js.map": "/resume/static/js/main.7142d986.chunk.js.map",
+    "main.css": "/resume/static/css/main.fe455ebd.chunk.css",
+    "main.js": "/resume/static/js/main.6b6d27ed.chunk.js",
+    "main.js.map": "/resume/static/js/main.6b6d27ed.chunk.js.map",
     "runtime-main.js": "/resume/static/js/runtime-main.75d8c91e.js",
     "runtime-main.js.map": "/resume/static/js/runtime-main.75d8c91e.js.map",
-    "static/js/2.a6aacbcd.chunk.js": "/resume/static/js/2.a6aacbcd.chunk.js",
-    "static/js/2.a6aacbcd.chunk.js.map": "/resume/static/js/2.a6aacbcd.chunk.js.map",
+    "static/js/2.f8f9c679.chunk.js": "/resume/static/js/2.f8f9c679.chunk.js",
+    "static/js/2.f8f9c679.chunk.js.map": "/resume/static/js/2.f8f9c679.chunk.js.map",
     "index.html": "/resume/index.html",
-    "precache-manifest.1cf7ad357ce7d0204c24f6e02f7a2e3b.js": "/resume/precache-manifest.1cf7ad357ce7d0204c24f6e02f7a2e3b.js",
+    "precache-manifest.afdf65b24001980f19a9c36e069c3c55.js": "/resume/precache-manifest.afdf65b24001980f19a9c36e069c3c55.js",
     "service-worker.js": "/resume/service-worker.js",
-    "static/css/main.e5cc7243.chunk.css.map": "/resume/static/css/main.e5cc7243.chunk.css.map",
-    "static/js/2.a6aacbcd.chunk.js.LICENSE.txt": "/resume/static/js/2.a6aacbcd.chunk.js.LICENSE.txt",
+    "static/css/main.fe455ebd.chunk.css.map": "/resume/static/css/main.fe455ebd.chunk.css.map",
+    "static/js/2.f8f9c679.chunk.js.LICENSE.txt": "/resume/static/js/2.f8f9c679.chunk.js.LICENSE.txt",
     "static/media/SaulSotoCV_eng.pdf": "/resume/static/media/SaulSotoCV_eng.f65408d9.pdf",
     "static/media/TripAdvisor WebScraping Landscape.0480b8db.svg": "/resume/static/media/TripAdvisor WebScraping Landscape.0480b8db.svg",
-    "static/media/arrow_right.a0e061b5.svg": "/resume/static/media/arrow_right.a0e061b5.svg",
+    "static/media/arrow_right.d0f51a90.svg": "/resume/static/media/arrow_right.d0f51a90.svg",
     "static/media/excel_metallurgic.png": "/resume/static/media/excel_metallurgic.0d54c482.png",
-    "static/media/graph.7af8ba46.svg": "/resume/static/media/graph.7af8ba46.svg",
-    "static/media/graph.7bed8d3c.svg": "/resume/static/media/graph.7bed8d3c.svg",
+    "static/media/graph.1232ae43.svg": "/resume/static/media/graph.1232ae43.svg",
+    "static/media/graph.a652dd39.svg": "/resume/static/media/graph.a652dd39.svg",
     "static/media/language.0cc46ef9.svg": "/resume/static/media/language.0cc46ef9.svg",
     "static/media/retention_analysis.png": "/resume/static/media/retention_analysis.edd37a95.png",
     "static/media/telemarketing landscape.a9d9238a.svg": "/resume/static/media/telemarketing landscape.a9d9238a.svg",
@@ -26,8 +26,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.75d8c91e.js",
-    "static/js/2.a6aacbcd.chunk.js",
-    "static/css/main.e5cc7243.chunk.css",
-    "static/js/main.7142d986.chunk.js"
+    "static/js/2.f8f9c679.chunk.js",
+    "static/css/main.fe455ebd.chunk.css",
+    "static/js/main.6b6d27ed.chunk.js"
   ]
 }
