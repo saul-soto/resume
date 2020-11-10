@@ -26,8 +26,8 @@ class Skills extends React.Component{
                 <div id='skills-canvas-container'>
                     <svg 
                         id='skills-canvas'
-                        height = '.5px'
-                        width = '.5px'
+                        height = '1px'
+                        width = '1px'
                         overflow = 'visible'
                         // style = {{border: 'grey', borderStyle:'solid'}}
                     />                    
@@ -272,7 +272,7 @@ class Skills extends React.Component{
                     return .7
                 }
                 if(media_query==='phone-portrait'){
-                    return .9
+                    return .6
                 }else{
                     return 1
                 }
@@ -286,29 +286,6 @@ class Skills extends React.Component{
             canvas.select('.skills-title')
                 .attr('transform', `rotate(${-translated_rotation})`)
                 // .attr('transform', `translate(${width/2}, ${height/2})`)
-            ;
-
-            // MODULES
-            canvas.selectAll('.module-group')
-                .selectAll('path')
-                    // .attr('transform', `translate(${width/2},${height/2})`)
-
-            // TOOLS
-            canvas.selectAll('.tools-text-path-base')
-                // .attr('transform', `translate(${width/2},${height/2})`)
-            ;
-
-            canvas.selectAll('.tools-modules-lines')
-                // .attr('transform', `translate(${width/2},${height/2})`)
-            ;
-
-            // TYPES
-            canvas.selectAll('.types-axis')
-                // .attr('transform', `translate(${width/2},${height/2})`)
-            ;
-
-            canvas.selectAll('.expertise-groups')
-                // .attr('transform', `translate(${width/2},${height/2})`)
             ;
         }
 
