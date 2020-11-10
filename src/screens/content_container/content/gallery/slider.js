@@ -64,13 +64,13 @@ class Slider extends React.Component{
                                     // PYTHON SVGS
                                     :row.type ==='svg' && row.tool === 'Python'? 
                                         <svg 
-                                            width='45%'    
+                                            width='50%'    
                                             height='auto'
-                                            viewBox="0 0 60 50" 
+                                            viewBox="0 0 100 80" 
                                             preserveAspectRatio="none"
                                         >
                                             <g 
-                                                transform='scale(.1225)'
+                                                transform={`scale(.2)`}
                                             >
                                                 <row.source />
                                             </g>
