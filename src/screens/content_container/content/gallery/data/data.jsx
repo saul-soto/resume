@@ -64,32 +64,32 @@ const gallery_data = [
         hide_info:true,
     },
 
-    {
-        tool:'Power BI',
-        source:DashboardTelemarketing,
-        type:'png',
-        title:'Power BI Report',
-        description:'This is a report using PBI',
-        hide_info:true,
-    },
+    // {
+    //     tool:'Power BI',
+    //     source:DashboardTelemarketing,
+    //     type:'png',
+    //     title:'Power BI Report',
+    //     description:'This is a report using PBI',
+    //     hide_info:true,
+    // },
     
-    {
-        tool:'Power BI',
-        source:DailyTrend,
-        type:'png',
-        title:'Power BI Report',
-        description:'This is a report using PBI',
-        hide_info:true,
-    },
+    // {
+    //     tool:'Power BI',
+    //     source:DailyTrend,
+    //     type:'png',
+    //     title:'Power BI Report',
+    //     description:'This is a report using PBI',
+    //     hide_info:true,
+    // },
 
-    {
-        tool:'Power BI',
-        source:GoalsForecast,
-        type:'png',
-        title:'Power BI Report',
-        description:'This is a report using PBI',
-        hide_info:true,
-    },
+    // {
+    //     tool:'Power BI',
+    //     source:GoalsForecast,
+    //     type:'png',
+    //     title:'Power BI Report',
+    //     description:'This is a report using PBI',
+    //     hide_info:true,
+    // },
 
 
 
