@@ -5,15 +5,27 @@
         animation-name:'phone-portrait';
     }
     
+
+    .title{
+        @if $is_phone_portrait{
+            font-size: 25px;
+            font-weight: 500;
+        }
+    }
                 
     .gallery-menu{
         display: flex;
-        justify-content: center;
         margin-top: -5px;
+        
+        @if $is_phone_portrait{
+            justify-content: space-around;
+        }@else{
+            justify-content: center;
+        }
 
         .gallery-menu-option{
             min-width: 20vw;
-            font-size: 25px;
+            
             color: rgba(26, 27, 31, 0.6);
             text-align: center;
             cursor: pointer;
@@ -21,6 +33,13 @@
 
             transition: 1s;
             color: rgba(26, 27, 31, 0.24);
+            
+            @if $is_phone_portrait{
+                font-size: 15px;
+                font-weight: 500;
+            }@else{
+                font-size: 25px;
+            }
 
             &:hover{
                 color: rgba(26, 27, 31, 0.6);
