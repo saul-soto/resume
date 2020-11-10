@@ -11,7 +11,7 @@ class MonteCarloGraph extends React.Component{
             height: null,
             y_scaler:null,
             line_coords: [],
-            data: [],
+            data: d3.range(100).map(_=>d3.randomBernoulli(.5)()===0?-1:1),
             cumsum: [],
             simulations: 500,
             probability: .5,
@@ -80,8 +80,14 @@ class MonteCarloGraph extends React.Component{
     }
 
     _run_pattern(pattern){
-        const { simulations, width, y_scaler, cumsum, line_coords} = this.state;
+        const { simulations, width, y_scaler, cumsum,data, line_coords} = this.state;
         const { margin_horizontal } = this._get_margins();
+
+        const x_scaler = 
+            d3.scaleLinear()
+                .domain([ 0, simulations - 1])
+                .range([ 0 + margin_horizontal, width - margin_horizontal])
+            ;
 
         const merge_enter_update = () =>{
             // AXIS
@@ -93,36 +99,31 @@ class MonteCarloGraph extends React.Component{
         }
 
 
+
         if(pattern==='enter'){
             this._bind_implicit_data();
             merge_enter_update();
 
             d3.selectAll('.time-series')
-                .attr("fill", "none")
-                .attr("stroke", "steelblue")
-                .attr('opacity', .7)
-                .attr("stroke-width", 2)
+                .attr("fill", "lightblue")
+                .attr("stroke", "darkblue")
+                .attr("stroke-width", 2.5)
             ;
         }
 
         else if(pattern==='update'){
             merge_enter_update();
 
-            const x_scaler = 
-                d3.scaleLinear()
-                    .domain([ 0, simulations - 1])
-                    .range([ 0 + margin_horizontal, width - margin_horizontal])
-                ;
-
             d3.selectAll('.time-series')
-                .transition().duration(100)
-                .attr("d", d3.line()
-                    .curve(d3.curveBasis)
-                    .x(function(_,i) { return x_scaler(i) })
-                    .y(function(d) { return y_scaler(d) })
-                    (cumsum)
-                )
-                
+            .transition().duration(100)
+            .attr("d", d3.line()
+                .curve(d3.curveBasis)
+                .x(function(_,i) { return x_scaler(i) })
+                .y(function(d) { return y_scaler(d) })
+                (cumsum)
+            )
+            ;
+
         }
 
         else if(pattern==='exit'){
