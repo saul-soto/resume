@@ -204,7 +204,7 @@ class MonteCarloGraph extends React.Component{
         await this._update_responsive_sizes();
         window.addEventListener('resize', this._update_responsive_sizes.bind(this));
         this._run_pattern('enter');
-        this._run_animation(150);
+        this._run_animation(100);
         this._is_mounted = true;
     }
 
