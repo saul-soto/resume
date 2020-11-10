@@ -155,7 +155,7 @@ class Slider extends React.Component{
                 ;
             }else{
                 g_selection
-                    .attr('transform', `scale(${(width+150)/g_width}) `)
+                    .attr('transform', `scale(${(width+150)/g_width}, .5) `)
                         .selectAll('text')
                             .attr('font-family', "montserrat")
                 ;
