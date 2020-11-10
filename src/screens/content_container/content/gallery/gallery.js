@@ -8,7 +8,7 @@ class Gallery extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            selected_option: 'Power BI',
+            selected_option: 'D3.js',
             graph_idx_selection: 1
         }
     }

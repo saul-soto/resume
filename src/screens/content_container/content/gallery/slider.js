@@ -34,20 +34,14 @@ class Slider extends React.Component{
                         style={initial_arrow_style}
                         onPointerOver={()=>{this._restyle_arrow('#left-arrow',initial_value,final_value)}}
                         onPointerLeave={()=>{this._restyle_arrow('#left-arrow',final_value,initial_value)}}
-                        onClick={async ()=>{
-                            await this.props.navigate_through_graphs('left',data_length);
-                            this._update_pbi_svg_sizes_if_exists();
-                        }}
+                        onClick={()=>{this.props.navigate_through_graphs('left',data_length)}}
                     />
                     <SVGArrow
                         id='right-arrow'
                         style={initial_arrow_style}
                         onPointerOver={()=>{this._restyle_arrow('#right-arrow',initial_value,final_value)}}
                         onPointerLeave={()=>{this._restyle_arrow('#right-arrow',final_value,initial_value)}}
-                        onClick={async ()=>{
-                            await this.props.navigate_through_graphs('right',data_length);
-                            this._update_pbi_svg_sizes_if_exists();
-                        }}
+                        onClick={()=>{this.props.navigate_through_graphs('right',data_length)}}
                     />
                 </div>
 
@@ -61,6 +55,7 @@ class Slider extends React.Component{
                                         <svg
                                             width={this.state.width}
                                             height={this.state.height}
+                                            onLoad={this._update_pbi_svg_sizes_if_exists.bind(this)}
                                         >
                                             <row.source />
                                         </svg>
