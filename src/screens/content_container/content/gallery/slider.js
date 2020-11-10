@@ -33,14 +33,20 @@ class Slider extends React.Component{
                         style={initial_arrow_style}
                         onPointerOver={()=>{this._restyle_arrow('#left-arrow',initial_value,final_value)}}
                         onPointerLeave={()=>{this._restyle_arrow('#left-arrow',final_value,initial_value)}}
-                        onClick={()=>{this.props.navigate_through_graphs('left',data_length);}}
+                        onClick={async ()=>{
+                            await this.props.navigate_through_graphs('left',data_length);
+                            this._update_pbi_svg_sizes_if_exists();
+                        }}
                     />
                     <SVGArrow
                         id='right-arrow'
                         style={initial_arrow_style}
                         onPointerOver={()=>{this._restyle_arrow('#right-arrow',initial_value,final_value)}}
                         onPointerLeave={()=>{this._restyle_arrow('#right-arrow',final_value,initial_value)}}
-                        onClick={async ()=>{this.props.navigate_through_graphs('right',data_length)}}
+                        onClick={async ()=>{
+                            await this.props.navigate_through_graphs('right',data_length);
+                            this._update_pbi_svg_sizes_if_exists();
+                        }}
                     />
                 </div>
 
@@ -126,27 +132,32 @@ class Slider extends React.Component{
             .attr('fill',"rgba(26, 27, 31, "+final_value+")")
     }
 
-    _update_pbi_svg_sizes(){
-        const width = d3select('.gallery-container').node().getBoundingClientRect().width;
-        const height = d3select('.gallery-container').node().getBoundingClientRect().height;
-        this.setState({width, height })
+    _update_pbi_svg_sizes_if_exists(){  
+        if(d3select('#pbi-g-container').node()!==null){
+            const gallery_node = d3select('.gallery-container').node().getBoundingClientRect();
+            const width = d3select('.gallery-container').node().getBoundingClientRect().width;
+            const height = d3select('.gallery-container').node().getBoundingClientRect().height;
+            this.setState({width, height });
 
-        const g_width = d3select('#pbi-g-container').node().getBoundingClientRect().width;
-        const g_height = d3select('#pbi-g-container').node().getBoundingClientRect().height;
+            const g_width = d3select('#pbi-g-container').node().getBoundingClientRect().width;
+            const g_height = d3select('#pbi-g-container').node().getBoundingClientRect().height;
+    
+            const y_scale = (height+120)/g_height;
+            const x_offset = 0
+            const x_scale = ( width*(  1-x_offset  )  )/g_width;
+        
+            console.log(width, height, g_width, g_height)
+            d3select('#pbi-g-container')
+                // .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${( (g_width-width)/2)/x_scale} ,0)`)
+                .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${width/2}, 0)  `)
+            ;
+        }
 
-        const y_scale = (height+120)/g_height;
-        const x_offset = 0
-        const x_scale = ( width*(  1-x_offset  )  )/g_width;
-        console.log(width, height, g_width, g_height);
-        d3select('#pbi-g-container')
-            // .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${( (g_width-width)/2)/x_scale} ,0)`)
-            .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${width/2}, 0)  `)
-        ;
 
     }
 
     componentDidMount(){
-        this._update_pbi_svg_sizes()
+        this._update_pbi_svg_sizes_if_exists()
 
     }
 
