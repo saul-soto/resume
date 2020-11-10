@@ -146,7 +146,7 @@ class MonteCarloGraph extends React.Component{
     }
 
     _run_animation(speed){
-        d3.range(this.state.simulations).map( i => {
+        d3.range(this.state.simulations-100).map( i => {
             setTimeout(
                 async () => {
                     const update_state = () => {
