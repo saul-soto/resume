@@ -1,6 +1,7 @@
 import React from 'react';
 import { select as d3select, range } from 'd3';
 import {ReactComponent as SVGArrow} from '../../../../assets/arrow_right.svg';
+import { debounce } from 'debounce';
 
 class Slider extends React.Component{
     constructor(props){
@@ -59,7 +60,22 @@ class Slider extends React.Component{
                                         >
                                             <row.source />
                                         </svg>
-                                    
+
+                                    // PYTHON SVGS
+                                    :row.type ==='svg' && row.tool === 'Python'? 
+                                        <svg 
+                                            width='45%'    
+                                            height='auto'
+                                            viewBox="0 0 60 50" 
+                                            preserveAspectRatio="none"
+                                        >
+                                            <g 
+                                                transform='scale(.1225)'
+                                            >
+                                                <row.source />
+                                            </g>
+                                        </svg>
+
                                     // D3 REACT COMPONENTS
                                     :row.type ==='svg' || row.type === 'react component'? 
                                         <row.source /> 
@@ -159,7 +175,14 @@ class Slider extends React.Component{
         }
     }
 
+    _update_media_query(){
+        this.setState({ media_query:d3select('.content-gallery').style('animation-name') });
+        console.log(this.state.media_query);
+    }
+
     componentDidMount(){
+        this._update_media_query();
+        window.addEventListener('resize', debounce(this._update_media_query.bind(this), 1000 ))
         this._update_pbi_svg_sizes_if_exists();
     }
 
