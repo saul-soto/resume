@@ -9,7 +9,7 @@ class Slider extends React.Component{
             flex_direction: '',
             width:0,
             height:0,
-            media_query: null
+            media_query: 'phone-portrait'
         }
     }
 
@@ -62,10 +62,10 @@ class Slider extends React.Component{
                                             width={this.state.width}
                                             height={this.state.height}
                                         >
-                                                {this.state.media_query !== 'phone-portrait' ? 
-                                                    <row.source />
-                                                :
+                                                {this.state.media_query === 'phone-portrait' ? 
                                                     <row.portrait_version />
+                                                :
+                                                    <row.source />
                                                 }
                                                 
                                             
@@ -138,36 +138,43 @@ class Slider extends React.Component{
             .attr('fill',"rgba(26, 27, 31, "+final_value+")")
     }
 
-    _update_pbi_svg_sizes_if_exists(){  
-        
+    async _update_pbi_svg_sizes_if_exists(){  
         const g_selection = d3select('#pbi-g-container');
 
         if(g_selection.node()!==null){
             const gallery_node = d3select('.gallery-container').node().getBoundingClientRect();
             const width = gallery_node.width;
             const height = gallery_node.height;
-            const media_query = d3select('.content-gallery').style('animation-name');
-            this.setState({width, height, media_query });
-    
+            const media_query = await d3select('.content-gallery').style('animation-name');
+            await this.setState({width, height, media_query });
+            
             const g_width = g_selection.node().getBoundingClientRect().width;
             const g_height = g_selection.node().getBoundingClientRect().height;
-    
-            const y_scale = (height+120)/g_height;
-            const x_offset = .10
-            const x_scale = ( width*(  1-x_offset  )  )/g_width;
-        
-            g_selection
-                .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${(width)/2-g_height/2}, 0)  `)
-            ;
 
-            g_selection.selectAll('text')
-                .attr('font-family', 'Helvetica')
-            ;
+            if(this.state.media_query==='other-but-portrait'){
+                const y_scale = (height+120)/g_height;
+                const x_offset = .10
+                const x_scale = ( width*(  1-x_offset  )  )/g_width;
+            
+                g_selection
+                    .attr('transform', `scale(${x_scale}, ${y_scale}) translate(${((width/x_scale)-g_height*(1+x_offset-.1)/x_scale)/2}, 0)  `)
+                ;
+            }else{
+                g_selection
+                    .attr('transform', `scale(.45) `)
+                        .selectAll('text')
+                            .attr('font-family', "montserrat")
+                ;
+            }
+
         }
     }
 
-    componentDidMount(){
-        this._update_pbi_svg_sizes_if_exists()
+    async componentDidMount(){
+        await this.setState({media_query: d3select('.content-gallery').style('animation-name')})
+
+        console.log(this.state.media_query)
+        this._update_pbi_svg_sizes_if_exists();
 
     }
 
