@@ -62,13 +62,7 @@ class Slider extends React.Component{
                                             width={this.state.width}
                                             height={this.state.height}
                                         >
-                                                {this.state.media_query === 'phone-portrait' ? 
-                                                    <row.portrait_version />
-                                                :
-                                                    <row.source />
-                                                }
-                                                
-                                            
+                                            <row.source />
                                         </svg>
                                     
                                     // D3 REACT COMPONENTS
@@ -161,7 +155,7 @@ class Slider extends React.Component{
                 ;
             }else{
                 g_selection
-                    .attr('transform', `scale(.45) `)
+                    .attr('transform', `scale(${(width+150)/g_width}) `)
                         .selectAll('text')
                             .attr('font-family', "montserrat")
                 ;
@@ -170,12 +164,8 @@ class Slider extends React.Component{
         }
     }
 
-    async componentDidMount(){
-        await this.setState({media_query: d3select('.content-gallery').style('animation-name')})
-
-        console.log(this.state.media_query)
+    componentDidMount(){
         this._update_pbi_svg_sizes_if_exists();
-
     }
 
 }
