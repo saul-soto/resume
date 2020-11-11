@@ -29,7 +29,7 @@ class Skills extends React.Component{
                         height = '100px'
                         width = '100px'
                         overflow = 'visible'
-                        transform={ `scale(${this.state.media_query==='phone-portrait'?.75: this.state.media_query==='phone-landscape'?.5:.95})`}
+                        transform={ `scale(${this.state.media_query==='phone-portrait'?.75: this.state.media_query==='phone-landscape'?.6:.95})`}
                         // style = {{border: 'grey', borderStyle:'solid'}}
                     >
                         <g 

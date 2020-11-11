@@ -3,13 +3,15 @@
     
     @if $is_phone_portrait{
         animation-name:'phone-portrait';
+    }@else if $is_phone_landscape{
+        animation-name:'phone_landscape';
     }@else{
         animation-name:'other-but-portrait';
     }
     
 
     .title{
-        @if $is_phone_portrait{
+        @if $is_phone_portrait or $is_phone_landscape{
             font-size: 25px;
             font-weight: 500;
         }
@@ -21,6 +23,8 @@
         
         @if $is_phone_portrait{
             justify-content: space-around;
+        }@else if $is_phone_landscape{
+            justify-content: space-between;
         }@else{
             justify-content: center;
         }
@@ -36,7 +40,7 @@
             transition: 1s;
             color: rgba(26, 27, 31, 0.24);
             
-            @if $is_phone_portrait{
+            @if $is_phone_portrait or $is_phone_landscape{
                 font-size: 15px;
                 font-weight: 500;
             }@else{
@@ -63,9 +67,13 @@
             height: 100%;
             z-index: 999;
 
-            @if not $is_phone_portrait{
+
+            @if $is_phone_landscape{
+                // align-items: center;
                 padding: 0 100px 0 100px;
-                align-items: center;
+            }@else if not $is_phone_portrait{
+                    padding: 0 100px 0 100px;
+                    align-items: center;
             }
             
 
@@ -93,7 +101,7 @@
                 border-color: rgba(26, 27, 31, .2);
 
 
-                @if $is_phone_portrait{
+                @if $is_phone_portrait or $is_phone_landscape{
                     margin-top: 20px;
                     flex-grow: .65;
                     font-size: 10px;
@@ -101,6 +109,10 @@
                 }@else{
                     width: 50%;
                     margin: 0 20px 50px 0;
+                }
+
+                @if $is_phone_landscape{
+                    margin-bottom: 50px;
                 }
                 
 
@@ -118,11 +130,15 @@
                 justify-content: center;
                 
 
-                @if  $is_phone_portrait{
+                @if  $is_phone_portrait  or $is_phone_landscape{
                     margin-top: -50px;
                 }@else{
                     max-width: 10%;
                     padding-bottom: 50px;
+                }
+
+                @if $is_phone_landscape{
+                    max-width: 20%;
                 }
 
 
@@ -130,7 +146,7 @@
                     font-weight: 700;
                     color: rgba(26, 27, 31, 0.4);
 
-                    @if $is_phone_portrait{
+                    @if $is_phone_portrait or $is_phone_landscape{
                         font-size: 13px;
                         text-align: center;
                     }@else{
@@ -138,10 +154,11 @@
                         text-align: left;
                     }
 
+
                 }
 
                 .graph-description{ 
-                    @if $is_phone_portrait{
+                    @if $is_phone_portrait or $is_phone_landscape{
                         font-size: 12px;
                         text-align: center;
                     }@else{
