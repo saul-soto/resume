@@ -23,9 +23,11 @@ const education = [
       spanish:'Actuaría'
     },
     Description:{
-     english:"Education focused on statistics, probability and maths",
-     spanish:'Educación enfocada en estadística, probabilidad y matemáticas' 
-    }
+     english:"Education focused on risks, statistics, probability and mathematics",
+     spanish:'Educación enfocada a riesgos, estadística, probabilidad y matemáticas' 
+    },
+    "DateBegin": 1343779200000,
+    "DateEnd": 1451606400000,
      
   }
 ]
@@ -44,10 +46,10 @@ const jobs = [
       "DateEnd": 1356998400000,
       "Responsibilities":{
         english:[
-          "To make communication with MetroPCS Clients"
+          "Contact Center agent for a bilingual campaign"
         ],
         spanish:[
-          'Hacer comunicación con los clientes de MetroPCS'
+          'Agente de Contact Center para una campaña bilingüe'
         ]
       }
     },
@@ -64,10 +66,10 @@ const jobs = [
       "DateEnd": 1496275200000,
       "Responsibilities":{
         english:[
-          "Report generation for the managers"
+          "Report generation for managers"
         ],
         spanish:[
-          'Generación de reportes para la gerencia'
+          'Generación de reportes para gerencia'
         ]
       }
     },
@@ -83,33 +85,12 @@ const jobs = [
       "DateEnd": 1525132800000,
       "Responsibilities":{
         english:[
-          "Report generation for the credit department",
-          "Development of software tools using VB .NET framework which 100+ people operational help",
-          "Analysis and forecast of demand using Excel and SQL tools"
+          "Report generation & descriptive analysis",
+          ".NET/Excel tools development to aide an operational team of 100+ people",
         ],
         spanish:[
-          'Generación de reportes para el departamento de crédito',
-          'Desarrollo de software usando VB .NET apoyando una operación de +100 personas',
-          'Análisis y forecast de demanda con Excel y SQL'
-        ]
-      }
-    },
-    {
-      "PositionName": {
-        english:"Revenue Data Analyst",
-        spanish:'Analista Datos de Revenue Management'
-      },
-      "Company": "Grupo Vidanta",
-      "Area": "Revenue Management",
-      "Location": "Puerto Vallarta, Mexico",
-      "DateBegin": 1525132800000,
-      "DateEnd": 1556668800000,
-      "Responsibilities":{
-        english:[
-          "Hotel inventory optimization using forecasting techniques"
-        ],
-        spanish:[
-          'Optimización de inventario de hoteles usando técnicas de forecasting'
+          'Generación de reportes y análisis descriptivos',
+          'Desarrollo de aplicaciones en .NET/Excel que apoyaban un equipo operativo de +100 personas',
         ]
       }
     },
@@ -135,6 +116,25 @@ const jobs = [
       }
     },
     {
+      "PositionName": {
+        english:"Revenue Data Analyst",
+        spanish:'Analista Datos de Revenue Management'
+      },
+      "Company": "Grupo Vidanta",
+      "Area": "Revenue Management",
+      "Location": "Puerto Vallarta, Mexico",
+      "DateBegin": 1525132800000,
+      "DateEnd": 1556668800000,
+      "Responsibilities":{
+        english:[
+          "Hotel inventory optimization using forecasting techniques"
+        ],
+        spanish:[
+          'Optimización de inventario de hoteles usando técnicas de forecasting'
+        ]
+      }
+    },
+    {
 
       "PositionName": {
         english: "Senior Business Analyst",
@@ -156,27 +156,27 @@ const jobs = [
         ]
       }
     },
-    {
-      "PositionName": {
-        english:'Freelancer',
-        spanish:'Freelancer',
-      },
-      "Company": "My Own",
-      "Area": "Anything",
-      "Location": "Puerto Vallarta, Mexico",
-      "DateBegin": 1585699200000,
-      "DateEnd": null,
-      "JobID": 4,
-      "PositionID": 0,
-      "Responsibilities":{
-        english:[
-          "Due to coronavirus I really need to freelance"
-        ],
-        spanish:[
-          'Debido al coronavirus he freelanceado'
-        ]
-      }
-    }
+    // {
+    //   "PositionName": {
+    //     english:'Freelancer',
+    //     spanish:'Freelancer',
+    //   },
+    //   "Company": "My Own",
+    //   "Area": "Anything",
+    //   "Location": "Puerto Vallarta, Mexico",
+    //   "DateBegin": 1585699200000,
+    //   "DateEnd": null,
+    //   "JobID": 4,
+    //   "PositionID": 0,
+    //   "Responsibilities":{
+    //     english:[
+    //       "Due to coronavirus I really need to freelance"
+    //     ],
+    //     spanish:[
+    //       'Debido al coronavirus he freelanceado'
+    //     ]
+    //   }
+    // }
 ];
 
 

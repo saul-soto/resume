@@ -51,6 +51,12 @@
                     color: rgba(26, 27, 31, 0.5);
                     font-style: italic;
                     padding-bottom: 5px;
+
+                    span{
+                        color: rgba(26, 27, 31, 0.9);
+                        font-weight: 600;
+                        font-style: normal
+                    }
                 }
 
                 .exp-cat-detail-desc{
