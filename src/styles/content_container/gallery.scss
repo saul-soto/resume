@@ -1,7 +1,7 @@
 .content-gallery{
     position: absolute; top: 0%; right: 0%; left: 0%; bottom: 0%;
     
-    @if $is_phone_portrait or $is_phone-landscape{
+    @if $is_phone_portrait{
         animation-name:'phone-portrait';
     }@else{
         animation-name:'other-but-portrait';

@@ -64,13 +64,13 @@ class Slider extends React.Component{
                                     // PYTHON SVGS
                                     :row.type ==='svg' && row.tool === 'Python'? 
                                         <svg 
-                                            width='50%'    
+                                            width={this.state.media_query==='other-but-portrait'?'50%':'100%'}
                                             height='auto'
-                                            viewBox="0 0 100 80" 
+                                            viewBox={`0 0 ${this.state.media_query==='other-but-portrait'?100:90} 80`}
                                             preserveAspectRatio="none"
                                         >
                                             <g 
-                                                transform={`scale(.2)`}
+                                                transform='scale(.2)'
                                             >
                                                 <row.source />
                                             </g>
@@ -180,8 +180,9 @@ class Slider extends React.Component{
         console.log(this.state.media_query);
     }
 
-    componentDidMount(){
-        this._update_media_query();
+    async componentDidMount(){
+        this.setState({ media_query:d3select('.content-gallery').style('animation-name') });
+        await this._update_media_query();
         window.addEventListener('resize', debounce(this._update_media_query.bind(this), 1000 ))
         this._update_pbi_svg_sizes_if_exists();
     }
