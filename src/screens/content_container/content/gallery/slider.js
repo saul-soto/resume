@@ -56,12 +56,9 @@ class Slider extends React.Component{
                                         <svg
                                             width='100%'
                                             height='auto'
-                                            preserveAspectRatio="xMidYMin meet"
                                             viewBox='50 10 90 150'
                                         >
-                                            <g 
-                                                transform='scale(.24) translate(-100,0)'
-                                            >
+                                            <g transform='scale(.24) translate(-100,0)'>
                                                 <row.source />
                                             </g>
                                         </svg>
