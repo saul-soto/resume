@@ -69,9 +69,7 @@ class Slider extends React.Component{
                                             viewBox={`0 0 ${this.state.media_query==='other-but-portrait'?100:90} 80`}
                                             preserveAspectRatio="none"
                                         >
-                                            <g 
-                                                transform='scale(.2)'
-                                            >
+                                            <g transform='scale(.2)'>
                                                 <row.source />
                                             </g>
                                         </svg>
@@ -177,7 +175,6 @@ class Slider extends React.Component{
 
     _update_media_query(){
         this.setState({ media_query:d3select('.content-gallery').style('animation-name') });
-        console.log(this.state.media_query);
     }
 
     async componentDidMount(){
