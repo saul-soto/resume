@@ -56,10 +56,13 @@ class Slider extends React.Component{
                                         <svg
                                             width='100%'
                                             height='auto'
-                                            viewBox='50 10 90 150'
+                                            viewBox={this.state.media_query==='other-but-portrait'?'50 10 90 150':'0 70 220 100'}
                                         >
-                                            <g transform='scale(.24) translate(-100,0)'>
-                                                <row.source />
+                                            <g transform={this.state.media_query==='other-but-portrait'?'scale(.24) translate(-100,0)':'scale(.3) translate(-20,0)'}>
+                                                {this.state.media_query==='other-but-portrait'?
+                                                    <row.source />:
+                                                    <row.portrait_version />
+                                                }
                                             </g>
                                         </svg>
 
