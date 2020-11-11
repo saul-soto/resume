@@ -26,11 +26,25 @@ class Skills extends React.Component{
                 <div id='skills-canvas-container'>
                     <svg 
                         id='skills-canvas'
-                        height = '1px'
-                        width = '1px'
+                        height = '100px'
+                        width = '100px'
                         overflow = 'visible'
+                        transform='scale(1.05)'
                         // style = {{border: 'grey', borderStyle:'solid'}}
-                    />                    
+                    >
+                        <g 
+                            id='canvas-group'
+                            transform = {`
+                                translate(50,50) 
+                                rotate(  ${
+                                    d3.scaleLinear()
+                                        .domain([0,360])
+                                        .range([680,300])
+                                            (this.state.rotation)}  
+                            )`}
+                        ></g>
+                        
+                    </svg>                    
                 </div>
 
                 <div className="angle-input-container">
@@ -111,17 +125,13 @@ class Skills extends React.Component{
 
     _bind_implicit_data(){
         const { modules, tools, types  } = this._transform_data();
-        const canvas = 
-            d3.select('#skills-canvas')
-                .append('g')
-                    .attr('class', 'canvas-group')
-        ;
-
-        canvas
+        d3.select('#skills-canvas')
             .append('text')
                 .attr('class', 'skills-title')
+                .attr('transform', 'translate(50,50)')
         ;
-
+        const canvas = d3.select('#canvas-group');
+        
         const bind_modules = () => {
             const modules_groups = 
                 canvas
@@ -238,61 +248,19 @@ class Skills extends React.Component{
     }
 
     _run_pattern(pattern){
-
-        const { 
-            // width, 
-            // height, 
-            rotation, 
-            media_query 
-        } = this.state;
-        const font_size = 12;
-        const radius = 110;
-        const y_offset = 35;
-
-
-        const canvas = d3.select('#skills-canvas');
-
-
         const merge_enter_update = () => {
-            // CANVAS
-            const translated_rotation = 
-                d3.scaleLinear().
-                    domain([0,360]).
-                    range([680,300])
-                        (rotation)
-            ;
-
-            canvas
-                .attr('transform', `rotate(${translated_rotation})`)
-            ;
-
-
-            const g_scaler = () => {
-                if(media_query==='phone-landscape'){
-                    return .7
-                }
-                if(media_query==='phone-portrait'){
-                    return .6
-                }else{
-                    return 1
-                }
-            };
-            // const scaled_middle = (height/g_scaler)*(1-g_scaler)/2;
-            canvas.select('.canvas-group')
-                .attr('transform',  `scale(${g_scaler()})`)
-            ;
-
-            // TITLE
-            canvas.select('.skills-title')
-                .attr('transform', `rotate(${-translated_rotation})`)
-                // .attr('transform', `translate(${width/2}, ${height/2})`)
-            ;
         }
 
         if(pattern==='enter'){
+            const font_size = 12;
+            const radius = 110;
+            const y_offset = 35;
+            
             this._bind_implicit_data();
             merge_enter_update();
-
+            
+            const canvas = d3.select('#skills-canvas');
+            
             // ENTER - TITLE
             canvas.select('.skills-title')
                 .text('Skills & Tools')
