@@ -102,16 +102,16 @@ const gallery_data = [
         tool:'D3.js',
         source: MonteCarloGraph,
         type:'react component',
-        title:'Monte Carlo Simulation',
-        description:'A random Monte Carlo simulation an it\'s parameters',
+        title:'Random Walk',
+        description:'A random walk given a probability of going up/down',
         hide_info:false
     },
     {
         tool:'D3.js',
         source: GoodnessOfFit,
         type:'react component',
-        title:'Goodness of Fit',
-        description:'Random simulation of goodness of fit',
+        title:'A simple histogram',
+        description:'A simple histogram',
         hide_info:false
     },
 
