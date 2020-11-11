@@ -16,9 +16,8 @@ import { ReactComponent as Telemarketing } from './Power BI/telemarketing landsc
 import { ReactComponent as TelemarketingQuality } from './Power BI/telemarketing quality landscape.svg';
 
 import { ReactComponent as TelemarketingPortrait } from './Power BI/telemarketing portrait.svg';
-// import DashboardTelemarketing from './Power BI/pbi_dashboard_1.png';
-// import DailyTrend from './Power BI/pbi_daily_trend.png';
-// import GoalsForecast from './Power BI/pbi_goals_forecast.png';
+import { ReactComponent as TelemarketingQualityPortrait } from './Power BI/telemarketing quality portrait.svg';
+import { ReactComponent as TripAdvisorPortrait } from './Power BI/TripAdvisor WebScraping Portrait.svg';
 
 
 //PYTHON
@@ -55,7 +54,7 @@ const gallery_data = [
         title:'Power BI Report',
         description:'Test',
         hide_info:true,
-        portrait_version: TripAdvisor
+        portrait_version: TripAdvisorPortrait
     },
 
 
@@ -76,7 +75,7 @@ const gallery_data = [
         title:'Power BI Report',
         description:'This is a report using PBI',
         hide_info:true,
-        portrait_version: TelemarketingQuality
+        portrait_version: TelemarketingQualityPortrait
     },
     {
         tool:'Python',
