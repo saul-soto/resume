@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e4c18548192633c0d205f7e8b20e1bf3",
+    "revision": "3c2c3cfc4782d0cf3c6f8a2b1c18df15",
     "url": "/resume/index.html"
   },
   {
-    "revision": "270dc5019c2d648199bc",
-    "url": "/resume/static/css/main.fb389903.chunk.css"
+    "revision": "e3105180db8eb9770c5f",
+    "url": "/resume/static/css/main.3d6c5738.chunk.css"
   },
   {
     "revision": "660e00a82ca4a37b18fc",
@@ -16,16 +16,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/resume/static/js/2.8c18bcdf.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "270dc5019c2d648199bc",
-    "url": "/resume/static/js/main.d55b68d3.chunk.js"
+    "revision": "e3105180db8eb9770c5f",
+    "url": "/resume/static/js/main.04641486.chunk.js"
   },
   {
     "revision": "8c1d914a1677cea53979",
     "url": "/resume/static/js/runtime-main.75d8c91e.js"
   },
   {
-    "revision": "f65408d99037a1693792480782daea48",
-    "url": "/resume/static/media/SaulSotoCV_eng.f65408d9.pdf"
+    "revision": "f2717283cf9e70ac52507783a14775a4",
+    "url": "/resume/static/media/SaulSotoCV_eng.f2717283.pdf"
   },
   {
     "revision": "c9a1ef5abf01bd0be7c0dbbaf809712c",
