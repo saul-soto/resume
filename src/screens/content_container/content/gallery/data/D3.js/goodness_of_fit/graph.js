@@ -64,7 +64,9 @@ class GoodnessOfFit extends React.Component{
 
     _update_sizes(){// LOOPING FOR EVERY BIN ELEMEN
         const node = d3.select('#react-component').node();
-        this._update_binded_elements(node.offsetHeight, node.offsetWidth)
+        if (node !== null){
+            this._update_binded_elements(node.offsetHeight, node.offsetWidth)
+        }
     }
 
     componentDidMount(){
