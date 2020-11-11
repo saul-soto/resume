@@ -49,17 +49,6 @@ const gallery_data = [
 
     {
         tool:'Power BI',
-        source:TripAdvisor,
-        type:'svg',
-        title:'Power BI Report',
-        description:'Test',
-        hide_info:true,
-        portrait_version: TripAdvisorPortrait
-    },
-
-
-    {
-        tool:'Power BI',
         source:Telemarketing,
         type:'svg',
         title:'Power BI Report',
@@ -68,6 +57,15 @@ const gallery_data = [
         portrait_version: TelemarketingPortrait
     },
 
+    {
+        tool:'Power BI',
+        source:TripAdvisor,
+        type:'svg',
+        title:'Power BI Report',
+        description:'Test',
+        hide_info:true,
+        portrait_version: TripAdvisorPortrait
+    },
     {
         tool:'Power BI',
         source:TelemarketingQuality,
