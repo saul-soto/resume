@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fb6f2fad845dc7b6e2bca25c85e6f11c",
+    "revision": "762f4d342a37e3bca7d2a1d34c38f7c2",
     "url": "/resume/index.html"
   },
   {
-    "revision": "0898dcc92e79e9976826",
+    "revision": "4095461845cc5c4d2c78",
     "url": "/resume/static/css/main.fe455ebd.chunk.css"
   },
   {
-    "revision": "ddcc9454fc97ca2fe548",
-    "url": "/resume/static/js/2.f8f9c679.chunk.js"
+    "revision": "660e00a82ca4a37b18fc",
+    "url": "/resume/static/js/2.8c18bcdf.chunk.js"
   },
   {
     "revision": "65075b20798fa24012a1ad453c78c90d",
-    "url": "/resume/static/js/2.f8f9c679.chunk.js.LICENSE.txt"
+    "url": "/resume/static/js/2.8c18bcdf.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0898dcc92e79e9976826",
-    "url": "/resume/static/js/main.6b6d27ed.chunk.js"
+    "revision": "4095461845cc5c4d2c78",
+    "url": "/resume/static/js/main.2d74027e.chunk.js"
   },
   {
     "revision": "8c1d914a1677cea53979",
@@ -28,8 +28,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/resume/static/media/SaulSotoCV_eng.f65408d9.pdf"
   },
   {
-    "revision": "0480b8db0d636a968d4711d953cc0820",
-    "url": "/resume/static/media/TripAdvisor WebScraping Landscape.0480b8db.svg"
+    "revision": "c9a1ef5abf01bd0be7c0dbbaf809712c",
+    "url": "/resume/static/media/TripAdvisor WebScraping Landscape.c9a1ef5a.svg"
+  },
+  {
+    "revision": "ba8532986fff82725d3f754ce97bae1e",
+    "url": "/resume/static/media/TripAdvisor WebScraping Portrait.ba853298.svg"
   },
   {
     "revision": "d0f51a9009c92ec45a93803580efd8d6",
@@ -56,15 +60,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/resume/static/media/retention_analysis.edd37a95.png"
   },
   {
-    "revision": "a9d9238af9ff774997ef3536249a65a4",
-    "url": "/resume/static/media/telemarketing landscape.a9d9238a.svg"
+    "revision": "75d617b1c3d53453df8a99c373994ef0",
+    "url": "/resume/static/media/telemarketing landscape.75d617b1.svg"
   },
   {
-    "revision": "343fe3e4aa271e25f9b0dd8aa27a2d7e",
-    "url": "/resume/static/media/telemarketing portrait.343fe3e4.svg"
+    "revision": "f662b9a1a69d247520beee5599c8a92a",
+    "url": "/resume/static/media/telemarketing portrait.f662b9a1.svg"
   },
   {
-    "revision": "c47814b67fae49c4374a3f021bbe93d0",
-    "url": "/resume/static/media/telemarketing quality landscape.c47814b6.svg"
+    "revision": "a1aa82f8411c6c07eb196e99aeea7cf5",
+    "url": "/resume/static/media/telemarketing quality landscape.a1aa82f8.svg"
+  },
+  {
+    "revision": "ef78ab2e348fc9cb42f667c05c5bc8f2",
+    "url": "/resume/static/media/telemarketing quality portrait.ef78ab2e.svg"
   }
 ]);
