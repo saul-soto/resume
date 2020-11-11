@@ -176,28 +176,32 @@ class MonteCarloGraph extends React.Component{
 
     _update_responsive_sizes(){
         const  div_container = d3.select('#react-component').node();
-        const width = div_container.offsetWidth;
-        const height = div_container.offsetHeight;
-        const { margin_horizontal, margin_vertical } = this._get_margins();
-        const cumsum = this.state.cumsum;
 
-        this.setState({
-            width,
-            height,
-            line_coords: [
-                {
-                    x_1:margin_horizontal,y_1:margin_vertical,
-                    x_2:margin_horizontal,y_2:height - margin_vertical
-                },
-                {
-                    x_1:margin_horizontal,y_1:height - margin_vertical,
-                    x_2:width - margin_horizontal,y_2:height - margin_vertical
-                },
-            ],
-            y_scaler: this._get_updated_y_scaler(height, d3.min(cumsum), d3.max(cumsum))
-        });
+        if(div_container!==null){
+            const width = div_container.offsetWidth;
+            const height = div_container.offsetHeight;
+            const { margin_horizontal, margin_vertical } = this._get_margins();
+            const cumsum = this.state.cumsum;
+    
+            this.setState({
+                width,
+                height,
+                line_coords: [
+                    {
+                        x_1:margin_horizontal,y_1:margin_vertical,
+                        x_2:margin_horizontal,y_2:height - margin_vertical
+                    },
+                    {
+                        x_1:margin_horizontal,y_1:height - margin_vertical,
+                        x_2:width - margin_horizontal,y_2:height - margin_vertical
+                    },
+                ],
+                y_scaler: this._get_updated_y_scaler(height, d3.min(cumsum), d3.max(cumsum))
+            });
+    
+            this._run_pattern('update');
+        }
 
-        this._run_pattern('update');
     }
     
     async componentDidMount(){

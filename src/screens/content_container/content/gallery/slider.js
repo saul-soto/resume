@@ -10,7 +10,8 @@ class Slider extends React.Component{
             flex_direction: '',
             width:0,
             height:0,
-            media_query: 'phone-portrait'
+            media_query: 'other-but-potrait',
+            isChrome: false
         }
     }
 
@@ -147,12 +148,17 @@ class Slider extends React.Component{
     }
 
     _update_media_query(){
-        this.setState({ media_query:d3select('.content-gallery').style('animation-name') });
+        const look_for_style = (style) => {
+            return d3select('.content-gallery').style(style)
+        }
+        this.setState({ media_query: look_for_style('animation-name')});
     }
 
     async componentDidMount(){
         await this._update_media_query();
         window.addEventListener('resize', debounce(this._update_media_query.bind(this), 1000 ))
+        const isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+        this.setState({ isChrome })
     }
 
 }

@@ -3,10 +3,13 @@
     
     @if $is_phone_portrait{
         animation-name:'phone-portrait';
+        -webkit-animation-name: 'phone-portrait';
     }@else if $is_phone_landscape{
         animation-name:'phone_landscape';
+        -webkit-animation-name: 'phone_landscape';
     }@else{
         animation-name:'other-but-portrait';
+        -webkit-animation-name: 'other-but-portrait';
     }
     
 
