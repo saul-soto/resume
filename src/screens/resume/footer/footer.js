@@ -1,6 +1,6 @@
 import React from 'react';
-import pdf from '../../assets/SaulSotoCV_eng.pdf';
-import {ReactComponent as SVGLanguage} from '../../assets/language.svg'
+import pdf from '../../../assets/SaulSotoCV_eng.pdf';
+import {ReactComponent as SVGLanguage} from '../../../assets/language.svg'
 import Modal from './modal';
 import * as d3 from 'd3';
 

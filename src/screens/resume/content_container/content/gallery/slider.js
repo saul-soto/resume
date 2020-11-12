@@ -1,6 +1,6 @@
 import React from 'react';
 import { select as d3select, range } from 'd3';
-import {ReactComponent as SVGArrow} from '../../../../assets/arrow_right.svg';
+import {ReactComponent as SVGArrow} from '../../../../../assets/arrow_right.svg';
 import { debounce } from 'debounce';
 
 class Slider extends React.Component{

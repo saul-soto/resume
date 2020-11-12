@@ -1,8 +1,8 @@
 import React from 'react';
 import './styles/App.scss';
-import Header from './screens/header/header';
-import ContentContainer from './screens/content_container/main';
-import Footer from './screens/footer/footer';
+import Header from './screens/resume/header/header';
+import ContentContainer from './screens/resume/content_container/main';
+import Footer from './screens/resume/footer/footer';
 
 
 class App extends React.Component{
