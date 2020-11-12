@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3f74c3e0b367d010f85046d2c07f0405",
+    "revision": "cd01e96beec8dfd2191856b621ea95ad",
     "url": "/resume/index.html"
   },
   {
-    "revision": "48786e3b7fd5ecc1968b",
-    "url": "/resume/static/css/main.ffa2301a.chunk.css"
+    "revision": "5286e5268cf47c6cb2d2",
+    "url": "/resume/static/css/main.3d6c5738.chunk.css"
   },
   {
-    "revision": "5edf9748f5e7f347f745",
-    "url": "/resume/static/js/2.20150d6d.chunk.js"
+    "revision": "660e00a82ca4a37b18fc",
+    "url": "/resume/static/js/2.8c18bcdf.chunk.js"
   },
   {
     "revision": "65075b20798fa24012a1ad453c78c90d",
-    "url": "/resume/static/js/2.20150d6d.chunk.js.LICENSE.txt"
+    "url": "/resume/static/js/2.8c18bcdf.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "48786e3b7fd5ecc1968b",
-    "url": "/resume/static/js/main.2c333c43.chunk.js"
+    "revision": "5286e5268cf47c6cb2d2",
+    "url": "/resume/static/js/main.a2726e4e.chunk.js"
   },
   {
     "revision": "8c1d914a1677cea53979",
@@ -28,8 +28,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/resume/static/media/SaulSotoCV_eng.4735d8f2.pdf"
   },
   {
-    "revision": "dec6473470894227803b09352fdb4e86",
-    "url": "/resume/static/media/TripAdvisor WebScraping Landscape.dec64734.svg"
+    "revision": "c9a1ef5abf01bd0be7c0dbbaf809712c",
+    "url": "/resume/static/media/TripAdvisor WebScraping Landscape.c9a1ef5a.svg"
   },
   {
     "revision": "ba8532986fff82725d3f754ce97bae1e",
@@ -44,12 +44,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/resume/static/media/excel_metallurgic.0d54c482.png"
   },
   {
-    "revision": "56bb9c2e73c08e0d9d864ea549423475",
-    "url": "/resume/static/media/graph.56bb9c2e.svg"
+    "revision": "1232ae432847ce1a0ac5d3b91d0c35e2",
+    "url": "/resume/static/media/graph.1232ae43.svg"
   },
   {
-    "revision": "57570474ee25ff91e63a778e8223764a",
-    "url": "/resume/static/media/graph.57570474.svg"
+    "revision": "a652dd395e61fbab548ab20e9bfc2551",
+    "url": "/resume/static/media/graph.a652dd39.svg"
   },
   {
     "revision": "0cc46ef96f7c2bc48a07a366806cf32f",
@@ -60,16 +60,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/resume/static/media/retention_analysis.edd37a95.png"
   },
   {
-    "revision": "75d0601e38b4995fac01875b7bb580b5",
-    "url": "/resume/static/media/telemarketing landscape.75d0601e.svg"
+    "revision": "75d617b1c3d53453df8a99c373994ef0",
+    "url": "/resume/static/media/telemarketing landscape.75d617b1.svg"
   },
   {
-    "revision": "db2586cb7ed3182f97aa6f53b26ad55b",
-    "url": "/resume/static/media/telemarketing portrait.db2586cb.svg"
+    "revision": "f662b9a1a69d247520beee5599c8a92a",
+    "url": "/resume/static/media/telemarketing portrait.f662b9a1.svg"
   },
   {
-    "revision": "45349e9e83fc0aaa57d99e0a13d3a5a9",
-    "url": "/resume/static/media/telemarketing quality landscape.45349e9e.svg"
+    "revision": "a1aa82f8411c6c07eb196e99aeea7cf5",
+    "url": "/resume/static/media/telemarketing quality landscape.a1aa82f8.svg"
   },
   {
     "revision": "ef78ab2e348fc9cb42f667c05c5bc8f2",
