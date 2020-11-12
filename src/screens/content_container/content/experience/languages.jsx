@@ -102,8 +102,8 @@ const jobs = [
       "Company": "Grupo Vidanta",
       "Area": "Business Analytics",
       "Location": "Puerto Vallarta, Mexico",
-      "DateBegin": 1525132800000,
-      "DateEnd": 1556668800000,
+      "DateBegin": 1556668800000,
+      "DateEnd": 1572566400000,
       "JobID": 3,
       "PositionID": 1,
       "Responsibilities":{

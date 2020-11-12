@@ -13,70 +13,70 @@ const skills = {
     english:[
         {
             
-            type: 'I - Preprocessing', 
+            type: 'I - Transforming Data', 
             tool: 'SQL',
             module: 'SQL',
             expertise: 4
         },
         {
             
-            type: 'I - Preprocessing', 
+            type: 'I - Transforming Data', 
             tool: 'Python',
             module: 'Pandas',
             expertise: 4
         },
         {
             
-            type: 'I - Preprocessing', 
+            type: 'I - Transforming Data', 
             tool: 'Qlik',
             module: 'View',
             expertise: 3
         },
         {
             
-            type: 'I - Preprocessing', 
+            type: 'I - Transforming Data', 
             tool: 'Qlik',
             module: 'Sense',
             expertise: 2
         },
         {
             
-            type: 'II - Descriptive', 
+            type: 'II - Describing Data', 
             tool: 'Python',
             module: 'Pandas', 
             expertise: 4
         },
         {
             
-            type: 'II - Descriptive', 
+            type: 'II - Describing Data', 
             tool: 'Python',
             module: 'Numpy', 
             expertise: 3
         },
         {
             
-            type: 'II - Descriptive', 
+            type: 'II - Describing Data', 
             tool: 'Python',
             module: 'Pyplot', 
             expertise: 3
         },
         {
             
-            type: 'II - Descriptive', 
+            type: 'II - Describing Data', 
             tool: 'PowerBI',
             module: 'PowerBI', 
             expertise: 5
         },
         {
             
-            type: 'II - Descriptive', 
+            type: 'II - Describing Data', 
             tool: 'D3.js',
             module: 'D3.js',
             expertise: 4
         },
         {
             
-            type: 'II - Descriptive', 
+            type: 'II - Describing Data', 
             tool: 'Excel',
             module: 'Excel',
             expertise: 5
@@ -84,21 +84,21 @@ const skills = {
 
         {
             
-            type: 'III - Predictive', 
+            type: 'III - Predictive Modeling', 
             tool: 'Python',
             module: 'Sklearn', 
             expertise: 4
         },
         {
             
-            type: 'III - Predictive', 
+            type: 'III - Predictive Modeling', 
             tool: 'Python',
             module: 'Scipy', 
             expertise: 3
         },
         {
             
-            type: 'III - Predictive', 
+            type: 'III - Predictive Modeling', 
             tool: 'Python',
             module: 'Tensorflow', 
             expertise: 3
