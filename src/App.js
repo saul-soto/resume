@@ -1,36 +1,18 @@
 import React from 'react';
 import './styles/App.scss';
-import Header from './screens/resume/header/header';
-import ContentContainer from './screens/resume/content_container/main';
-import Footer from './screens/resume/footer/footer';
+import Resume from './screens/resume/main';
 import SklearnUnsupervised from './screens/sklearn-unsupervised/main';
-import { BrowserRouter, Route, Switch} from 'react-router-dom';
+import SklearnSupervised from './screens/sklearn-unsupervised/main copy'
+import { Route } from 'react-router-dom';
 
 class App extends React.Component{
-	constructor(props){
-		super(props);
-		this.state = {
-			language: 'english'
-		}
-	}
-
 	render(){
 		return(
-			<BrowserRouter>
-				<Switch>
-					<Route exact path='/resume'>
-						<Header lang={this.state.language}/>
-						<ContentContainer lang={this.state.language}/>
-						<Footer 
-							lang={this.state.language}
-							choose_language={(language) => {this.setState({language})}}
-						/>
-					</Route>
-					
-					
-					<Route exact path='/resume/sklearn-unsupervised' component={SklearnUnsupervised} />
-				</Switch>
-			</BrowserRouter>
+			<>
+				<Route exact path={'/'} component={Resume} />
+				<Route path={'/sklearn-unsupervised'} component={SklearnUnsupervised} />
+				<Route path={'/sklearn-supervised'} component={SklearnSupervised} />
+			</>
 		)
 	}
 }
