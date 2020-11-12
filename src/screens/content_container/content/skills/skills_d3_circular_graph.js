@@ -54,7 +54,7 @@ class Skills extends React.Component{
                         orient={this.state.media_query==='phone-landscape'?"vertical":null}
                         min="0" 
                         max="360" 
-                        step='10'
+                        // step='.0'
                         value={this.state.rotation}
                         onChange={  e=>{
                             const target_value = e.target.value;
