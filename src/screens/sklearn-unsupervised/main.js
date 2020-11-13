@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class SklearnUnsupervised extends React.Component{
     constructor(props){super(props);
@@ -45,8 +46,17 @@ class SklearnUnsupervised extends React.Component{
     }
 
     _get_score(param_1, param_2){
-        console.log('this are the params', param_1, param_2);
-
+        axios.get(
+            'https://my-interactive-cv.herokuapp.com/API/score_observation', 
+            { params:{ param_1, param_2 }}
+        )
+            .then(resp=>{
+                this.setState({score:resp.data.score});
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        ;
     }
 }
 
