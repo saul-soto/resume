@@ -6,25 +6,25 @@ class SklearnUnsupervised extends React.Component{
         this.state = { 
             score:null,
             params: {
-                'price':221900,
-                'bedrooms':3,
-                'bathrooms':1,
-                'sqft_living':1180,
-                'sqft_lot':5650,
-                'floors':1,
-                'waterfront':0,
-                'view':0,
-                'condition':3,
-                'grade':7,
-                'sqft_above':1180,
-                'sqft_basement':0,
-                'yr_built':1955,
-                'yr_renovated':0,
-                'zipcode':98178,
-                'lat':47.5112,
-                'long':-122.257,
-                'sqft_living15':1340,
-                'sqft_lot15':5650
+                'price':{label:'Price', value:221900},
+                'bedrooms':{label:'Bedrooms', value:3},
+                'bathrooms':{label:'Bathrooms', value:1},
+                'sqft_living':{label:'Built (sqft)', value: 1180},
+                'sqft_lot':{label:'Area (sqft)', value:5650},
+                'floors':{label:'Floors', value:1},
+                // 'waterfront':0,
+                // 'view':0,
+                // 'condition':3,
+                // 'grade':7,
+                // 'sqft_above':1180,
+                // 'sqft_basement':0,
+                'yr_built':{label:'Year Built', value: 1955},
+                // 'yr_renovated':0,
+                // 'zipcode':98178,
+                // 'lat':47.5112,
+                // 'long':-122.257,
+                // 'sqft_living15':1340,
+                // 'sqft_lot15':5650
             }
 
         }
@@ -35,33 +35,36 @@ class SklearnUnsupervised extends React.Component{
 
     render(){
 
-        
+        const dic_params = this.state.params;
+
         return(
             <div className='container'>
-                <div>
+                <div className='userform-container'>
                     <h1>Sklearn Unsupervised</h1>
-                    <form onSubmit={this.handleSubmit}>
-                        {Object.keys(this.state.params).map(param=>{return(
-                            <label>
-                                {param}:
+                        {Object.keys(dic_params).map(param=>{return(
+                            <div>
+                                <p>{dic_params[param].label}</p>
                                 <input 
                                     type="number"
-                                    value={this.state.params[param]}
+                                    value={dic_params[param].value}
                                     onChange={(e)=>{
-                                        let new_params = this.state.params;
-                                        new_params[param] = e.target.value;
+                                        let new_params = dic_params;
+                                        new_params[param].value = e.target.value;
                                         this.setState({ params:new_params })
                                     }} 
                                 />
-                            </label>
+                            </div>
 
                         )})}
+
+
+
+
                         <input 
                             type="submit" 
                             value="Submit" 
-                            onClick={()=>{this._get_score(this.state.params)}}
+                            onClick={()=>{this._get_score(dic_params)}}
                         />
-                    </form>
                 </div>
 
 
@@ -75,19 +78,19 @@ class SklearnUnsupervised extends React.Component{
     }
 
     _get_score(params){
-        
-        console.log(params)
-        // axios.get(
-        //     'https://my-interactive-cv.herokuapp.com/API/score_observation', 
-        //     { params:{ param_1, param_2 }}
-        // )
-        //     .then(resp=>{
-        //         this.setState({score:resp.data.score});
-        //     })
-        //     .catch(err=>{
-        //         console.log(err)
-        //     })
-        // ;
+        // console.log(Object.keys(params).map(p=>this.state.params[p].value))
+        axios.get(
+            // 'http://127.0.0.1:8000/API/score_observation', 
+            'https://my-interactive-cv.herokuapp.com/API/score_observation', 
+            { params: Object.keys(params).map(p=>this.state.params[p].value) }
+        )
+            .then(resp=>{
+                this.setState({score:resp.data.score});
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        ;
     }
 }
 

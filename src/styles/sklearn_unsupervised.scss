@@ -1,3 +1,16 @@
 .container{
     font-weight: 600;
+
+
+    .userform-container{
+
+
+        .userform{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+    }
 }
