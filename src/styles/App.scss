@@ -19,7 +19,8 @@
         padding: 0;
         margin: 0;
 
-        @import 'header';
+        // RESUME
+        @import 'resume/header';
 
         .content-container{
             margin-top: $nav_height;
@@ -41,10 +42,10 @@
                     }
                 }
 
-                @import 'content_container/introduction';
-                @import 'content_container/experience';
-                @import 'content_container/skills/skills';
-                @import 'content_container/gallery';
+                @import 'resume/content_container/introduction';
+                @import 'resume/content_container/experience';
+                @import 'resume/content_container/skills/skills';
+                @import 'resume/content_container/gallery';
             }
 
             #relative-box{
@@ -52,8 +53,12 @@
             }
         }
 
-        @import 'footer/footer';
-        @import 'footer/modal';
+        @import 'resume/footer/footer';
+        @import 'resume/footer/modal';
+
+        // SKLEARN UNSUPERVISED
+        @import 'sklearn_unsupervised';
+
     }
 
 };
