@@ -1,7 +1,7 @@
 .content-introduction{
     min-height: 100vh-$nav_height;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-top: -5vh; padding-bottom: 5vh;
     @if $is_phone_portrait{
         justify-content: center;
@@ -9,6 +9,17 @@
         justify-content: center;
     }
 
+    @import 'skills/skills';
+
+
+.introduction-texts-container{
+    // width: 30%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-self: center;
+    
     .intro-row{
         display: flex;
         align-content: stretch;
@@ -70,4 +81,5 @@
             
         }
     }
+}
 }
