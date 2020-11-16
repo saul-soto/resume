@@ -78,11 +78,16 @@ class SklearnUnsupervised extends React.Component{
     }
 
     _get_score(params){
-        // console.log(Object.keys(params).map(p=>this.state.params[p].value))
+        params = Object.keys(params).map(p=>{
+            const sign = p==='price'?-1:1;
+            return this.state.params[p].value*sign
+        });
+        console.log(params);
+
         axios.get(
-            // 'http://127.0.0.1:8000/API/score_observation', 
-            'https://my-interactive-cv.herokuapp.com/API/score_observation', 
-            { params: Object.keys(params).map(p=>this.state.params[p].value) }
+            'http://127.0.0.1:8000/API/score_observation', 
+            // 'https://my-interactive-cv.herokuapp.com/API/score_observation', 
+            { params }
         )
             .then(resp=>{
                 this.setState({score:resp.data.score});
