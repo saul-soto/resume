@@ -129,13 +129,13 @@ class MonteCarloGraph extends React.Component{
             merge_enter_update();
 
             d3.selectAll('.time-series')
-            .transition().duration(100)
-            .attr("d", d3.line()
-                .curve(d3.curveBasis)
-                .x(function(_,i) { return x_scaler(i) })
-                .y(function(d) { return y_scaler(d) })
-                (cumsum)
-            )
+                .transition().duration(100)
+                .attr("d", d3.line()
+                    .curve(d3.curveBasis)
+                    .x(function(_,i) { return x_scaler(i) })
+                    .y(function(d) { return y_scaler(d) })
+                        (cumsum)
+                )
             ;
 
         }
