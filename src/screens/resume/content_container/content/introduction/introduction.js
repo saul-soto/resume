@@ -1,6 +1,6 @@
 import React from 'react';
 import content from './languages.jsx';
-import Skills from '../skills/skills_d3_circular_graph';
+// import Skills from '../skills/skills_d3_circular_graph';
 
 class Introduction extends React.Component{
     render(){

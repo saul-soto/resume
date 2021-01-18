@@ -85,8 +85,8 @@ class SklearnUnsupervised extends React.Component{
         console.log(params);
 
         axios.get(
-            'http://127.0.0.1:8000/API/score_observation', 
-            // 'https://my-interactive-cv.herokuapp.com/API/score_observation', 
+            // 'http://127.0.0.1:8000/API/score_observation', 
+            'https://my-interactive-cv.herokuapp.com/API/score_observation', 
             { params }
         )
             .then(resp=>{
